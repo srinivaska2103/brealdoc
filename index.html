@@ -573,7 +573,7 @@ if (mobileDashToggle && mobileDashLinks) {
                             Certified Specialists
                         </h3>
                         <p class="text-sm font-normal text-slate-600 dark:text-slate-400 leading-relaxed">
-                            Certified and experienced brake specialists equipped to service all vehicle makes and models safely.
+                            Certified and experienced brake specialists equipped to service all vehicle makes and models safely and fast.
                         </p>
                     </div>
                 </div>
@@ -624,7 +624,7 @@ if (mobileDashToggle && mobileDashLinks) {
                             Premium OEM Parts
                         </h3>
                         <p class="text-sm font-normal text-slate-600 dark:text-slate-400 leading-relaxed">
-                            High-quality OEM and top-tier aftermarket parts used exclusively to safeguard stopping performance and longevity.
+                            High-quality OEM and top-tier aftermarket parts used exclusively to safeguard stopping performance.
                         </p>
                     </div>
                 </div>
@@ -702,7 +702,7 @@ if (mobileDashToggle && mobileDashLinks) {
                             Brake Pad Replacement
                         </h3>
                         <p class="text-sm font-normal text-slate-600 dark:text-slate-400 leading-relaxed">
-                            Replacement of worn ceramic, semi-metallic, or organic brake pads right in your driveway using premium OEM specified elements.
+                            Replacement of worn ceramic, semi-metallic, or organic brake pads right in your driveway using premium OEM elements.
                         </p>
                     </div>
                 </div>
@@ -749,10 +749,10 @@ if (mobileDashToggle && mobileDashLinks) {
                     </div>
                     <div class="p-6 space-y-2">
                         <h3 class="text-base sm:text-lg font-semibold text-slate-900 dark:text-white group-hover:text-brand-500 transition-colors">
-                            Comprehensive Brake Inspection
+                            Comprehensive Brake
                         </h3>
                         <p class="text-sm font-normal text-slate-600 dark:text-slate-400 leading-relaxed">
-                            A multi-point digital inspection tracking remaining pad measurements, rotor thickness metrics, and systemic health indicators.
+                            A multi-point digital inspection tracking remaining pad measurements, rotor thickness metrics, and systemic health.
                         </p>
                     </div>
                 </div>
@@ -889,7 +889,7 @@ if (mobileDashToggle && mobileDashLinks) {
                         We Come to You
                     </h3>
                     <p class="text-sm font-normal text-slate-600 dark:text-slate-400 leading-relaxed max-w-xs lg:max-w-none mx-auto">
-                        Our mechanic arrives at your home or workplace fully equipped with high-grade equipment and matching replacement.
+                        Our mechanic arrives at your home or workplace fully equipped with high-grade equipment and matching.
                     </p>
                 </div>
             </div>
@@ -993,7 +993,7 @@ if (mobileDashToggle && mobileDashLinks) {
                             Uncompromised Safety
                         </h3>
                         <p class="text-xs sm:text-sm font-normal text-slate-500 dark:text-slate-400 leading-normal">
-                            Don't risk driving with compromised brake components. We deploy emergency road response fast.
+                            Don't risk driving with compromised brake components. We deploy emergency road response.
                         </p>
                     </div>
                 </div>
@@ -1214,90 +1214,93 @@ if (mobileDashToggle && mobileDashLinks) {
 
         <!-- TESTIMONIAL CARDS MATRIX GRID -->
         <!-- Responsive mapping: 1 col on 360px/mobile, 2 cols on tablet, 3 cols from 1024px desktop up -->
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 items-start">
+      <!-- RE-ENGINEERED TESTIMONIAL GRID FRAMEWORK -->
+<!-- Breakpoints: 
+     - Mobile (360px): 1 single vertical column 
+     - Tablet (768px / md:): 2 columns (Cards 1 & 2 share the first row, Card 3 sits full width on row 2)
+     - Desktop (1024px / lg:): Resets cleanly to 3 columns on a single row line -->
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 items-stretch">
             
-            <!-- TESTIMONIAL CARD 1: At-Home Convenience -->
-            <div class="group relative p-6 sm:p-8 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200/60 dark:border-slate-800/80 shadow-sm hover:shadow-xl hover:border-brand-500/30 dark:hover:border-brand-500/30 transition-all duration-300 cursor-pointer flex flex-col justify-between">
-                <div class="space-y-4">
-                    <!-- Rating Stars (Single focus brand accent color) -->
-                    <div class="flex items-center space-x-1 rtl:space-x-reverse text-brand-500">
-                        <i class="fa-solid fa-star text-xs"></i>
-                        <i class="fa-solid fa-star text-xs"></i>
-                        <i class="fa-solid fa-star text-xs"></i>
-                        <i class="fa-solid fa-star text-xs"></i>
-                        <i class="fa-solid fa-star text-xs"></i>
-                    </div>
-                    <!-- Review text content -->
-                    <p class="text-sm font-normal text-slate-600 dark:text-slate-400 leading-relaxed italic">
-                        "Unbelievable convenience! The technician changed my front brake pads and rotors right in my driveway while I was working inside. No towing costs, no waiting rooms, and clean upfront pricing."
-                    </p>
-                </div>
-                <!-- User Profile Block -->
-                <div class="flex items-center gap-3 pt-6 mt-6 border-t border-slate-100 dark:border-slate-800">
-                    <div class="w-10 h-10 rounded-full overflow-hidden bg-slate-100 dark:bg-slate-800 shrink-0 border border-slate-200 dark:border-slate-700 transition-transform duration-300 group-hover:scale-105">
-                        <img src="assets/gt1" 
-                             alt="Sarah Jenkins" class="w-full h-full object-cover" />
-                    </div>
-                    <div>
-                        <h3 class="text-sm font-semibold text-slate-900 dark:text-white transition-colors group-hover:text-brand-500">Sarah Jenkins</h3>
-                        <p class="text-[11px] font-normal text-slate-400 dark:text-slate-500">Verified SUV Owner</p>
-                    </div>
-                </div>
+    <!-- TESTIMONIAL CARD 1: At-Home Convenience -->
+    <div class="group relative p-6 sm:p-8 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200/60 dark:border-slate-800/80 shadow-sm hover:shadow-xl hover:border-brand-500/30 dark:hover:border-brand-500/30 transition-all duration-300 cursor-pointer flex flex-col justify-between lg:col-span-1">
+        <div class="space-y-4">
+            <!-- Rating Stars (Single focus brand accent color) -->
+            <div class="flex items-center space-x-1 ltr:space-x-1 rtl:space-x-reverse text-brand-500">
+                <i class="fa-solid fa-star text-xs"></i>
+                <i class="fa-solid fa-star text-xs"></i>
+                <i class="fa-solid fa-star text-xs"></i>
+                <i class="fa-solid fa-star text-xs"></i>
+                <i class="fa-solid fa-star text-xs"></i>
             </div>
-
-            <!-- TESTIMONIAL CARD 2: Emergency Response Office Fix -->
-            <div class="group relative p-6 sm:p-8 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200/60 dark:border-slate-800/80 shadow-sm hover:shadow-xl hover:border-brand-500/30 dark:hover:border-brand-500/30 transition-all duration-300 cursor-pointer flex flex-col justify-between">
-                <div class="space-y-4">
-                    <div class="flex items-center space-x-1 rtl:space-x-reverse text-brand-500">
-                        <i class="fa-solid fa-star text-xs"></i>
-                        <i class="fa-solid fa-star text-xs"></i>
-                        <i class="fa-solid fa-star text-xs"></i>
-                        <i class="fa-solid fa-star text-xs"></i>
-                        <i class="fa-solid fa-star text-xs"></i>
-                    </div>
-                    <p class="text-sm font-normal text-slate-600 dark:text-slate-400 leading-relaxed italic">
-                        "Noticed an awful grinding sound on my drive to the office. Booked an emergency inspection online, and a certified specialist arrived by noon. Fixed the problem completely in the company parking lot!"
-                    </p>
-                </div>
-                <div class="flex items-center gap-3 pt-6 mt-6 border-t border-slate-100 dark:border-slate-800">
-                    <div class="w-10 h-10 rounded-full overflow-hidden bg-slate-100 dark:bg-slate-800 shrink-0 border border-slate-200 dark:border-slate-700 transition-transform duration-300 group-hover:scale-105">
-                        <img src="assets/bt1" 
-                             alt="Marcus Vance" class="w-full h-full object-cover" />
-                    </div>
-                    <div>
-                        <h3 class="text-sm font-semibold text-slate-900 dark:text-white transition-colors group-hover:text-brand-500">Marcus Vance</h3>
-                        <p class="text-[11px] font-normal text-slate-400 dark:text-slate-500">Sedan Commuter</p>
-                    </div>
-                </div>
-            </div>
-
-            <!-- TESTIMONIAL CARD 3: Fleet Management Review -->
-            <div class="group relative p-6 sm:p-8 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200/60 dark:border-slate-800/80 shadow-sm hover:shadow-xl hover:border-brand-500/30 dark:hover:border-brand-500/30 transition-all duration-300 cursor-pointer flex flex-col justify-between md:col-span-2 lg:col-span-1">
-                <div class="space-y-4">
-                    <div class="flex items-center space-x-1 rtl:space-x-reverse text-brand-500">
-                        <i class="fa-solid fa-star text-xs"></i>
-                        <i class="fa-solid fa-star text-xs"></i>
-                        <i class="fa-solid fa-star text-xs"></i>
-                        <i class="fa-solid fa-star text-xs"></i>
-                        <i class="fa-solid fa-star text-xs"></i>
-                    </div>
-                    <p class="text-sm font-normal text-slate-600 dark:text-slate-400 leading-relaxed italic">
-                        "We use their Commercial Fleet plan to manage routine brake safety checks for all our local delivery vans. The diagnostics are transparent, parts are premium OEM quality, and the response speed is outstanding."
-                    </p>
-                </div>
-                <div class="flex items-center gap-3 pt-6 mt-6 border-t border-slate-100 dark:border-slate-800">
-                    <div class="w-10 h-10 rounded-full overflow-hidden bg-slate-100 dark:bg-slate-800 shrink-0 border border-slate-200 dark:border-slate-700 transition-transform duration-300 group-hover:scale-105">
-                        <img src="assets/bt2" 
-                             alt="David Thorne" class="w-full h-full object-cover" />
-                    </div>
-                    <div>
-                        <h3 class="text-sm font-semibold text-slate-900 dark:text-white transition-colors group-hover:text-brand-500">David Thorne</h3>
-                        <p class="text-[11px] font-normal text-slate-400 dark:text-slate-500">Logistics Director</p>
-                    </div>
-                </div>
-            </div>
-
+            <!-- Review text content -->
+            <p class="text-sm font-normal text-slate-600 dark:text-slate-400 leading-relaxed italic">
+                "Unbelievable convenience! The technician changed my front brake pads and rotors right in my driveway while I was working inside. No towing costs, no waiting rooms, and clean upfront pricing."
+            </p>
         </div>
+        <!-- User Profile Block -->
+        <div class="flex items-center gap-3 pt-6 mt-6 border-t border-slate-100 dark:border-slate-800">
+            <div class="w-10 h-10 rounded-full overflow-hidden bg-slate-100 dark:bg-slate-800 shrink-0 border border-slate-200 dark:border-slate-700 transition-transform duration-300 group-hover:scale-105">
+                <img src="assets/gt3" alt="Sarah Jenkins" class="w-full h-full object-cover" />
+            </div>
+            <div>
+                <h3 class="text-sm font-semibold text-slate-900 dark:text-white transition-colors group-hover:text-brand-500">Sarah Jenkins</h3>
+                <p class="text-[11px] font-normal text-slate-400 dark:text-slate-500">Verified SUV Owner</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- TESTIMONIAL CARD 2: Emergency Response Office Fix -->
+    <div class="group relative p-6 sm:p-8 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200/60 dark:border-slate-800/80 shadow-sm hover:shadow-xl hover:border-brand-500/30 dark:hover:border-brand-500/30 transition-all duration-300 cursor-pointer flex flex-col justify-between lg:col-span-1">
+        <div class="space-y-4">
+            <div class="flex items-center space-x-1 ltr:space-x-1 rtl:space-x-reverse text-brand-500">
+                <i class="fa-solid fa-star text-xs"></i>
+                <i class="fa-solid fa-star text-xs"></i>
+                <i class="fa-solid fa-star text-xs"></i>
+                <i class="fa-solid fa-star text-xs"></i>
+                <i class="fa-solid fa-star text-xs"></i>
+            </div>
+            <p class="text-sm font-normal text-slate-600 dark:text-slate-400 leading-relaxed italic">
+                "Noticed an awful grinding sound on my drive to the office. Booked an emergency inspection online, and a certified specialist arrived by noon. Fixed the problem completely in the company."
+            </p>
+        </div>
+        <div class="flex items-center gap-3 pt-6 mt-6 border-t border-slate-100 dark:border-slate-800">
+            <div class="w-10 h-10 rounded-full overflow-hidden bg-slate-100 dark:bg-slate-800 shrink-0 border border-slate-200 dark:border-slate-700 transition-transform duration-300 group-hover:scale-105">
+                <img src="assets/bt2" alt="Marcus Vance" class="w-full h-full object-cover" />
+            </div>
+            <div>
+                <h3 class="text-sm font-semibold text-slate-900 dark:text-white transition-colors group-hover:text-brand-500">Marcus Vance</h3>
+                <p class="text-[11px] font-normal text-slate-400 dark:text-slate-500">Sedan Commuter</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- TESTIMONIAL CARD 3: Fleet Management Review -->
+    <!-- TARGETED LAYOUT TWEEK: md:col-span-2 forces it to occupy the full row width at 768px, while lg:col-span-1 resets it on desktop -->
+    <div class="group relative p-6 sm:p-8 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200/60 dark:border-slate-800/80 shadow-sm hover:shadow-xl hover:border-brand-500/30 dark:hover:border-brand-500/30 transition-all duration-300 cursor-pointer flex flex-col justify-between md:col-span-2 lg:col-span-1">
+        <div class="space-y-4">
+            <div class="flex items-center space-x-1 ltr:space-x-1 rtl:space-x-reverse text-brand-500">
+                <i class="fa-solid fa-star text-xs"></i>
+                <i class="fa-solid fa-star text-xs"></i>
+                <i class="fa-solid fa-star text-xs"></i>
+                <i class="fa-solid fa-star text-xs"></i>
+                <i class="fa-solid fa-star text-xs"></i>
+            </div>
+            <p class="text-sm font-normal text-slate-600 dark:text-slate-400 leading-relaxed italic">
+                "We use their Commercial Fleet plan to manage routine brake safety checks for all our local delivery vans. The diagnostics are transparent, parts are premium OEM quality, and the response."
+            </p>
+        </div>
+        <div class="flex items-center gap-3 pt-6 mt-6 border-t border-slate-100 dark:border-slate-800">
+            <div class="w-10 h-10 rounded-full overflow-hidden bg-slate-100 dark:bg-slate-800 shrink-0 border border-slate-200 dark:border-slate-700 transition-transform duration-300 group-hover:scale-105">
+                <img src="assets/bt3" alt="David Thorne" class="w-full h-full object-cover" />
+            </div>
+            <div>
+                <h3 class="text-sm font-semibold text-slate-900 dark:text-white transition-colors group-hover:text-brand-500">David Thorne</h3>
+                <p class="text-[11px] font-normal text-slate-400 dark:text-slate-500">Logistics Director</p>
+            </div>
+        </div>
+    </div>
+
+</div>
     </div>
 </section>
 
