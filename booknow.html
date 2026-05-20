@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%220.9em%22 font-size=%2290%22>🚗</text></svg>">
+    <title>Schedule Service | BrakeDoc Mobile Appointment</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'system-ui', 'sans-serif'],
+                    },
+                    colors: {
+                        brand: {
+                            50: '#fff1f2',
+                            100: '#ffe4e6',
+                            500: '#f43f5e', /* Sleek Automotive Rose/Red Theme Accent Color */
+                            600: '#e11d48',
+                            700: '#be123c',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- Modern Clean Fonts & Icon Libraries -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-900 dark:bg-slate-950 dark:text-slate-100 min-h-screen flex flex-col transition-colors duration-300">
+
+    <!-- TOP HEADER UTILITY BAR -->
+    <header class="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between relative z-50">
+        <!-- Name Logo Top Left Corner redirecting to homepage -->
+        <a href="index.html" class="flex items-center gap-2 group focus:outline-none" title="Return to Homepage">
+            <i class="fa-solid fa-car-burst text-brand-500 text-2xl sm:text-3xl transition-transform group-hover:scale-105"></i>
+            <span class="text-lg sm:text-xl font-bold tracking-tight text-slate-900 dark:text-white">Brake<span class="text-brand-500">Doc</span></span>
+        </a>
+
+        <!-- Persistent Layout Control Toggle Buttons -->
+        <div class="flex items-center space-x-2 sm:space-x-3 rtl:space-x-reverse">
+            <!-- LTR/RTL Orientation Layout Toggle Button -->
+            <button id="rtl-toggle" class="p-2 text-xs font-semibold rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-slate-600 dark:text-slate-400 hover:text-brand-500 dark:hover:text-brand-500 shadow-sm transition-all focus:outline-none" title="Toggle System Directionality">
+                LTR
+            </button>
+            <!-- Light/Dark Ambient Theme Toggle Button -->
+            <button id="theme-toggle" class="p-2 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-slate-600 dark:text-slate-400 hover:text-brand-500 dark:hover:text-brand-500 shadow-sm transition-all focus:outline-none" title="Toggle UI Theme Mode">
+                <i id="theme-icon" class="fa-solid fa-moon"></i>
+            </button>
+        </div>
+    </header>
+
+    <!-- MAIN INTERACTIVE BOOKING CONTAINER -->
+    <main class="flex-grow flex items-center justify-center px-4 py-6 sm:py-12 relative z-10">
+        
+        <!-- Ambient Background Glow Flares -->
+        <div class="absolute top-1/4 left-1/2 -translate-x-1/2 w-72 sm:w-[600px] h-72 sm:h-[600px] bg-brand-500/5 rounded-full blur-3xl pointer-events-none"></div>
+
+        <!-- Booking Form Chassis -->
+        <div class="w-full max-w-2xl bg-white dark:bg-slate-900 border border-slate-200/80 dark:border-slate-800/80 rounded-3xl shadow-xl p-6 sm:p-8 backdrop-blur-md transition-all duration-300">
+            
+            <!-- Page Section Header -->
+            <div class="space-y-1 text-center mb-8">
+                <h1 class="text-2xl font-semibold tracking-tight text-slate-900 dark:text-white">Schedule Mobile Service</h1>
+                <p class="text-sm font-normal text-slate-500 dark:text-slate-400">Book your at-home or office appointment in under two minutes</p>
+            </div>
+
+            <!-- NATIVE INTERACTIVE MULTI-STEP APPOINTMENT FORM -->
+            <form action="#" class="space-y-6 sm:space-y-8" onsubmit="event.preventDefault(); alert('Booking order locked! Check your messages for priority dispatcher configuration confirmation.');">
+                
+                <!-- STEP 1: VEHICLE CLASSIFICATION TRACK -->
+                <div class="space-y-3">
+                    <label class="text-xs font-semibold uppercase tracking-wider text-slate-400 dark:text-slate-500 block">1. Vehicle Classification</label>
+                    <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+                        <!-- Sedan button option -->
+                        <div onclick="selectBookingCar('sedan')" id="bk-sedan" class="bk-vehicle-card group p-4 rounded-xl border border-brand-500 bg-brand-500/5 dark:bg-brand-500/10 text-slate-900 dark:text-white cursor-pointer transition-all flex items-center gap-3 sm:flex-col sm:text-center sm:justify-center">
+                            <div class="w-10 h-10 rounded-lg bg-brand-500/10 flex items-center justify-center text-brand-500 group-hover:bg-brand-500 group-hover:text-white transition-colors">
+                                <i class="fa-solid fa-car text-base"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-sm font-semibold block">Sedan / Coupe</h3>
+                                <p class="text-2xs text-slate-400 dark:text-slate-500 font-normal">Standard Car Size</p>
+                            </div>
+                        </div>
+                        <!-- SUV button option -->
+                        <div onclick="selectBookingCar('suv')" id="bk-suv" class="bk-vehicle-card group p-4 rounded-xl border border-slate-200 dark:border-slate-800 text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white hover:border-slate-300 dark:hover:border-slate-700 bg-slate-50/50 dark:bg-slate-950/20 cursor-pointer transition-all flex items-center gap-3 sm:flex-col sm:text-center sm:justify-center">
+                            <div class="w-10 h-10 rounded-lg bg-slate-100 dark:bg-slate-800 flex items-center justify-center text-slate-500 dark:text-slate-400 group-hover:bg-brand-500 group-hover:text-white transition-colors">
+                                <i class="fa-solid fa-car-side text-base"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-sm font-semibold block">SUV / Crossover</h3>
+                                <p class="text-2xs text-slate-400 dark:text-slate-500 font-normal">Mid-to-Large Class</p>
+                            </div>
+                        </div>
+                        <!-- Truck button option -->
+                        <div onclick="selectBookingCar('truck')" id="bk-truck" class="bk-vehicle-card group p-4 rounded-xl border border-slate-200 dark:border-slate-800 text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white hover:border-slate-300 dark:hover:border-slate-700 bg-slate-50/50 dark:bg-slate-950/20 cursor-pointer transition-all flex items-center gap-3 sm:flex-col sm:text-center sm:justify-center">
+                            <div class="w-10 h-10 rounded-lg bg-slate-100 dark:bg-slate-800 flex items-center justify-center text-slate-500 dark:text-slate-400 group-hover:bg-brand-500 group-hover:text-white transition-colors">
+                                <i class="fa-solid fa-truck-pickup text-base"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-sm font-semibold block">Truck / Van</h3>
+                                <p class="text-2xs text-slate-400 dark:text-slate-500 font-normal">Heavy Duty Vehicles</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- STEP 2: DETAILS & LOCATION GRID -->
+                <div class="space-y-4">
+                    <label class="text-xs font-semibold uppercase tracking-wider text-slate-400 dark:text-slate-500 block">2. Contact & Dispatch Location</label>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        <!-- Client name input -->
+                        <div class="space-y-1.5">
+                            <label for="bk-name" class="text-xs font-medium text-slate-500 dark:text-slate-400">Your Full Name</label>
+                            <input type="text" id="bk-name" required placeholder="John Doe"
+                                   class="w-full px-4 py-3 text-sm rounded-xl bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 focus:outline-none focus:border-brand-500 focus:ring-1 focus:ring-brand-500 transition-all text-slate-900 dark:text-slate-100 placeholder:text-slate-400 dark:placeholder:text-slate-600" />
+                        </div>
+                        <!-- Phone connection contact -->
+                        <div class="space-y-1.5">
+                            <label for="bk-phone" class="text-xs font-medium text-slate-500 dark:text-slate-400">Mobile Phone Number</label>
+                            <input type="tel" id="bk-phone" required placeholder="(555) 000-0000"
+                                   class="w-full px-4 py-3 text-sm rounded-xl bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 focus:outline-none focus:border-brand-500 focus:ring-1 focus:ring-brand-500 transition-all text-slate-900 dark:text-slate-100 placeholder:text-slate-400 dark:placeholder:text-slate-600" />
+                        </div>
+                        <!-- Street coordinates dispatch address -->
+                        <div class="space-y-1.5 sm:col-span-2">
+                            <label for="bk-address" class="text-xs font-medium text-slate-500 dark:text-slate-400">Service Street Address (Home or Office Driveway)</label>
+                            <input type="text" id="bk-address" required placeholder="123 Main Street, Apt 4B or Corporate Office Lot"
+                                   class="w-full px-4 py-3 text-sm rounded-xl bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 focus:outline-none focus:border-brand-500 focus:ring-1 focus:ring-brand-500 transition-all text-slate-900 dark:text-slate-100 placeholder:text-slate-400 dark:placeholder:text-slate-600" />
+                        </div>
+                    </div>
+                </div>
+
+                <!-- STEP 3: DATE & HOURS SELECTION MATRIX -->
+                <div class="space-y-4">
+                    <label class="text-xs font-semibold uppercase tracking-wider text-slate-400 dark:text-slate-500 block">3. Select Preferred Schedule Slot</label>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        <!-- Calendar date element field -->
+                        <div class="space-y-1.5">
+                            <label for="bk-date" class="text-xs font-medium text-slate-500 dark:text-slate-400">Appointment Date</label>
+                            <div class="relative flex items-center">
+                                <input type="date" id="bk-date" required
+                                       class="w-full px-4 py-3 text-sm rounded-xl bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 focus:outline-none focus:border-brand-500 focus:ring-1 focus:ring-brand-500 transition-all text-slate-900 dark:text-slate-100 uppercase" />
+                            </div>
+                        </div>
+                        <!-- Time selection operational window dropdown -->
+                        <div class="space-y-1.5">
+                            <label for="bk-time" class="text-xs font-medium text-slate-500 dark:text-slate-400">Preferred Arrival Window</label>
+                            <select id="bk-time" required
+                                    class="w-full px-4 py-3 text-sm rounded-xl bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 focus:outline-none focus:border-brand-500 focus:ring-1 focus:ring-brand-500 transition-all text-slate-900 dark:text-slate-100 cursor-pointer">
+                                <option value="" disabled selected>Select a time window</option>
+                                <option value="morning-early">Morning: 08:00 AM - 11:00 AM</option>
+                                <option value="midday">Midday: 11:00 AM - 02:00 PM</option>
+                                <option value="afternoon">Afternoon: 02:00 PM - 05:00 PM</option>
+                                <option value="evening-late">Evening: 05:00 PM - 08:00 PM</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- SUBMIT ORDER CTA ACTION BUTTON -->
+                <div class="pt-2">
+                    <button type="submit" class="w-full text-center bg-brand-500 hover:bg-brand-600 text-white font-semibold text-sm py-4 rounded-xl shadow-lg shadow-brand-500/10 hover:shadow-brand-500/20 transition-all duration-200 focus:ring-2 focus:ring-offset-2 focus:ring-brand-500 uppercase tracking-wider">
+                        Confirm Mobile Booking Appointment
+                    </button>
+                    <!-- Small auxiliary trust subheadline line -->
+                    <p class="text-center text-2xs text-slate-400 dark:text-slate-500 mt-3 font-normal">
+                        <i class="fa-solid fa-lock text-[10px] mr-1 rtl:ml-1"></i> Secure end-to-end scheduling. No immediate pre-payment needed. Pay on-site post-repair.
+                    </p>
+                </div>
+
+            </form>
+
+        </div>
+    </main>
+
+     <!-- FOOTER -->
+   <footer class="bg-white dark:bg-slate-950 text-slate-600 dark:text-slate-400 border-t border-slate-200 dark:border-slate-900 transition-colors duration-300">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 lg:py-16">
+        <!-- Main Footer Grid Grid System -->
+        <!-- Responsive mapping: 1 col on mobile, 2 cols on tablet, 12-column layout from 1024px desktop up -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-12 gap-10 lg:gap-12">
+            
+            <!-- BRANDING & SOCIAL COLUMN -->
+            <div class="flex flex-col space-y-4 lg:col-span-4 sm:col-span-2 lg:pr-4 rtl:lg:pr-0 rtl:lg:pl-4">
+                <a href="index.html" class="inline-block focus:outline-none">
+                    <div class="flex items-center gap-2">
+                        <i class="fa-solid fa-car-burst text-brand-500 text-2xl"></i>
+                        <span class="text-lg font-bold tracking-tight text-slate-900 dark:text-white">Brake<span class="text-brand-500">Doc</span></span>
+                    </div>
+                </a>
+                <p class="text-sm font-normal max-w-sm leading-relaxed">
+                    Premium mobile brake repair and rotor replacement services delivered directly to your driveway. High quality parts, certified experts, ultimate convenience.
+                </p>
+                <!-- Social Media Platforms Link Ribbon -->
+                <div class="flex space-x-3 rtl:space-x-reverse pt-2">
+                    <a href="#" class="p-2.5 rounded-xl bg-slate-50 dark:bg-slate-900 hover:bg-brand-500 dark:hover:bg-brand-500 hover:text-white dark:hover:text-white text-slate-500 dark:text-slate-400 transition-all text-xs" aria-label="Facebook">
+                        <i class="fa-brands fa-facebook-f w-4 text-center"></i>
+                    </a>
+                    <a href="#" class="p-2.5 rounded-xl bg-slate-50 dark:bg-slate-900 hover:bg-brand-500 dark:hover:bg-brand-500 hover:text-white dark:hover:text-white text-slate-500 dark:text-slate-400 transition-all text-xs" aria-label="Twitter">
+                        <i class="fa-brands fa-x w-4 text-center"></i>
+                    </a>
+                    <a href="#" class="p-2.5 rounded-xl bg-slate-50 dark:bg-slate-900 hover:bg-brand-500 dark:hover:bg-brand-500 hover:text-white dark:hover:text-white text-slate-500 dark:text-slate-400 transition-all text-xs" aria-label="Instagram">
+                        <i class="fa-brands fa-instagram w-4 text-center"></i>
+                    </a>
+                    <a href="#" class="p-2.5 rounded-xl bg-slate-50 dark:bg-slate-900 hover:bg-brand-500 dark:hover:bg-brand-500 hover:text-white dark:hover:text-white text-slate-500 dark:text-slate-400 transition-all text-xs" aria-label="LinkedIn">
+                        <i class="fa-brands fa-linkedin-in w-4 text-center"></i>
+                    </a>
+                </div>
+            </div>
+
+            <!-- DYNAMIC LINKS & NEWSLETTER CONTAINER (Fills 8 Columns on Desktop) -->
+            <!-- Breakdowns: 1 col on mobile (360px), 2 cols on small tablet, 3 cols on desktops (1024px+) -->
+            <div class="lg:col-span-8 sm:col-span-2 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8 lg:gap-6">
+                
+                <!-- COLUMN 1: CORE NAVIGATION PAGES -->
+                <div class="flex flex-col space-y-4">
+                    <div class="space-y-1">
+                        <h4 class="text-xs font-bold uppercase tracking-widest text-slate-900 dark:text-white">
+                            Explore Services
+                        </h4>
+                        <div class="h-0.5 w-8 bg-brand-500 rounded"></div>
+                    </div>
+                    <ul class="space-y-3 text-sm font-medium text-slate-600 dark:text-slate-400">
+                        <li>
+                            <a href="index.html" class="hover:text-brand-500 hover:translate-x-1 rtl:hover:-translate-x-1 transition-all duration-200 inline-flex items-center gap-2">
+                                <i class="fa-solid fa-chevron-right text-[10px] opacity-50"></i> Home Option 1
+                            </a>
+                        </li>
+                        <li>
+                            <a href="home2.html" class="hover:text-brand-500 hover:translate-x-1 rtl:hover:-translate-x-1 transition-all duration-200 inline-flex items-center gap-2">
+                                <i class="fa-solid fa-chevron-right text-[10px] opacity-50"></i> Home Option 2
+                            </a>
+                        </li>
+                        <li>
+                            <a href="abouts.html" class="hover:text-brand-500 hover:translate-x-1 rtl:hover:-translate-x-1 transition-all duration-200 inline-flex items-center gap-2">
+                                <i class="fa-solid fa-chevron-right text-[10px] opacity-50"></i> About Our Techs
+                            </a>
+                        </li>
+                        <li>
+                            <a href="service.html" class="hover:text-brand-500 hover:translate-x-1 rtl:hover:-translate-x-1 transition-all duration-200 inline-flex items-center gap-2">
+                                <i class="fa-solid fa-chevron-right text-[10px] opacity-50"></i> Brake & Rotors
+                            </a>
+                        </li>
+                        <li>
+                            <a href="pricing.html" class="hover:text-brand-500 hover:translate-x-1 rtl:hover:-translate-x-1 transition-all duration-200 inline-flex items-center gap-2">
+                                <i class="fa-solid fa-chevron-right text-[10px] opacity-50"></i> Price Estimates
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- COLUMN 2: RESOURCES & SUPPORT -->
+                <div class="flex flex-col space-y-4">
+                    <div class="space-y-1">
+                        <h4 class="text-xs font-bold uppercase tracking-widest text-slate-900 dark:text-white">
+                            Resources & Support
+                        </h4>
+                        <div class="h-0.5 w-8 bg-brand-500 rounded"></div>
+                    </div>
+                    <ul class="space-y-3 text-sm font-medium text-slate-600 dark:text-slate-400">
+                        <li>
+                            <a href="gallery.html" class="hover:text-brand-500 hover:translate-x-1 rtl:hover:-translate-x-1 transition-all duration-200 inline-flex items-center gap-2">
+                                <i class="fa-solid fa-chevron-right text-[10px] opacity-50"></i> Work Gallery
+                            </a>
+                        </li>
+                        <li>
+                            <a href="contact.html" class="hover:text-brand-500 hover:translate-x-1 rtl:hover:-translate-x-1 transition-all duration-200 inline-flex items-center gap-2">
+                                <i class="fa-solid fa-chevron-right text-[10px] opacity-50"></i> Get In Touch
+                            </a>
+                        </li>
+                        <li>
+                            <a href="404.html" class="hover:text-brand-500 hover:translate-x-1 rtl:hover:-translate-x-1 transition-all duration-200 inline-flex items-center gap-2">
+                                <i class="fa-solid fa-chevron-right text-[10px] opacity-50"></i> 404 Error Page
+                            </a>
+                        </li>
+                        <li>
+                            <a href="comingsoon.html" class="hover:text-brand-500 hover:translate-x-1 rtl:hover:-translate-x-1 transition-all duration-200 inline-flex items-center gap-2">
+                                <i class="fa-solid fa-chevron-right text-[10px] opacity-50"></i> Coming Soon
+                            </a>
+                        </li>
+                        <!-- Book Now CTA Link Button inside column list structure -->
+                        <li class="pt-1">
+                            <a href="booknow.html" class="group inline-flex items-center justify-center gap-2 bg-brand-500 hover:bg-brand-600 text-white font-semibold px-4 py-2.5 rounded-xl shadow-md hover:shadow-brand-500/20 transition-all duration-200 text-xs uppercase tracking-wider w-full sm:w-auto">
+                                <span>Book Service</span>
+                                <i class="fa-solid fa-arrow-right text-[10px] transition-transform group-hover:translate-x-1 rtl:group-hover:-translate-x-1"></i>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- NEW COLUMN 3: NEWSLETTER SUBSCRIPTION -->
+                <!-- Spans full width on phone grids, adapts seamlessly inside 1024px rows -->
+                <div class="flex flex-col space-y-4 col-span-1 sm:col-span-2 md:col-span-1 pt-4 md:pt-0 border-t border-slate-100 dark:border-slate-900 md:border-t-0">
+                    <div class="space-y-1">
+                        <h4 class="text-xs font-bold uppercase tracking-widest text-slate-900 dark:text-white">
+                            Stay Updated
+                        </h4>
+                        <div class="h-0.5 w-8 bg-brand-500 rounded"></div>
+                    </div>
+                    <p class="text-sm text-slate-500 dark:text-slate-400 font-normal leading-relaxed">
+                        Subscribe to receive seasonal brake inspection reminders, local technician updates, and exclusive service discounts.
+                    </p>
+                    <form action="#" class="space-y-2 pt-1 w-full" onsubmit="event.preventDefault();">
+                        <div class="relative flex items-center">
+                            <input type="email" placeholder="Your email address" required
+                                class="w-full px-4 py-3 text-sm rounded-xl bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 focus:outline-none focus:border-brand-500 focus:ring-1 focus:ring-brand-500 transition-all placeholder:text-slate-400 dark:placeholder:text-slate-600 text-slate-900 dark:text-slate-100" />
+                        </div>
+                        <button type="submit" 
+                            class="w-full text-center bg-slate-900 hover:bg-slate-800 dark:bg-slate-800 dark:hover:bg-slate-700 text-white font-medium text-xs uppercase tracking-wider py-3 rounded-xl transition-colors duration-200 focus:ring-2 focus:ring-offset-2 focus:ring-brand-500">
+                            Subscribe
+                        </button>
+                    </form>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- BOTTOM COPYRIGHT BAR -->
+        <div class="mt-12 pt-6 border-t border-slate-200 dark:border-slate-900 text-xs text-center sm:flex sm:justify-between sm:items-center text-slate-500 space-y-2 sm:space-y-0">
+            <p>&copy; 2026 BrakeDoc Inc. All rights reserved.</p>
+            <div class="flex items-center justify-center space-x-4 rtl:space-x-reverse text-slate-400 dark:text-slate-600">
+                <a href="#" class="hover:text-brand-500 transition-colors">Privacy Policy</a>
+                <span>&bull;</span>
+                <a href="#" class="hover:text-brand-500 transition-colors">Terms of Service</a>
+            </div>
+        </div>
+    </div>
+</footer>
+
+
+    <!-- INTERACTIVE BOOKING DASHBOARD LOGIC JAVASCRIPT LAYER -->
+    <script>
+        // DOM Elements
+        const htmlElement = document.documentElement;
+        const themeToggleBtn = document.getElementById('theme-toggle');
+        const themeIcon = document.getElementById('theme-icon');
+        const rtlToggleBtn = document.getElementById('rtl-toggle');
+
+        // 1. Theme Configuration Logic (Light/Dark Engine using localStorage persistence layer)
+        function updateThemeUI(isDark) {
+            if (isDark) {
+                htmlElement.classList.add('dark');
+                themeIcon.className = "fa-solid fa-sun";
+                localStorage.setItem('theme', 'dark');
+            } else {
+                htmlElement.classList.remove('dark');
+                themeIcon.className = "fa-solid fa-moon";
+                localStorage.setItem('theme', 'light');
+            }
+        }
+
+        const savedTheme = localStorage.getItem('theme');
+        const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        updateThemeUI(savedTheme === 'dark' || (!savedTheme && systemPrefersDark));
+
+        themeToggleBtn.addEventListener('click', () => {
+            updateThemeUI(!htmlElement.classList.contains('dark'));
+        });
+
+
+        // 2. Structural Directional Layout Toggle Logic (LTR/RTL Local Storage Persisted Engine)
+        function updateDirectionUI(direction) {
+            if (direction === 'rtl') {
+                htmlElement.setAttribute('dir', 'rtl');
+                rtlToggleBtn.textContent = 'RTL';
+                localStorage.setItem('direction', 'rtl');
+            } else {
+                htmlElement.setAttribute('dir', 'ltr');
+                rtlToggleBtn.textContent = 'LTR';
+                localStorage.setItem('direction', 'ltr');
+            }
+        }
+
+        const savedDirection = localStorage.getItem('direction') || 'ltr';
+        updateDirectionUI(savedDirection);
+
+        rtlToggleBtn.addEventListener('click', () => {
+            const currentDir = htmlElement.getAttribute('dir');
+            updateDirectionUI(currentDir === 'rtl' ? 'ltr' : 'rtl');
+        });
+
+
+        // 3. User Interactivity: Selection Engine for Vehicle Classification Buttons
+        let selectedVehicleClass = 'sedan';
+
+        function selectBookingCar(carType) {
+            if (!carType) return;
+            selectedVehicleClass = carType;
+
+            // Reset all selection styles across the card collection matrix links
+            document.querySelectorAll('.bk-vehicle-card').forEach(card => {
+                card.className = "bk-vehicle-card group p-4 rounded-xl border border-slate-200 dark:border-slate-800 text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white hover:border-slate-300 dark:hover:border-slate-700 bg-slate-50/50 dark:bg-slate-950/20 cursor-pointer transition-all flex items-center gap-3 sm:flex-col sm:text-center sm:justify-center";
+                
+                const iconFrame = card.querySelector('.w-10');
+                if (iconFrame) iconFrame.className = "w-10 h-10 rounded-lg bg-slate-100 dark:bg-slate-800 flex items-center justify-center text-slate-500 dark:text-slate-400 group-hover:bg-brand-500 group-hover:text-white transition-colors";
+            });
+
+            // Lock in active highlighting properties onto chosen targeting selector option
+            const targetCard = document.getElementById(`bk-${carType}`);
+            if (targetCard) {
+                targetCard.className = "bk-vehicle-card group p-4 rounded-xl border border-brand-500 bg-brand-500/5 dark:bg-brand-500/10 text-slate-900 dark:text-white cursor-pointer transition-all flex items-center gap-3 sm:flex-col sm:text-center sm:justify-center";
+                
+                const activeIconFrame = targetCard.querySelector('.w-10');
+                if (activeIconFrame) activeIconFrame.className = "w-10 h-10 rounded-lg bg-brand-500/10 flex items-center justify-center text-brand-500 transition-colors";
+            }
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,673 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%220.9em%22 font-size=%2290%22>🚗</text></svg>">
+    <title>BreakDoc - Mobile Brake Care Portal Dashboard</title>
+    <!-- Tailwind CSS Engine -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome Vector UI Asset Pipeline -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+    
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            50: '#fff1f2',
+                            100: '#ffe4e6',
+                            200: '#fecdd3',
+                            300: '#fda4af',
+                            400: '#fb7185',
+                            500: '#f43f5e', /* Sleek Automotive Red Focus Accent Color */
+                            600: '#e11d48',
+                            700: '#be123c',
+                            800: '#9f1239',
+                            900: '#881337',
+                        }
+                    },
+                    fontSize: {
+                        '2xs': '0.65rem',
+                        '3xs': '0.55rem'
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600&display=swap');
+        
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+        }
+
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+
+        /* Smooth hardware accelerated content layout pane switching transitions */
+        .portal-pane {
+            display: none;
+            opacity: 0;
+            transform: translateY(8px);
+            transition: opacity 250ms ease-out, transform 250ms ease-out;
+        }
+        .portal-pane.pane-active {
+            display: block;
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Bi-directional UI translation utility rules override mapping */
+        html[dir="rtl"] .sidebar-translate { transform: translateX(100%); }
+        html[dir="rtl"] .sidebar-open { transform: translateX(0); }
+        
+        /* Shimmer light sweep hardware accelerated animations tracking path */
+        @keyframes shine { 100% { transform: translateX(260%); } }
+        .animate-shine { group-hover: animate-[shine_0.75s_ease-in-out]; }
+    </style>
+</head>
+<body class="bg-slate-50 dark:bg-slate-950 text-slate-900 dark:text-slate-100 transition-colors duration-300 min-h-screen flex antialiased">
+
+    <!-- 1. RESPONSIVE SIDEBAR NAVIGATION PANE DRAWER -->
+    <aside id="portal-sidebar" class="fixed inset-y-0 left-0 lg:static z-40 w-64 bg-white dark:bg-slate-900 border-r ltr:border-r rtl:border-l border-slate-200 dark:border-slate-800 flex flex-col justify-between transition-transform duration-300 -translate-x-full lg:translate-x-0 sidebar-translate">
+        
+        <div class="flex flex-col flex-1 overflow-y-auto no-scrollbar">
+            <!-- Platform Brand Node Heading Frame Header -->
+            <a href="index.html">
+                <div class="h-16 flex items-center px-6 border-b border-slate-100 dark:border-slate-800 shrink-0 gap-3">
+                <div class="w-8 h-8 rounded-xl bg-brand-500 flex items-center justify-center text-white text-sm shadow-md shadow-brand-500/20">
+                    <i class="fa-solid fa-car-burst"></i>
+                </div>
+                <div>
+                <span class="text-lg xl:text-xl font-bold tracking-tight text-slate-900 dark:text-white">Brake<span class="text-brand-500">Doc</span></span>
+                    <p class="text-[10px] text-slate-400 font-normal uppercase tracking-wider">Client Portal</p>
+                </div>
+            </div>
+            </a>
+            
+
+            <!-- Client Account Short Profile Avatar Status Block -->
+            <div class="p-4 border-b border-slate-100 dark:border-slate-800 bg-slate-50/50 dark:bg-slate-950/20 select-none">
+                <div class="flex items-center gap-3">
+                    <div class="w-10 h-10 rounded-xl bg-slate-200 dark:bg-slate-800 flex items-center justify-center text-slate-600 dark:text-slate-300 font-semibold text-xs border border-slate-300/40">
+                        US
+                    </div>
+                    <div class="space-y-0.5">
+                        <h4 class="text-xs font-semibold text-slate-900 dark:text-white">User</h4>
+                        <span class="text-[10px] text-emerald-600 dark:text-emerald-400 font-medium inline-flex items-center gap-1">
+                            <span class="w-1 h-1 rounded-full bg-emerald-500 animate-pulse"></span> Premium Tier
+                        </span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Navigation Filter Control Switching Links Matrix -->
+            <nav class="p-4 space-y-1.5 flex-1 select-none">
+                <button onclick="switchPortalPane('pane-overview', this)" class="sidebar-nav-link w-full flex items-center justify-between px-4 py-3 rounded-xl text-xs font-semibold uppercase tracking-wider transition-all duration-200 focus:outline-none bg-brand-500 text-white shadow-md">
+                    <span class="flex items-center gap-3"><i class="fa-solid fa-chart-pie text-sm"></i> Portal Overview</span>
+                    <i class="fa-solid fa-chevron-right text-[10px] opacity-70"></i>
+                </button>
+
+                <button onclick="switchPortalPane('pane-scheduler', this)" class="sidebar-nav-link w-full flex items-center justify-between px-4 py-3 rounded-xl text-xs font-semibold uppercase tracking-wider transition-all duration-200 focus:outline-none text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800">
+                    <span class="flex items-center gap-3"><i class="fa-solid fa-calendar-plus text-sm"></i> Book Inspection</span>
+                    <i class="fa-solid fa-chevron-right text-[10px] opacity-30"></i>
+                </button>
+
+                <button onclick="switchPortalPane('pane-diagnostics', this)" class="sidebar-nav-link w-full flex items-center justify-between px-4 py-3 rounded-xl text-xs font-semibold uppercase tracking-wider transition-all duration-200 focus:outline-none text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800">
+    <span class="flex items-center gap-3">
+        <i class="fa-solid fa-images text-sm"></i> 
+        Photo Diagnostics
+    </span>
+    <i class="fa-solid fa-chevron-right text-[10px] opacity-30"></i>
+</button>
+
+                <button onclick="switchPortalPane('pane-tracking', this)" class="sidebar-nav-link w-full flex items-center justify-between px-4 py-3 rounded-xl text-xs font-semibold uppercase tracking-wider transition-all duration-200 focus:outline-none text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800">
+                    <span class="flex items-center gap-3"><i class="fa-solid fa-map-location-dot text-sm"></i> Track Workshop Van</span>
+                    <i class="fa-solid fa-chevron-right text-[10px] opacity-30"></i>
+                </button>
+
+                <button onclick="switchPortalPane('pane-history', this)" class="sidebar-nav-link w-full flex items-center justify-between px-4 py-3 rounded-xl text-xs font-semibold uppercase tracking-wider transition-all duration-200 focus:outline-none text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800">
+                    <span class="flex items-center gap-3"><i class="fa-solid fa-clock-rotate-left text-sm"></i> Maintenance History</span>
+                    <i class="fa-solid fa-chevron-right text-[10px] opacity-30"></i>
+                </button>
+                <a href="login.html">
+                    <button class="w-full flex items-center justify-between px-4 py-3 rounded-xl text-xs font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-500 hover:text-brand-500 dark:hover:text-brand-400 hover:bg-brand-50 untranslated-fallback transition-all duration-200 focus:outline-none mt-6 border border-dashed border-slate-200 dark:border-slate-800 hover:border-brand-500/20">
+        <span class="flex items-center gap-3"><i class="fa-solid fa-right-from-bracket text-sm"></i> Log Out</span>
+        <i class="fa-solid fa-chevron-right text-[10px] opacity-0 group-hover:opacity-100 transition-opacity"></i>
+    </button>
+                </a>
+                
+            </nav>
+        </div>
+
+        <!-- Technical Global System Operational Verification Footer Ribbon -->
+        <div class="p-4 border-t border-slate-100 dark:border-slate-800 text-center text-[10px] text-slate-400 dark:text-slate-500 font-normal">
+            <i class="fa-solid fa-shield-halved text-brand-500"></i> Secured Node: Client Hub v6.1
+        </div>
+    </aside>
+
+    <!-- BACKDROP BLUR SHIELD FOR MOBILE VIEWPORTS DRAWER -->
+    <div id="sidebar-overlay" onclick="toggleMobileSidebar()" class="fixed inset-0 z-30 bg-slate-950/40 backdrop-blur-sm hidden lg:hidden"></div>
+
+    <!-- 2. MAIN HUB CONTENT CONTAINER WORKSPACE -->
+    <main class="flex-1 min-w-0 flex flex-col min-h-screen">
+        
+        <!-- TOP CONTROL TELEMETRY HEADER CONFIGURATION RIBBON -->
+        <header class="h-16 bg-white dark:bg-slate-900 border-b border-slate-200 dark:border-slate-800 flex items-center justify-between px-4 sm:px-6 lg:px-8 sticky top-0 z-20 shrink-0">
+            <!-- Mobile Navigation Trigger Button -->
+            <div class="flex items-center gap-4">
+                <button onclick="toggleMobileSidebar()" class="lg:hidden w-10 h-10 rounded-xl border border-slate-200 dark:border-slate-800 flex items-center justify-center text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-950">
+                    <i class="fa-solid fa-bars-staggered text-sm"></i>
+                </button>
+                <div class="hidden sm:block">
+                    <p class="text-[10px] text-slate-400 uppercase tracking-widest font-semibold">Active Profile Workstation</p>
+                </div>
+            </div>
+
+            <!-- GLOBAL CONFIGURATORS: DUAL UTILITY LOCAL STORAGE ACCENT CONTROLLERS -->
+            <div class="flex items-center gap-3 select-none">
+                <!-- AMBIENT THEME SWITCHER TOGGLE -->
+                <button onclick="toggleAmbientTheme()" id="theme-toggle-btn" class="w-10 h-10 rounded-xl border border-slate-200 dark:border-slate-800 flex items-center justify-center text-slate-600 dark:text-slate-400 hover:border-brand-500/30 dark:hover:border-brand-500/30 transition-colors" title="Toggle Appearance Mode">
+                                     <i id="theme-icon" class="fa-solid fa-moon"></i>
+
+                </button>
+
+                <!-- FLOW DIRECTION TRANSLATION ACCORD (LTR/RTL TEXT TOGGLE) -->
+                <button onclick="toggleFlowDirection()" id="direction-toggle-btn" class="px-3.5 h-10 rounded-xl border border-slate-200 dark:border-slate-800 text-xs font-semibold uppercase tracking-wider text-slate-600 dark:text-slate-400 hover:border-brand-500/30 dark:hover:border-brand-500/30 flex items-center gap-2 transition-colors" title="Toggle Language Flow Direction">
+                    <span id="direction-label-text">LTR</span>
+                </button>
+            </div>
+        </header>
+
+        <!-- MAIN SCROLLABLE DASHBOARD VIEW DATA HUB VIEWPORTS -->
+        <div class="flex-1 overflow-y-auto p-4 sm:p-6 lg:p-8 space-y-8">
+            
+            <!-- VIEWPORT PANE 1: PORTAL DASHBOARD OVERVIEW HUB -->
+            <div id="pane-overview" class="portal-pane pane-active space-y-8">
+                
+                <!-- TOP INTRO CONVERSION TELEMETRY METRICS HERO STATUS CHIP -->
+                <div class="relative rounded-2xl bg-white dark:bg-slate-900 border border-slate-200/80 dark:border-slate-800/80 shadow-sm overflow-hidden p-6 sm:p-8 text-left rtl:text-right flex flex-col md:flex-row md:items-center md:justify-between gap-6">
+                    <div class="absolute inset-0 z-0 opacity-[0.02] dark:opacity-10 pointer-events-none">
+                        <div class="absolute inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:18px_18px]"></div>
+                    </div>
+                    <div class="relative z-10 space-y-2">
+                        <span class="text-[10px] bg-brand-500/10 text-brand-600 dark:text-brand-400 font-semibold px-2.5 py-1 rounded-md uppercase tracking-wider inline-block">Action Required</span>
+                        <h3 class="text-lg sm:text-xl font-semibold text-slate-900 dark:text-white tracking-tight">Your Digital Diagnostic Report is Ready for Authorization</h3>
+                        <p class="text-xs font-normal text-slate-500 dark:text-slate-400 max-w-xl leading-relaxed">Our on-site inspection noted sub-standard lining depletion thickness parameters across front braking axles. Review and approve repairs to initiate deployment.</p>
+                    </div>
+                    <div class="relative z-10 shrink-0">
+                        <button onclick="switchPortalPane('pane-diagnostics', document.querySelectorAll('.sidebar-nav-link')[2])" class="group relative w-full md:w-auto text-center px-5 py-3 bg-brand-500 hover:bg-brand-600 text-white font-medium text-xs uppercase tracking-wider rounded-xl shadow-md transition-all duration-200 overflow-hidden inline-flex items-center justify-center gap-2">
+                            <div class="absolute inset-0 w-1/2 h-full bg-white/20 skew-x-[-25deg] -translate-x-full group-hover:animate-[shine_0.75s_ease-in-out]"></div>
+                            <span>Review Diagnostic Report</span>
+                            <i class="fa-solid fa-arrow-right text-[10px] transition-transform group-hover:translate-x-0.5 rtl:group-hover:-translate-x-0.5"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- QUICK SUMMARY METRICS CHIPS ROW LAYOUT MATRIX -->
+                <!-- Breakpoints: 1 col on mobile/360px, 2 cols on tablet, 4 cols from 1024px desktop up -->
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
+                    <!-- Metric Box 1 -->
+                    <div class="rounded-2xl bg-white dark:bg-slate-900 border border-slate-200/80 dark:border-slate-800/80 p-5 shadow-sm text-left rtl:text-right space-y-3">
+                        <div class="flex items-center justify-between">
+                            <span class="text-[10px] text-slate-400 uppercase tracking-widest font-semibold">Registered Fleet Car</span>
+                            <div class="w-8 h-8 rounded-lg bg-slate-100 dark:bg-slate-950 text-slate-400 flex items-center justify-center text-xs"><i class="fa-solid fa-car"></i></div>
+                        </div>
+                        <div>
+                            <h4 class="text-base font-semibold text-slate-900 dark:text-white">2022 BMW M4 Coupe</h4>
+                            <p class="text-[11px] text-slate-400 font-normal">VIN Tracking ID: WBA31AG04NFXXXXXX</p>
+                        </div>
+                    </div>
+                    <!-- Metric Box 2 -->
+                    <div class="rounded-2xl bg-white dark:bg-slate-900 border border-slate-200/80 dark:border-slate-800/80 p-5 shadow-sm text-left rtl:text-right space-y-3">
+                        <div class="flex items-center justify-between">
+                            <span class="text-[10px] text-slate-400 uppercase tracking-widest font-semibold">Last Completed Checkup</span>
+                            <div class="w-8 h-8 rounded-lg bg-slate-100 dark:bg-slate-950 text-slate-400 flex items-center justify-center text-xs"><i class="fa-solid fa-calendar-check"></i></div>
+                        </div>
+                        <div>
+                            <h4 class="text-base font-semibold text-slate-900 dark:text-white">March 26, 2024</h4>
+                            <p class="text-[11px] text-brand-500 font-semibold uppercase tracking-wider">100% Verified Systems</p>
+                        </div>
+                    </div>
+                    <!-- Metric Box 3 -->
+                    <div class="rounded-2xl bg-white dark:bg-slate-900 border border-slate-200/80 dark:border-slate-800/80 p-5 shadow-sm text-left rtl:text-right space-y-3">
+                        <div class="flex items-center justify-between">
+                            <span class="text-[10px] text-slate-400 uppercase tracking-widest font-semibold">Active Product Warranty</span>
+                            <div class="w-8 h-8 rounded-lg bg-slate-100 dark:bg-slate-950 text-slate-400 flex items-center justify-center text-xs"><i class="fa-solid fa-shield-halved"></i></div>
+                        </div>
+                        <div>
+                            <h4 class="text-base font-semibold text-slate-900 dark:text-white">24 Months / 24,000 Mi</h4>
+                            <p class="text-[11px] text-slate-400 font-normal">Covers components &amp; structural labor</p>
+                        </div>
+                    </div>
+                    <!-- Metric Box 4 -->
+                    <div class="rounded-2xl bg-white dark:bg-slate-900 border border-slate-200/80 dark:border-slate-800/80 p-5 shadow-sm text-left rtl:text-right space-y-3">
+                        <div class="flex items-center justify-between">
+                            <span class="text-[10px] text-slate-400 uppercase tracking-widest font-semibold">On-Site Dispatch Status</span>
+                            <div class="w-8 h-8 rounded-lg bg-brand-500/10 text-brand-500 flex items-center justify-center text-xs"><i class="fa-solid fa-truck-fast animate-pulse"></i></div>
+                        </div>
+                        <div>
+                            <h4 class="text-base font-semibold text-slate-900 dark:text-white">Van Routing Live</h4>
+                            <p class="text-[11px] text-emerald-600 dark:text-emerald-400 font-semibold uppercase tracking-wider">ETA: 14 Minutes</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ADVANCED DATA ANALYSIS VISUALIZATION PLOT: BRAKE LINING PAD COMPARISON CHART MATRICES -->
+                <div class="rounded-2xl bg-white dark:bg-slate-900 border border-slate-200/80 dark:border-slate-800/80 p-5 sm:p-6 text-left rtl:text-right space-y-6">
+                    <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 border-b border-slate-100 dark:border-slate-800 pb-4">
+                        <div class="space-y-1">
+                            <h4 class="text-sm font-semibold text-slate-900 dark:text-white uppercase tracking-wider">Brake Pad Caliper Depletion Depth Tolerances</h4>
+                            <p class="text-xs font-normal text-slate-400 dark:text-slate-500">Real-time laser micrometer diagnostic data logs matching safety levels.</p>
+                        </div>
+                        <div class="flex items-center gap-4 text-xs font-semibold select-none">
+                            <span class="inline-flex items-center gap-1.5"><span class="w-2.5 h-2.5 rounded bg-brand-500 inline-block"></span> Your Vehicle Pads</span>
+                            <span class="inline-flex items-center gap-1.5"><span class="w-2.5 h-2.5 rounded bg-slate-200 dark:bg-slate-700 inline-block"></span> Critical Replacement Threshold</span>
+                        </div>
+                    </div>
+
+                    <!-- Layout Data Bars Container Stack -->
+                    <div class="space-y-5">
+                        <!-- Axle Data Row 1 -->
+                        <div class="space-y-2">
+                            <div class="flex justify-between items-center text-xs font-semibold">
+                                <span class="text-slate-800 dark:text-slate-200">Front Left Brake Lining Component</span>
+                                <span class="text-brand-500">3.2 mm (Critical Overhaul Alert)</span>
+                            </div>
+                            <div class="h-3 w-full bg-slate-100 dark:bg-slate-800 rounded-full overflow-hidden relative">
+                                <div class="absolute inset-y-0 left-0 bg-slate-200 dark:bg-slate-700 w-[30%]"></div>
+                                <div class="absolute inset-y-0 left-0 bg-brand-500 w-[32%] rounded-full shadow-sm"></div>
+                            </div>
+                        </div>
+                        <!-- Axle Data Row 2 -->
+                        <div class="space-y-2">
+                            <div class="flex justify-between items-center text-xs font-semibold">
+                                <span class="text-slate-800 dark:text-slate-200">Front Right Brake Lining Component</span>
+                                <span class="text-brand-500">3.5 mm (Critical Overhaul Alert)</span>
+                            </div>
+                            <div class="h-3 w-full bg-slate-100 dark:bg-slate-800 rounded-full overflow-hidden relative">
+                                <div class="absolute inset-y-0 left-0 bg-slate-200 dark:bg-slate-700 w-[30%]"></div>
+                                <div class="absolute inset-y-0 left-0 bg-brand-500 w-[35%] rounded-full shadow-sm"></div>
+                            </div>
+                        </div>
+                        <!-- Axle Data Row 3 -->
+                        <div class="space-y-2">
+                            <div class="flex justify-between items-center text-xs font-semibold">
+                                <span class="text-slate-800 dark:text-slate-200">Rear Left Brake Lining Component</span>
+                                <span class="text-emerald-500">8.4 mm (Nominal Safety Scope)</span>
+                            </div>
+                            <div class="h-3 w-full bg-slate-100 dark:bg-slate-800 rounded-full overflow-hidden relative">
+                                <div class="absolute inset-y-0 left-0 bg-slate-200 dark:bg-slate-700 w-[30%]"></div>
+                                <div class="absolute inset-y-0 left-0 bg-emerald-500 w-[84%] rounded-full shadow-sm"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Helpful safety trust metrics documentation box -->
+                    <div class="p-4 rounded-xl bg-slate-50 dark:bg-slate-950/40 border border-slate-100 dark:border-slate-900 text-xs text-slate-500 dark:text-slate-400 font-normal leading-relaxed flex gap-3 items-start">
+                        <i class="fa-solid fa-circle-info text-brand-500 mt-0.5 text-sm shrink-0"></i>
+                        <div>
+                            <span class="font-semibold text-slate-800 dark:text-slate-200">Technical Note:</span> Brand new ceramic operational pad plates load initialized at <span class="font-semibold">12.0 mm</span> width dimensions. Replacement procedures are mandatory underneath <span class="font-semibold text-brand-500">3.0 mm</span> parameters to eliminate major rotor component scoring wear or catastrophic failure spikes on emergency stops.
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- VIEWPORT PANE 2: SCHEDULE INSPECTION WORKSHOP MODULE -->
+            <div id="pane-scheduler" class="portal-pane space-y-8">
+                <div class="rounded-2xl bg-white dark:bg-slate-900 border border-slate-200/80 dark:border-slate-800/80 p-5 sm:p-6 text-left rtl:text-right max-w-2xl mx-auto space-y-6">
+                    <div class="border-b border-slate-100 dark:border-slate-800 pb-3">
+                        <h3 class="text-base font-semibold text-slate-900 dark:text-white uppercase tracking-wider">Book On-Site Brake Inspection Session</h3>
+                        <p class="text-xs font-normal text-slate-400 dark:text-slate-500">Our fully equipped mobile trucks deliver diagnostic calibrations directly to your vehicle location spot.</p>
+                    </div>
+
+                    <!-- Interactive Form Parameters Layout Mockup -->
+                    <form onsubmit="event.preventDefault(); alert('Mobile deployment slot locked successfully.');" class="space-y-4 text-xs font-semibold">
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                            <div class="space-y-1.5">
+                                <label class="text-slate-700 dark:text-slate-300">Target Fleet Vehicle</label>
+                                <select class="w-full px-4 py-3 rounded-xl bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 focus:outline-none focus:border-brand-500/40 font-normal text-slate-800 dark:text-slate-200">
+                                    <option>2022 BMW M4 Coupe (Registered Vehicle)</option>
+                                    <option>Register New Alternate Vehicle Layout</option>
+                                </select>
+                            </div>
+                            <div class="space-y-1.5">
+                                <label class="text-slate-700 dark:text-slate-300">Service Destination Site Type</label>
+                                <select class="w-full px-4 py-3 rounded-xl bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 focus:outline-none focus:border-brand-500/40 font-normal text-slate-800 dark:text-slate-200">
+                                    <option>Residential Home Driveway Axis</option>
+                                    <option>Corporate Office Parking Lot Space</option>
+                                    <option>Emergency Roadside Dispatch Terminal</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                            <div class="space-y-1.5">
+                                <label class="text-slate-700 dark:text-slate-300">Preferred Deployment Date</label>
+                                <input type="date" value="2026-05-25" class="w-full px-4 py-3 rounded-xl bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 focus:outline-none focus:border-brand-500/40 font-normal text-slate-800 dark:text-slate-200" />
+                            </div>
+                            <div class="space-y-1.5">
+                                <label class="text-slate-700 dark:text-slate-300">Preferred Target Time Window Slot</label>
+                                <select class="w-full px-4 py-3 rounded-xl bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 focus:outline-none focus:border-brand-500/40 font-normal text-slate-800 dark:text-slate-200">
+                                    <option>Morning Slot (08:00 AM – 12:00 PM)</option>
+                                    <option>Mid-Day Horizon (12:00 PM – 04:00 PM)</option>
+                                    <option>Late Shift Sequence (04:00 PM – 08:00 PM)</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="pt-4">
+                            <button type="submit" class="w-full text-center py-3.5 bg-brand-500 hover:bg-brand-600 text-white font-medium text-xs uppercase tracking-wider rounded-xl shadow-md transition-all duration-200">
+                                Lock Scheduled Appointment Window
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <!-- VIEWPORT PANE 3: PHOTO DIAGNOSTICS & CLIENT REPAIR AUTHORIZATION GATE -->
+            <div id="pane-diagnostics" class="portal-pane space-y-8">
+                
+                <!-- PHOTO PROOF EVIDENCE FIELD CAPTURES MODULE -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8">
+                    <!-- Photo Grid 1 -->
+                    <div class="rounded-2xl bg-white dark:bg-slate-900 border border-slate-200/80 dark:border-slate-800/80 shadow-sm overflow-hidden flex flex-col justify-between">
+                        <div class="w-full h-52 sm:h-56 overflow-hidden relative bg-slate-100 dark:bg-slate-950 shrink-0">
+                            <img src="assets/user1" alt="Front Left Lining Wearing Condition Capture" class="w-full h-full object-cover" />
+                            <div class="absolute inset-0 bg-gradient-to-t from-slate-950/50 to-transparent"></div>
+                            <span class="absolute top-3 left-3 bg-brand-500 text-white text-[9px] font-bold uppercase tracking-widest px-2 py-0.5 rounded shadow-sm">Front Left Axle Pad Node</span>
+                        </div>
+                        <div class="p-5 space-y-1.5 text-left rtl:text-right">
+                            <h4 class="text-sm font-semibold text-slate-900 dark:text-white">Friction Material Thickness Layer: 3.2mm</h4>
+                            <p class="text-xs font-normal text-slate-400 dark:text-slate-500 leading-relaxed">Laser diagnostics record severe degradation patterns scaling closely to backing plates. High thermal stress fractures detected across outer layer edges.</p>
+                        </div>
+                    </div>
+                    <!-- Photo Grid 2 -->
+                    <div class="rounded-2xl bg-white dark:bg-slate-900 border border-slate-200/80 dark:border-slate-800/80 shadow-sm overflow-hidden flex flex-col justify-between">
+                        <div class="w-full h-52 sm:h-56 overflow-hidden relative bg-slate-100 dark:bg-slate-950 shrink-0">
+                            <img src="assets/user2" alt="Front Brake Rotor Grooving Texture Proof" class="w-full h-full object-cover" />
+                            <div class="absolute inset-0 bg-gradient-to-t from-slate-950/50 to-transparent"></div>
+                            <span class="absolute top-3 left-3 bg-brand-500 text-white text-[9px] font-bold uppercase tracking-widest px-2 py-0.5 rounded shadow-sm">Front Discs Grooving Damage</span>
+                        </div>
+                        <div class="p-5 space-y-1.5 text-left rtl:text-right">
+                            <h4 class="text-sm font-semibold text-slate-900 dark:text-white">Rotor Surface Scratched Wear Pattern Logging</h4>
+                            <p class="text-xs font-normal text-slate-400 dark:text-slate-500 leading-relaxed">Deep dynamic circular tracking marks indicate heat spotting. Surface cannot be planed smoothly down. Total replacement mandatory to secure contact friction lines.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ITEMIZATION REPAIR ITEM ESTIMATION MATRIX & LIVE APPROVAL WORKSTATION -->
+                <div class="rounded-2xl bg-white dark:bg-slate-900 border border-slate-200/80 dark:border-slate-800/80 p-5 sm:p-6 text-left rtl:text-right space-y-6">
+                    <div class="border-b border-slate-100 dark:border-slate-800 pb-3">
+                        <h3 class="text-base font-semibold text-slate-900 dark:text-white uppercase tracking-wider">Itemized Line Estimate &amp; Overhaul Sign-Off</h3>
+                        <p class="text-xs font-normal text-slate-400 dark:text-slate-500">Approve pending maintenance recommendations directly to dispatch your field workshop team instantly.</p>
+                    </div>
+
+                    <!-- Pricing Allocation Rows Stack -->
+                    <div class="space-y-2 select-none text-xs font-normal">
+                        <div class="flex justify-between items-center p-3 rounded-xl bg-slate-50 dark:bg-slate-950/40 border border-slate-100 dark:border-slate-900">
+                            <div class="space-y-0.5">
+                                <span class="font-semibold text-slate-900 dark:text-white block">Premium Euro Ceramic Brake Pads (Front Axle Set)</span>
+                                <span class="text-[10px] text-slate-400 block">Includes premium stainless structural backing shims and silencer clips</span>
+                            </div>
+                            <span class="font-semibold text-slate-800 dark:text-slate-200">$145.00</span>
+                        </div>
+                        <div class="flex justify-between items-center p-3 rounded-xl bg-slate-50 dark:bg-slate-950/40 border border-slate-100 dark:border-slate-900">
+                            <div class="space-y-0.5">
+                                <span class="font-semibold text-slate-900 dark:text-white block">Ventilated Cross-Geo Brake Rotors (Front Axle Pair)</span>
+                                <span class="text-[10px] text-slate-400 block">Features high carbon construction treated with specialized protective anti-rust coatings</span>
+                            </div>
+                            <span class="font-semibold text-slate-800 dark:text-slate-200">$220.00</span>
+                        </div>
+                        <div class="flex justify-between items-center p-3 rounded-xl bg-slate-50 dark:bg-slate-950/40 border border-slate-100 dark:border-slate-900">
+                            <div class="space-y-0.5">
+                                <span class="font-semibold text-slate-900 dark:text-white block">Certified Mobile On-Site Assembly Fitting Labor Allocation</span>
+                                <span class="text-[10px] text-slate-400 block">Full component torque spec setting verification, line diagnostic reset, and safe road tests</span>
+                            </div>
+                            <span class="font-semibold text-slate-800 dark:text-slate-200">$120.00</span>
+                        </div>
+                        <div class="flex justify-between items-center p-3 rounded-xl bg-brand-500/[0.01] border border-brand-500/20 font-semibold">
+                            <span class="text-slate-900 dark:text-white text-sm">Total Guaranteed Project Cost Estimate</span>
+                            <span class="text-brand-500 text-sm">$485.00</span>
+                        </div>
+                    </div>
+
+                    <!-- Interactive Sign-Off Actions Panel -->
+                    <div class="flex flex-col sm:flex-row items-center justify-end gap-3 pt-2">
+                        <button onclick="alert('Estimate rejection logged. A support specialist will contact you shortly.');" class="w-full sm:w-auto px-5 py-3 bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-300 font-medium text-xs uppercase tracking-wider rounded-xl border border-slate-200 dark:border-slate-700 transition-colors">
+                            Decline &amp; Request Callback
+                        </button>
+                        <button onclick="alert('Digital authorization signature locked. Mobile field repair workshop dispatches initiated.');" class="w-full sm:w-auto px-6 py-3 bg-brand-500 hover:bg-brand-600 text-white font-medium text-xs uppercase tracking-wider rounded-xl shadow-md shadow-brand-500/10 transition-colors">
+                            Authorize &amp; Initiate Repair Work
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- VIEWPORT PANE 4: LIVE WORKSHOP FLEET VAN GPS TELEMETRY MAP TRACKING -->
+            <div id="pane-tracking" class="portal-pane space-y-8">
+                <div class="rounded-2xl bg-white dark:bg-slate-900 border border-slate-200/80 dark:border-slate-800/80 p-5 sm:p-6 text-left rtl:text-right space-y-6">
+                    <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 border-b border-slate-100 dark:border-slate-800 pb-4">
+                        <div class="space-y-1">
+                            <h3 class="text-base font-semibold text-slate-900 dark:text-white uppercase tracking-wider">Live Support Van GPS Telemetry Tracking</h3>
+                            <p class="text-xs font-normal text-slate-400 dark:text-slate-500">Your assigned mobile workshop unit is currently routing towards your destination driveway anchor location.</p>
+                        </div>
+                        <div class="shrink-0 bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 font-semibold text-[10px] px-2.5 py-1 rounded-full uppercase tracking-wider inline-flex items-center gap-1.5 select-none">
+                            <span class="w-1.5 h-1.5 rounded-full bg-emerald-500 { opacity: 1; } animate-ping"></span> Live Signal Connected
+                        </div>
+                    </div>
+
+                    <!-- MOCKUP DESIGN PLATFORM GPS RADAR LAYOUT CANVAS CONTROLLER -->
+                    <div class="w-full h-80 sm:h-96 rounded-xl border border-slate-200 dark:border-slate-800 overflow-hidden relative bg-slate-100 dark:bg-slate-950">
+                        <!-- Abstract placeholder satellite topography imagery mapping mesh overlay line grids -->
+                        <div class="absolute inset-0 bg-[linear-gradient(to_right,#8080801a_1px,transparent_1px),linear-gradient(to_bottom,#8080801a_1px,transparent_1px)] bg-[size:30px_30px] opacity-40"></div>
+                        <div class="absolute inset-0 bg-radial-gradient from-transparent to-white/40 dark:to-slate-950/40"></div>
+                        
+                        <!-- Static Roadmap Route Illustration Vectors -->
+                        <div class="absolute top-[40%] left-[20%] right-[30%] h-2.5 bg-slate-300 dark:bg-slate-800 rounded-full"></div>
+                        <div class="absolute top-[20%] bottom-[20%] left-[45%] w-2.5 bg-slate-300 dark:bg-slate-800 rounded-full"></div>
+                        <!-- Completed Path Trace Overlay -->
+                        <div class="absolute top-[40%] left-[20%] w-[26%] h-2.5 bg-brand-500/40 rounded-full"></div>
+                        <div class="absolute top-[40%] bottom-[40%] left-[45%] w-2.5 bg-brand-500/40 rounded-full"></div>
+
+                        <!-- Target Destination Node Point Marker Flag -->
+                        <div class="absolute top-[20%] left-[43%] text-center space-y-1 text-slate-800 dark:text-slate-200">
+                            <div class="text-brand-500 text-lg animate-bounce"><i class="fa-solid fa-house-chimney-user"></i></div>
+                            <span class="text-[9px] font-bold bg-white/90 dark:bg-slate-900/90 border border-slate-200 dark:border-slate-800 rounded px-1.5 py-0.5 shadow-sm block">Home Driveway</span>
+                        </div>
+
+                        <!-- Active Mobile Workshop Dispatch Van Tracker Pin -->
+                        <div class="absolute bottom-[40%] left-[43%] text-center space-y-1 text-slate-800 dark:text-slate-200 transition-all duration-1000">
+                            <div class="text-emerald-500 text-base animate-pulse"><i class="fa-solid fa-truck-container"></i></div>
+                            <span class="text-[9px] font-bold bg-white/90 dark:bg-slate-900/90 border border-slate-200 dark:border-slate-800 rounded px-1.5 py-0.5 shadow-sm block whitespace-nowrap">Van #08 (ASE Master Technician)</span>
+                        </div>
+                    </div>
+
+                    <!-- Fleet Assignment Dispatch Status Footer Grid -->
+                    <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 text-xs font-normal text-slate-500 dark:text-slate-400 select-none">
+                        <div class="p-3 rounded-xl bg-slate-50 dark:bg-slate-950/40 border border-slate-100 dark:border-slate-900">
+                            <span class="text-[10px] text-slate-400 font-semibold block uppercase tracking-wider">Assigned Technician</span>
+                            <span class="font-semibold text-slate-800 dark:text-slate-200 text-sm block mt-0.5">Mark R. (ASE Certified Master Specialist)</span>
+                        </div>
+                        <div class="p-3 rounded-xl bg-slate-50 dark:bg-slate-950/40 border border-slate-100 dark:border-slate-900">
+                            <span class="text-[10px] text-slate-400 font-semibold block uppercase tracking-wider">Estimated Delivery Horizon</span>
+                            <span class="font-semibold text-brand-500 text-sm block mt-0.5">14 Minutes (En Route via Express Bypass)</span>
+                        </div>
+                        <div class="p-3 rounded-xl bg-slate-50 dark:bg-slate-950/40 border border-slate-100 dark:border-slate-900">
+                            <span class="text-[10px] text-slate-400 font-semibold block uppercase tracking-wider">Truck Fleet Payload Specs</span>
+                            <span class="font-semibold text-slate-800 dark:text-slate-200 text-sm block mt-0.5">Ford Transit 250 Heavy Workshop Unit</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- VIEWPORT PANE 5: MAINTENANCE HISTORY LOG RECORDS ARCHIVE -->
+            <div id="pane-history" class="portal-pane space-y-8">
+                <div class="rounded-2xl bg-white dark:bg-slate-900 border border-slate-200/80 dark:border-slate-800/80 p-5 sm:p-6 text-left rtl:text-right space-y-6">
+                    <div class="border-b border-slate-100 dark:border-slate-800 pb-3">
+                        <h3 class="text-base font-semibold text-slate-900 dark:text-white uppercase tracking-wider">Verified Brake Maintenance Log History</h3>
+                        <p class="text-xs font-normal text-slate-400 dark:text-slate-500">Historical archive records compiling cloud invoice file print validations across previous mobile work dispatches.</p>
+                    </div>
+
+                    <!-- Desktop Tabular Document Grid Format Framework -->
+                    <div class="overflow-x-auto">
+                        <table class="w-full text-xs text-left rtl:text-right border-collapse">
+                            <thead>
+                                <tr class="border-b border-slate-200 dark:border-slate-800 text-[10px] text-slate-400 uppercase tracking-wider font-semibold select-none">
+                                    <th class="pb-3 pr-4">Job Reference ID</th>
+                                    <th class="pb-3 px-4">Completion Date</th>
+                                    <th class="pb-3 px-4">Odometer Log</th>
+                                    <th class="pb-3 px-4">Executed System Calibrations</th>
+                                    <th class="pb-3 pl-4 text-right rtl:text-left">Invoiced Pricing</th>
+                                </tr>
+                            </thead>
+                            <tbody class="font-normal text-slate-600 dark:text-slate-300 divide-y divide-slate-100 dark:divide-slate-800/60">
+                                <!-- Record Row 1 -->
+                                <tr>
+                                    <td class="py-3.5 pr-4 font-semibold text-slate-800 dark:text-slate-200">#VX-90248</td>
+                                    <td class="py-3.5 px-4">March 26, 2024</td>
+                                    <td class="py-3.5 px-4">24,150 Mi</td>
+                                    <td class="py-3.5 px-4">Rear Axle Brake Pad Replacement Overhaul (Ceramic Formulations Fit)</td>
+                                    <td class="py-3.5 pl-4 text-right rtl:text-left font-semibold text-slate-800 dark:text-slate-200">$180.00</td>
+                                </tr>
+                                <!-- Record Row 2 -->
+                                <tr>
+                                    <td class="py-3.5 pr-4 font-semibold text-slate-800 dark:text-slate-200">#VX-67123</td>
+                                    <td class="py-3.5 px-4">October 14, 2023</td>
+                                    <td class="py-3.5 px-4">18,400 Mi</td>
+                                    <td class="py-3.5 px-4">Full Brake Fluid Purge Flush Fluid Line System Decontamination</td>
+                                    <td class="py-3.5 pl-4 text-right rtl:text-left font-semibold text-slate-800 dark:text-slate-200">$95.00</td>
+                                </tr>
+                                <!-- Record Row 3 -->
+                                <tr>
+                                    <td class="py-3.5 pr-4 font-semibold text-slate-800 dark:text-slate-200">#VX-12094</td>
+                                    <td class="py-3.5 px-4">May 02, 2023</td>
+                                    <td class="py-3.5 px-4">12,110 Mi</td>
+                                    <td class="py-3.5 px-4">Multi-Point Diagnostic Thickness Safety Inspection Mapping</td>
+                                    <td class="py-3.5 pl-4 text-right rtl:text-left font-semibold text-slate-800 dark:text-slate-200">$0.00 (Waived)</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <!-- 3. PRODUCTION VANILLA JAVASCRIPT STATE ENGINE CONTROLLER -->
+    <script>
+        // A. RUN VIEWPORT SIDEBAR INTERACTIVE VIEW SWITCHING
+        function switchPortalPane(targetPaneId, clickedButton) {
+            // Deactivate all content pane containers
+            const panes = document.querySelectorAll('.portal-pane');
+            panes.forEach(pane => {
+                pane.classList.remove('pane-active');
+            });
+
+            // Activate specific selected content block view
+            const targetPane = document.getElementById(targetPaneId);
+            if (targetPane) {
+                targetPane.classList.add('pane-active');
+            }
+
+            // Remap active button utility layout states in the sidebar list
+            const links = document.querySelectorAll('.sidebar-nav-link');
+            links.forEach(link => {
+                link.className = "sidebar-nav-link w-full flex items-center justify-between px-4 py-3 rounded-xl text-xs font-semibold uppercase tracking-wider transition-all duration-200 focus:outline-none text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800";
+                
+                // Reset item chevrons/icons parameters to defaults
+                const chevron = link.querySelector('i.fa-chevron-right, span.bg-brand-500');
+                if (chevron && !chevron.classList.contains('animate-pulse')) {
+                    chevron.className = "fa-solid fa-chevron-right text-[10px] opacity-30";
+                }
+            });
+
+            // Promote active styles to selected sidebar nav trigger link
+            if (clickedButton) {
+                clickedButton.className = "sidebar-nav-link w-full flex items-center justify-between px-4 py-3 rounded-xl text-xs font-semibold uppercase tracking-wider transition-all duration-200 focus:outline-none bg-brand-500 text-white shadow-md";
+                const activeChevron = clickedButton.querySelector('i.fa-chevron-right');
+                if (activeChevron) {
+                    activeChevron.className = "fa-solid fa-chevron-right text-[10px] opacity-70";
+                }
+            }
+
+            // Auto-collapse mobile view drawers implicitly if open
+            const sidebar = document.getElementById('portal-sidebar');
+            if (sidebar.classList.contains('sidebar-open')) {
+                toggleMobileSidebar();
+            }
+        }
+
+        // B. TOGGLE MOBILE NAV DRAWER EXPANSIONS
+        function toggleMobileSidebar() {
+            const sidebar = document.getElementById('portal-sidebar');
+            const overlay = document.getElementById('sidebar-overlay');
+            
+            if (sidebar.classList.contains('sidebar-open')) {
+                sidebar.classList.remove('sidebar-open', 'translate-x-0');
+                sidebar.classList.add('-translate-x-full');
+                overlay.classList.add('hidden');
+            } else {
+                sidebar.classList.add('sidebar-open', 'translate-x-0');
+                sidebar.classList.remove('-translate-x-full');
+                overlay.classList.remove('hidden');
+            }
+        }
+
+        // C. GLOBAL AMBIENT THEME SWITCHER LOGIC MODULE WITH PERSISTENCE
+        function toggleAmbientTheme() {
+            const htmlNode = document.documentElement;
+            if (htmlNode.classList.contains('dark')) {
+                htmlNode.classList.remove('dark');
+                localStorage.setItem('vexa-portal-theme', 'light');
+            } else {
+                htmlNode.classList.add('dark');
+                localStorage.setItem('vexa-portal-theme', 'dark');
+            }
+        }
+
+        // D. TRANSLATION FLOW ENGINE SWITCHER MODULE WITH PERSISTENCE (LTR/RTL CONTROLLER)
+        function toggleFlowDirection() {
+            const htmlNode = document.documentElement;
+            const label = document.getElementById('direction-label-text');
+            const currentDir = htmlNode.getAttribute('dir') || 'ltr';
+
+            if (currentDir === 'ltr') {
+                htmlNode.setAttribute('dir', 'rtl');
+                label.innerText = 'LTR';
+                localStorage.setItem('vexa-portal-dir', 'rtl');
+            } else {
+                htmlNode.setAttribute('dir', 'ltr');
+                label.innerText = 'RTL';
+                localStorage.setItem('vexa-portal-dir', 'ltr');
+            }
+        }
+
+        // E. APPLICATION CONTEXT DOM INITIALIZATION PROCESSOR HANDLER
+        document.addEventListener("DOMContentLoaded", function() {
+            const htmlNode = document.documentElement;
+            
+            // Sync user local storage settings for dark mode
+            const preservedTheme = localStorage.getItem('vexa-portal-theme');
+            if (preservedTheme === 'dark' || (!preservedTheme && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+                htmlNode.classList.add('dark');
+            } else {
+                htmlNode.classList.remove('dark');
+            }
+
+            // Sync user local storage settings for text direction
+            const preservedDir = localStorage.getItem('vexa-portal-dir') || 'ltr';
+            htmlNode.setAttribute('dir', preservedDir);
+            const label = document.getElementById('direction-label-text');
+            if (label) {
+                label.innerText = preservedDir === 'ltr' ? 'RTL' : 'LTR';
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%220.9em%22 font-size=%2290%22>🚗</text></svg>">
+    <title>Register | BrakeDoc Client Portal</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'system-ui', 'sans-serif'],
+                    },
+                    colors: {
+                        brand: {
+                            50: '#fff1f2',
+                            100: '#ffe4e6',
+                            500: '#f43f5e', /* Sleek Automotive Rose/Red Focal Theme Accent Color */
+                            600: '#e11d48',
+                            700: '#be123c',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- Modern Clean Fonts & Icon Libraries -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-900 dark:bg-slate-950 dark:text-slate-100 min-h-screen flex flex-col transition-colors duration-300">
+
+    <!-- TOP HEADER UTILITY BAR -->
+    <header class="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between relative z-50">
+        <!-- Name Logo Top Left Corner redirecting to homepage -->
+        <a href="index.html" class="flex items-center gap-2 group focus:outline-none" title="Return to Homepage">
+            <i class="fa-solid fa-car-burst text-brand-500 text-2xl sm:text-3xl transition-transform group-hover:scale-105"></i>
+            <span class="text-lg sm:text-xl font-bold tracking-tight text-slate-900 dark:text-white">Brake<span class="text-brand-500">Doc</span></span>
+        </a>
+
+        <!-- Persistent Layout Control Toggle Buttons -->
+        <div class="flex items-center space-x-2 sm:space-x-3 rtl:space-x-reverse">
+            <!-- LTR/RTL Orientation Layout Toggle Button -->
+            <button id="rtl-toggle" class="p-2 text-xs font-semibold rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-slate-600 dark:text-slate-400 hover:text-brand-500 dark:hover:text-brand-500 shadow-sm transition-all focus:outline-none" title="Toggle System Directionality">
+                LTR
+            </button>
+            <!-- Light/Dark Ambient Theme Toggle Button -->
+            <button id="theme-toggle" class="p-2 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-slate-600 dark:text-slate-400 hover:text-brand-500 dark:hover:text-brand-500 shadow-sm transition-all focus:outline-none" title="Toggle UI Theme Mode">
+                <i id="theme-icon" class="fa-solid fa-moon"></i>
+            </button>
+        </div>
+    </header>
+
+    <!-- MAIN INTERACTIVE REGISTRATION BODY INTERFACE -->
+    <main class="flex-grow flex items-center justify-center px-4 py-6 sm:py-12 relative z-10">
+        
+        <!-- Ambient Decorative Branding Flares -->
+        <div class="absolute top-1/3 left-1/2 -translate-x-1/2 w-72 sm:w-[500px] h-72 sm:h-[500px] bg-brand-500/5 rounded-full blur-3xl pointer-events-none"></div>
+
+        <!-- Registration Card Container Chassis -->
+        <div class="w-full max-w-[460px] bg-white dark:bg-slate-900 border border-slate-200/80 dark:border-slate-800/80 rounded-3xl shadow-xl p-6 sm:p-8 backdrop-blur-md transition-all duration-300">
+            
+            <!-- Context Headers -->
+            <div class="space-y-1 text-center mb-6">
+                <h1 class="text-2xl font-semibold tracking-tight text-slate-900 dark:text-white">Create An Account</h1>
+                <p class="text-sm font-normal text-slate-500 dark:text-slate-400">Join BrakeDoc to schedule mobile repairs & track your fleet pricing plans</p>
+            </div>
+
+            <!-- SOCIAL PROVIDER REGISTRATION GRID CONTAINER -->
+            <div class="space-y-3 mb-5">
+                <div class="grid grid-cols-3 gap-2.5">
+                    <!-- Google Option -->
+                    <button type="button" class="flex flex-col sm:flex-row items-center justify-center gap-1.5 sm:gap-2 py-3 px-2 rounded-xl border border-slate-200 dark:border-slate-800 text-xs sm:text-sm font-medium text-slate-700 dark:text-slate-300 bg-slate-50/50 dark:bg-slate-950/30 hover:bg-slate-100 dark:hover:bg-slate-950 hover:border-slate-300 dark:hover:border-slate-700 transition-all focus:outline-none">
+                        <i class="fa-brands fa-google text-base text-slate-500 dark:text-slate-400"></i>
+                        <span class="text-[11px] sm:text-xs">Google</span>
+                    </button>
+                    <!-- Apple Option -->
+                    <button type="button" class="flex flex-col sm:flex-row items-center justify-center gap-1.5 sm:gap-2 py-3 px-2 rounded-xl border border-slate-200 dark:border-slate-800 text-xs sm:text-sm font-medium text-slate-700 dark:text-slate-300 bg-slate-50/50 dark:bg-slate-950/30 hover:bg-slate-100 dark:hover:bg-slate-950 hover:border-slate-300 dark:hover:border-slate-700 transition-all focus:outline-none">
+                        <i class="fa-brands fa-apple text-base text-slate-500 dark:text-slate-400"></i>
+                        <span class="text-[11px] sm:text-xs">Apple</span>
+                    </button>
+                    <!-- Facebook Option -->
+                    <button type="button" class="flex flex-col sm:flex-row items-center justify-center gap-1.5 sm:gap-2 py-3 px-2 rounded-xl border border-slate-200 dark:border-slate-800 text-xs sm:text-sm font-medium text-slate-700 dark:text-slate-300 bg-slate-50/50 dark:bg-slate-950/30 hover:bg-slate-100 dark:hover:bg-slate-950 hover:border-slate-300 dark:hover:border-slate-700 transition-all focus:outline-none">
+                        <i class="fa-brands fa-facebook text-base text-blue-600 dark:text-blue-500"></i>
+                        <span class="text-[11px] sm:text-xs">Facebook</span>
+                    </button>
+                </div>
+                <!-- Structural Segment Splitter -->
+                <div class="relative flex items-center justify-center py-2">
+                    <div class="w-full border-t border-slate-200 dark:border-slate-800"></div>
+                    <span class="absolute bg-white dark:bg-slate-900 px-3 text-xs font-normal text-slate-400 uppercase tracking-wider">Or register with email</span>
+                </div>
+            </div>
+
+            <!-- NATIVE REGISTRATION FORM CREDENTIALS -->
+            <form action="#" class="space-y-4" onsubmit="event.preventDefault(); alert('Registration validation request submitted successfully.');">
+                
+                <!-- Full Name Input Block -->
+                <div class="space-y-1.5">
+                    <label for="name-field" class="text-xs font-medium text-slate-500 dark:text-slate-400">Full Name</label>
+                    <div class="relative flex items-center">
+                        <span class="absolute left-4  rtl:left-auto rtl:right-4 text-slate-400 dark:text-slate-600 text-sm pointer-events-none">
+                            <i class="fa-regular fa-user"></i>
+                        </span>
+                        <input type="text" id="name-field" required placeholder="John Doe"
+                               class="w-full pl-11 pr-4 rtl:pl-4 rtl:pr-11 py-3 text-sm rounded-xl bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 focus:outline-none focus:border-brand-500 focus:ring-1 focus:ring-brand-500 transition-all text-slate-900 dark:text-slate-100 placeholder:text-slate-400 dark:placeholder:text-slate-600" />
+                    </div>
+                </div>
+
+                <!-- Email Input Block -->
+                <div class="space-y-1.5">
+                    <label for="email-field" class="text-xs font-medium text-slate-500 dark:text-slate-400">Email Address</label>
+                    <div class="relative flex items-center">
+                        <span class="absolute left-4 rtl:left-auto rtl:right-4 text-slate-400 dark:text-slate-600 text-sm pointer-events-none">
+                            <i class="fa-regular fa-envelope"></i>
+                        </span>
+                        <input type="email" id="email-field" required placeholder="name@company.com"
+                               class="w-full pl-11 pr-4 rtl:pl-4 rtl:pr-11 py-3 text-sm rounded-xl bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 focus:outline-none focus:border-brand-500 focus:ring-1 focus:ring-brand-500 transition-all text-slate-900 dark:text-slate-100 placeholder:text-slate-400 dark:placeholder:text-slate-600" />
+                    </div>
+                </div>
+
+                <!-- Password Input Block with Nested Eye Visibility Toggle Icon -->
+                <div class="space-y-1.5">
+                    <label for="password-field" class="text-xs font-medium text-slate-500 dark:text-slate-400">Create Password</label>
+                    <div class="relative flex items-center">
+                        <span class="absolute left-4 rtl:left-auto rtl:right-4 text-slate-400 dark:text-slate-600 text-sm pointer-events-none">
+                            <i class="fa-solid fa-lock"></i>
+                        </span>
+                        <input type="password" id="password-field" required placeholder="••••••••"
+                               class="w-full pl-11 pr-11 rtl:pl-11 rtl:pr-11 py-3 text-sm rounded-xl bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 focus:outline-none focus:border-brand-500 focus:ring-1 focus:ring-brand-500 transition-all text-slate-900 dark:text-slate-100 placeholder:text-slate-400 dark:placeholder:text-slate-600" />
+                        <!-- Eye visibility toggle handler button -->
+                        <button type="button" onclick="togglePasswordVisibility('password-field', 'eye-icon')" class="absolute right-4 left-auto rtl:right-auto rtl:left-4 text-slate-400 dark:text-slate-600 hover:text-brand-500 transition-colors focus:outline-none" aria-label="Toggle Password Visibility">
+                            <i id="eye-icon" class="fa-regular fa-eye text-sm"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Confirm Password Input Block with Sibling Eye Toggle Icon -->
+                <div class="space-y-1.5">
+                    <label for="confirm-password-field" class="text-xs font-medium text-slate-500 dark:text-slate-400">Confirm Password</label>
+                    <div class="relative flex items-center">
+                        <span class="absolute left-4 rtl:left-auto rtl:right-4 text-slate-400 dark:text-slate-600 text-sm pointer-events-none">
+                            <i class="fa-solid fa-lock-open"></i>
+                        </span>
+                        <input type="password" id="confirm-password-field" required placeholder="••••••••"
+                               class="w-full pl-11 pr-11 rtl:pl-11 rtl:pr-11 py-3 text-sm rounded-xl bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 focus:outline-none focus:border-brand-500 focus:ring-1 focus:ring-brand-500 transition-all text-slate-900 dark:text-slate-100 placeholder:text-slate-400 dark:placeholder:text-slate-600" />
+                        <button type="button" onclick="togglePasswordVisibility('confirm-password-field', 'confirm-eye-icon')" class="absolute right-4 left-auto rtl:right-auto rtl:left-4 text-slate-400 dark:text-slate-600 hover:text-brand-500 transition-colors focus:outline-none" aria-label="Toggle Password Visibility">
+                            <i id="confirm-eye-icon" class="fa-regular fa-eye text-sm"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- TERMS & CONDITIONS AUXILIARY CHECKBOX (Positioned immediately beneath inputs stack) -->
+                <div class="pt-1 select-none">
+                    <label class="flex items-start gap-2.5 text-xs font-medium text-slate-600 dark:text-slate-400 cursor-pointer group">
+                        <input type="checkbox" required class="mt-0.5 w-4 h-4 rounded-md border-slate-300 dark:border-slate-700 text-brand-500 focus:ring-brand-500 bg-slate-50 dark:bg-slate-950 transition-colors accent-brand-500 cursor-pointer" />
+                        <span class="leading-normal group-hover:text-slate-900 dark:group-hover:text-slate-200 transition-colors">
+                            I agree to the <a href="terms.html" class="text-brand-500 hover:text-brand-600 font-semibold transition-colors">Terms of Service</a> and <a href="privacy.html" class="text-brand-500 hover:text-brand-600 font-semibold transition-colors">Privacy Policy</a>.
+                        </span>
+                    </label>
+                </div>
+
+                <!-- Primary Form Submit Registration Action CTA Button -->
+                <div class="pt-2">
+                    <button type="submit" class="w-full text-center bg-brand-500 hover:bg-brand-600 text-white font-semibold text-sm py-3.5 rounded-xl shadow-lg shadow-brand-500/10 hover:shadow-brand-500/20 transition-all duration-200 focus:ring-2 focus:ring-offset-2 focus:ring-brand-500">
+                        Register Account
+                    </button>
+                </div>
+
+            </form>
+
+            <!-- FOOTER SIGN IN ROUTING LINK BLOCK -->
+            <div class="mt-6 text-center text-xs font-normal text-slate-500 dark:text-slate-400">
+                Already have a client account? 
+                <a href="login.html" class="font-semibold text-brand-500 hover:text-brand-600 ml-1 transition-colors">Sign in</a>
+            </div>
+
+        </div>
+    </main>
+
+    <!-- COMPACT REGISTRATION FOOTER -->
+    <footer class="w-full text-center py-6 text-2xs text-slate-400 dark:text-slate-600 border-t border-slate-200/50 dark:border-slate-900/50 relative z-50">
+        <p>&copy; 2026 BrakeDoc Inc. All security metrics logs active.</p>
+    </footer>
+
+    <!-- INTERACTIVE REGISTRATION SYSTEM CORE RUNTIME JAVASCRIPT LAYER -->
+    <script>
+        // DOM Elements
+        const htmlElement = document.documentElement;
+        const themeToggleBtn = document.getElementById('theme-toggle');
+        const themeIcon = document.getElementById('theme-icon');
+        const rtlToggleBtn = document.getElementById('rtl-toggle');
+
+        // 1. Theme Configuration Logic (Light/Dark Engine using localStorage persistence layer)
+        function updateThemeUI(isDark) {
+            if (isDark) {
+                htmlElement.classList.add('dark');
+                themeIcon.className = "fa-solid fa-sun";
+                localStorage.setItem('theme', 'dark');
+            } else {
+                htmlElement.classList.remove('dark');
+                themeIcon.className = "fa-solid fa-moon";
+                localStorage.setItem('theme', 'light');
+            }
+        }
+
+        const savedTheme = localStorage.getItem('theme');
+        const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        updateThemeUI(savedTheme === 'dark' || (!savedTheme && systemPrefersDark));
+
+        themeToggleBtn.addEventListener('click', () => {
+            updateThemeUI(!htmlElement.classList.contains('dark'));
+        });
+
+
+        // 2. Structural Directional Layout Toggle Logic (LTR/RTL Local Storage Persisted Engine)
+        function updateDirectionUI(direction) {
+            if (direction === 'rtl') {
+                htmlElement.setAttribute('dir', 'rtl');
+                rtlToggleBtn.textContent = 'RTL';
+                localStorage.setItem('direction', 'rtl');
+            } else {
+                htmlElement.setAttribute('dir', 'ltr');
+                rtlToggleBtn.textContent = 'LTR';
+                localStorage.setItem('direction', 'ltr');
+            }
+        }
+
+        const savedDirection = localStorage.getItem('direction') || 'ltr';
+        updateDirectionUI(savedDirection);
+
+        rtlToggleBtn.addEventListener('click', () => {
+            const currentDir = htmlElement.getAttribute('dir');
+            updateDirectionUI(currentDir === 'rtl' ? 'ltr' : 'rtl');
+        });
+
+
+        // 3. Eye Password Field Masking Visibility Handler Engine
+        function togglePasswordVisibility(fieldId, iconId) {
+            const field = document.getElementById(fieldId);
+            const icon = document.getElementById(iconId);
+            
+            if (!field || !icon) return;
+
+            if (field.getAttribute('type') === 'password') {
+                field.setAttribute('type', 'text');
+                icon.className = "fa-solid fa-eye-slash text-sm text-brand-500";
+            } else {
+                field.setAttribute('type', 'password');
+                icon.className = "fa-regular fa-eye text-sm";
+            }
+        }
+    </script>
+</body>
+</html>

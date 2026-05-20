@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%220.9em%22 font-size=%2290%22>🚗</text></svg>">
+    <title>404 Page Not Found | BrakeDoc</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'system-ui', 'sans-serif'],
+                    },
+                    colors: {
+                        brand: {
+                            50: '#fff1f2',
+                            100: '#ffe4e6',
+                            500: '#f43f5e', /* Sleek Automotive Rose/Red Theme Accent Color */
+                            600: '#e11d48',
+                            700: '#be123c',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- Modern Clean Fonts & Icon Libraries -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-900 dark:bg-slate-950 dark:text-slate-100 min-h-screen flex flex-col transition-colors duration-300">
+
+    <!-- TOP HEADER UTILITY BAR -->
+    <header class="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between relative z-50">
+        <!-- Name Logo Top Left Corner redirecting to homepage -->
+        <a href="index.html" class="flex items-center gap-2 group focus:outline-none" title="Return to Homepage">
+            <i class="fa-solid fa-car-burst text-brand-500 text-2xl sm:text-3xl transition-transform group-hover:scale-105"></i>
+            <span class="text-lg sm:text-xl font-bold tracking-tight text-slate-900 dark:text-white">Brake<span class="text-brand-500">Doc</span></span>
+        </a>
+
+        <!-- Persistent Layout Control Toggle Buttons -->
+        <div class="flex items-center space-x-2 sm:space-x-3 rtl:space-x-reverse">
+            <!-- LTR/RTL Orientation Layout Toggle Button -->
+            <button id="rtl-toggle" class="p-2 text-xs font-semibold rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-slate-600 dark:text-slate-400 hover:text-brand-500 dark:hover:text-brand-500 shadow-sm transition-all focus:outline-none" title="Toggle System Directionality">
+                LTR
+            </button>
+            <!-- Light/Dark Ambient Theme Toggle Button -->
+            <button id="theme-toggle" class="p-2 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-slate-600 dark:text-slate-400 hover:text-brand-500 dark:hover:text-brand-500 shadow-sm transition-all focus:outline-none" title="Toggle UI Theme Mode">
+                <i id="theme-icon" class="fa-solid fa-moon"></i>
+            </button>
+        </div>
+    </header>
+
+    <!-- MAIN INTERACTIVE 404 BODY INTERFACE -->
+    <main class="flex-grow flex items-center justify-center px-4 py-12 relative z-10">
+        
+        <!-- Ambient Decorative Branding Flares -->
+        <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-72 sm:w-[500px] h-72 sm:h-[500px] bg-brand-500/5 rounded-full blur-3xl pointer-events-none"></div>
+
+        <!-- Error Presentation Content Box Container -->
+        <!-- Responsive mapping: fully optimized across 360px up to desktop viewports -->
+        <div class="max-w-xl w-full text-center space-y-6 sm:space-y-8 px-4">
+            
+            <!-- Big Interactive Decorative Error Code Graphic -->
+            <div class="relative inline-block group">
+                <h1 class="text-7xl sm:text-8xl md:text-9xl font-semibold tracking-tighter text-slate-200 dark:text-slate-900 select-none transition-transform duration-500 group-hover:scale-105">
+                    404
+                </h1>
+                <!-- Absolute centered overlay icon -->
+                <div class="absolute inset-0 flex items-center justify-center">
+                    <i class="fa-solid fa-triangle-exclamation text-4xl sm:text-5xl text-brand-500 drop-shadow-[0_0_15px_rgba(244,63,94,0.3)] animate-pulse"></i>
+                </div>
+            </div>
+
+            <!-- Error Messages Context -->
+            <div class="space-y-3">
+                <h2 class="text-xl sm:text-2xl md:text-3xl font-semibold tracking-tight text-slate-900 dark:text-white">
+                    Brake Check! Page Not Found
+                </h2>
+                <p class="text-sm sm:text-base font-normal text-slate-500 dark:text-slate-400 max-w-md mx-auto leading-relaxed">
+                    The link you followed might be broken, or the page has been moved to a new destination workspace directory. Let's get you back on track.
+                </p>
+            </div>
+
+            <!-- Interactive Navigation Alternatives Action Buttons Link Groups -->
+            <div class="flex flex-col sm:flex-row items-center justify-center gap-4 max-w-sm mx-auto">
+                <a href="index.html" class="group w-full sm:w-auto px-6 py-3.5 bg-brand-500 hover:bg-brand-600 text-white font-medium text-sm rounded-xl shadow-lg shadow-brand-500/10 hover:shadow-brand-500/20 transition-all duration-200 inline-flex items-center justify-center gap-2">
+                    <i class="fa-solid fa-house text-xs opacity-80"></i>
+                    <span>Back to Home</span>
+                </a>
+                <button onclick="window.history.back()" class="group w-full sm:w-auto px-6 py-3.5 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 hover:bg-slate-100 dark:hover:bg-slate-800/60 text-slate-700 dark:text-slate-300 font-medium text-sm rounded-xl shadow-sm transition-all duration-200 inline-flex items-center justify-center gap-2">
+                    <i class="fa-solid fa-arrow-left text-xs opacity-70 transition-transform group-hover:-translate-x-0.5 rtl:group-hover:translate-x-0.5"></i>
+                    <span>Go Back</span>
+                </button>
+            </div>
+
+            <!-- Helpful Micro-Links Ribbon Map for Fast Navigation Recovery -->
+            <div class="pt-6 border-t border-slate-200/60 dark:border-slate-900 flex flex-wrap items-center justify-center gap-x-4 gap-y-2 text-xs font-medium text-slate-400 dark:text-slate-500">
+                <a href="service.html" class="hover:text-brand-500 transition-colors">Our Services</a>
+                <span>&bull;</span>
+                <a href="pricing.html" class="hover:text-brand-500 transition-colors">Pricing Plans</a>
+                <span>&bull;</span>
+                <a href="contact.html" class="hover:text-brand-500 transition-colors">Contact Support</a>
+            </div>
+
+        </div>
+    </main>
+
+    <!-- COMPACT FOOTER -->
+    <footer class="w-full text-center py-6 text-2xs text-slate-400 dark:text-slate-600 border-t border-slate-200/50 dark:border-slate-900/50 relative z-50">
+        <p>&copy; 2026 BrakeDoc Inc. All status channels monitoring active.</p>
+    </footer>
+
+    <!-- INTERACTIVE CONFIGURATION CORE RUNTIME JAVASCRIPT LAYER -->
+    <script>
+        // DOM Elements
+        const htmlElement = document.documentElement;
+        const themeToggleBtn = document.getElementById('theme-toggle');
+        const themeIcon = document.getElementById('theme-icon');
+        const rtlToggleBtn = document.getElementById('rtl-toggle');
+
+        // 1. Theme Configuration Logic (Light/Dark Engine using localStorage persistence layer)
+        function updateThemeUI(isDark) {
+            if (isDark) {
+                htmlElement.classList.add('dark');
+                themeIcon.className = "fa-solid fa-sun";
+                localStorage.setItem('theme', 'dark');
+            } else {
+                htmlElement.classList.remove('dark');
+                themeIcon.className = "fa-solid fa-moon";
+                localStorage.setItem('theme', 'light');
+            }
+        }
+
+        const savedTheme = localStorage.getItem('theme');
+        const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        updateThemeUI(savedTheme === 'dark' || (!savedTheme && systemPrefersDark));
+
+        themeToggleBtn.addEventListener('click', () => {
+            updateThemeUI(!htmlElement.classList.contains('dark'));
+        });
+
+
+        // 2. Structural Directional Layout Toggle Logic (LTR/RTL Local Storage Persisted Engine)
+        function updateDirectionUI(direction) {
+            if (direction === 'rtl') {
+                htmlElement.setAttribute('dir', 'rtl');
+                rtlToggleBtn.textContent = 'RTL';
+                localStorage.setItem('direction', 'rtl');
+            } else {
+                htmlElement.setAttribute('dir', 'ltr');
+                rtlToggleBtn.textContent = 'LTR';
+                localStorage.setItem('direction', 'ltr');
+            }
+        }
+
+        const savedDirection = localStorage.getItem('direction') || 'ltr';
+        updateDirectionUI(savedDirection);
+
+        rtlToggleBtn.addEventListener('click', () => {
+            const currentDir = htmlElement.getAttribute('dir');
+            updateDirectionUI(currentDir === 'rtl' ? 'ltr' : 'rtl');
+        });
+    </script>
+</body>
+</html>
