@@ -394,7 +394,7 @@
                             <span class="absolute top-3 left-3 bg-brand-500 text-white text-[9px] font-bold uppercase tracking-widest px-2 py-0.5 rounded shadow-sm">Front Discs Grooving Damage</span>
                         </div>
                         <div class="p-5 space-y-1.5 text-left rtl:text-right">
-                            <h4 class="text-sm font-semibold text-slate-900 dark:text-white">Rotor Surface Scratched Wear Pattern Logging</h4>
+                            <h4 class="text-sm font-semibold text-slate-900 dark:text-white">Rotor Surface Scratched Wear Pattern</h4>
                             <p class="text-xs font-normal text-slate-400 dark:text-slate-500 leading-relaxed">Deep dynamic circular tracking marks indicate heat spotting. Surface cannot be planed smoothly down. Total replacement mandatory to secure contact friction lines.</p>
                         </div>
                     </div>
@@ -620,16 +620,61 @@
         }
 
         // C. GLOBAL AMBIENT THEME SWITCHER LOGIC MODULE WITH PERSISTENCE
-        function toggleAmbientTheme() {
-            const htmlNode = document.documentElement;
-            if (htmlNode.classList.contains('dark')) {
-                htmlNode.classList.remove('dark');
-                localStorage.setItem('vexa-portal-theme', 'light');
-            } else {
-                htmlNode.classList.add('dark');
-                localStorage.setItem('vexa-portal-theme', 'dark');
-            }
-        }
+       // 1. Unified Production Theme Management Engine
+function updateThemeUI(isDark) {
+    const htmlNode = document.documentElement;
+    
+    // Cache matching DOM node queries securely
+    const themeIcon = document.getElementById('theme-icon') || document.querySelector('.theme-icon-desktop');
+    const themeIconMobile = document.getElementById('theme-icon-mobile') || document.querySelector('.theme-icon-mobile');
+
+    if (isDark) {
+        htmlNode.classList.add('dark');
+        localStorage.setItem('vexa-portal-theme', 'dark');
+        
+        // Dynamic structural asset assignment: In dark environments, display the light/sun toggle
+        if (themeIcon) themeIcon.className = "fa-solid fa-sun";
+        if (themeIconMobile) themeIconMobile.className = "fa-solid fa-sun";
+    } else {
+        htmlNode.classList.remove('dark');
+        localStorage.setItem('vexa-portal-theme', 'light');
+        
+        // In clean white spaces, display the dark/moon focus tracking node
+        if (themeIcon) themeIcon.className = "fa-solid fa-moon";
+        if (themeIconMobile) themeIconMobile.className = "fa-solid fa-moon";
+    }
+}
+
+// 2. Multi-Channel Interactive Ambient Toggle Handler
+function toggleAmbientTheme() {
+    const htmlNode = document.documentElement;
+    const isCurrentlyDark = htmlNode.classList.contains('dark');
+    // Invert structural status tracks synchronously
+    updateThemeUI(!isCurrentlyDark);
+}
+
+// 3. Hardware Lifecycle Initialization & Media Optimization
+(function initializeThemePipeline() {
+    // Read hardware memory states matching key configurations
+    const savedTheme = localStorage.getItem('vexa-portal-theme') || localStorage.getItem('theme');
+    const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    
+    // Resolve fallback prioritization parameters
+    const initDark = savedTheme === 'dark' || (!savedTheme && systemPrefersDark);
+    
+    // Compile interface presentation grids immediately
+    updateThemeUI(initDark);
+})();
+
+// 4. Component Action Matrix Subscriptions
+// Safely bind interface clicks to the unified state manager
+if (typeof themeToggleBtn !== 'undefined' && themeToggleBtn) {
+    themeToggleBtn.addEventListener('click', toggleAmbientTheme);
+}
+if (typeof themeToggleMobileBtn !== 'undefined' && themeToggleMobileBtn) {
+    themeToggleMobileBtn.addEventListener('click', toggleAmbientTheme);
+}
+        
 
         // D. TRANSLATION FLOW ENGINE SWITCHER MODULE WITH PERSISTENCE (LTR/RTL CONTROLLER)
         function toggleFlowDirection() {

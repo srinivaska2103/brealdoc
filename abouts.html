@@ -317,20 +317,24 @@ if (mobileDashToggle && mobileDashLinks) {
     }
 </style>
 <!-- OUR STORY SECTION (Modern Minimalist Light Layout with Interactive KPI Counters) -->
+<!-- OUR STORY TIMELINE SECTION (1024px Optimized Asymmetric Matrix Grid) -->
 <section id="our-story-section" class="py-16 sm:py-24 bg-slate-50 dark:bg-slate-950 transition-colors duration-300 overflow-hidden">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         <!-- TWO-COLUMN CONTENT GRID -->
-        <!-- Breakpoints: 1 column on mobile/360px, asymmetric layout matrix from 1024px up -->
-        <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
+        <!-- Calibrated Breakpoints: 1 column on mobile, smoothly splits side-by-side from lg (1024px) up with balanced spacing -->
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 xl:gap-16 items-center">
             
-            <!-- LEFT COLUMN: CONTEXT BLOCK & NARRATIVE (Fills 7 Columns) -->
-            <div class="lg:col-span-7 space-y-6 text-center sm:text-left rtl:sm:text-right">
+            <!-- LEFT COLUMN: CONTEXT BLOCK & NARRATIVE (Spans 7 of 12 columns at 1024px up) -->
+            <!-- Adjusted text alignment for sm: and lg: viewpoints to maintain strict reading lines -->
+            <div class="lg:col-span-7 space-y-6 text-center sm:text-left ltr:sm:text-left rtl:sm:text-right">
                 
                 <!-- Section Sub-badge -->
-                <span class="text-xs font-semibold uppercase tracking-widest text-brand-600 bg-brand-500/10 dark:text-brand-400 dark:bg-brand-500/15 px-3 py-1.5 rounded-full inline-block">
-                    The Origin Definition
-                </span>
+                <div class="inline-block">
+                    <span class="text-xs font-semibold uppercase tracking-widest text-brand-600 bg-brand-500/10 dark:text-brand-400 dark:bg-brand-500/15 px-3 py-1.5 rounded-full inline-block">
+                        The Origin Definition
+                    </span>
+                </div>
                 
                 <!-- Primary Section Title -->
                 <h2 class="text-2xl sm:text-3xl md:text-4xl font-semibold tracking-tight text-slate-900 dark:text-white leading-tight">
@@ -339,7 +343,7 @@ if (mobileDashToggle && mobileDashLinks) {
                 
                 <div class="h-1 w-12 bg-brand-500 rounded mx-auto sm:mx-0"></div>
 
-                <!-- Core Editorial Content Description Blocks -->
+                <!-- Core Editorial Content Description Blocks (Locked font size parameters 400) -->
                 <div class="space-y-4 text-sm sm:text-base text-slate-600 dark:text-slate-400 font-normal leading-relaxed">
                     <p>
                         We started with one simple goal: to make car maintenance more convenient and stress-free. Traditional repair shops often require long waits, inconvenient scheduling, and unnecessary travel. Our mobile brake repair service eliminates those hassles by delivering expert brake care wherever your vehicle is parked.
@@ -350,11 +354,12 @@ if (mobileDashToggle && mobileDashLinks) {
                 </div>
             </div>
 
-            <!-- RIGHT COLUMN: INTERACTIVE HUB VISUAL TIMELINE CARD (Fills 5 Columns) -->
+            <!-- RIGHT COLUMN: INTERACTIVE HUB VISUAL TIMELINE CARD (Spans 5 of 12 columns at 1024px up) -->
+            <!-- Configured full width flexibility on mid-tier viewports up to desktop width limits -->
             <div class="lg:col-span-5 flex justify-center w-full pt-4 lg:pt-0">
                 
                 <!-- Premium glassmorphism layout milestone dashboard container -->
-                <div class="w-full max-w-[380px] rounded-3xl bg-white dark:bg-slate-900 border border-slate-200/80 dark:border-slate-800/80 p-6 shadow-xl relative overflow-hidden group">
+                <div class="w-full max-w-[380px] sm:max-w-xl lg:max-w-[380px] rounded-3xl bg-white dark:bg-slate-900 border border-slate-200/80 dark:border-slate-800/80 p-6 sm:p-8 border border-slate-200/80 dark:border-slate-800/80 shadow-xl relative overflow-hidden group">
                     
                     <!-- Fine mesh background layout pattern line mapping -->
                     <div class="absolute inset-0 z-0 opacity-[0.02] dark:opacity-[0.05] pointer-events-none">
@@ -364,23 +369,24 @@ if (mobileDashToggle && mobileDashLinks) {
                     <div class="absolute -right-16 -top-16 w-36 h-36 bg-brand-500/[0.02] rounded-full blur-xl"></div>
                     
                     <!-- Milestone Step Item 1 -->
-                    <div class="relative z-10 flex gap-4 pb-6 border-l-2 border-slate-100 dark:border-slate-800 ml-3 rtl:ml-0 rtl:mr-3 rtl:border-l-0 rlt:border-r-2 pl-6 rtl:pl-0 rtl:pr-6 group/item">
+                    <!-- Fixed bidirectional alignment utility tracking for structural border line nodes -->
+                    <div class="relative z-10 flex gap-4 pb-6 border-l-2 border-slate-100 dark:border-slate-800 ml-3 ltr:border-l-2 rtl:ml-0 rtl:mr-3 ltr:ml-3 rtl:border-l-0 rtl:border-r-2 pl-6 ltr:pl-6 rtl:pl-0 rtl:pr-6 group/item">
                         <!-- Node timeline point anchor tag icon -->
-                        <div class="absolute -left-[11px] rtl:left-auto rtl:-right-[11px] w-5 h-5 rounded-full bg-white dark:bg-slate-900 border-4 border-brand-500 flex items-center justify-center transition-transform duration-300 group-hover/item:scale-110 shadow-sm"></div>
+                        <div class="absolute -left-[11px] ltr:-left-[11px] rtl:left-auto rtl:-right-[11px] w-5 h-5 rounded-full bg-white dark:bg-slate-900 border-4 border-brand-500 flex items-center justify-center transition-transform duration-300 group-hover/item:scale-110 shadow-sm"></div>
                         <div class="space-y-1">
                             <span class="text-xs font-semibold text-brand-600 dark:text-brand-400">The Spark Target</span>
                             <h3 class="text-sm font-semibold text-slate-800 dark:text-slate-200">One Goal, One Mechanic Van</h3>
-                            <p class="text-xs font-normal text-slate-400 dark:text-slate-500">Launched to challenge traditional long shop queues by packing premium diagnostic modules onto mobile service rigs.</p>
+                            <p class="text-xs font-normal text-slate-400 dark:text-slate-500 leading-relaxed">Launched to challenge traditional long shop queues by packing premium diagnostic modules onto mobile service rigs.</p>
                         </div>
                     </div>
 
                     <!-- Milestone Step Item 2 -->
-                    <div class="relative z-10 flex gap-4 pt-2 group/item">
-                        <div class="absolute -left-[11px] rtl:left-auto rtl:-right-[11px] w-5 h-5 rounded-full bg-white dark:bg-slate-900 border-4 border-slate-300 dark:border-slate-700 flex items-center justify-center group-hover/item:border-brand-500 transition-colors duration-300 shadow-sm"></div>
+                    <div class="relative z-10 flex gap-4 pt-2 border-l-2 border-transparent ltr:ml-3 rtl:mr-3 pl-6 ltr:pl-6 rtl:pl-0 rtl:pr-6 group/item">
+                        <div class="absolute -left-[11px] ltr:-left-[11px] rtl:left-auto rtl:-right-[11px] w-5 h-5 rounded-full bg-white dark:bg-slate-900 border-4 border-slate-300 dark:border-slate-700 flex items-center justify-center group-hover/item:border-brand-500 transition-colors duration-300 shadow-sm"></div>
                         <div class="space-y-1">
                             <span class="text-xs font-semibold text-slate-400 dark:text-slate-500">Present Expansion Day</span>
                             <h3 class="text-sm font-semibold text-slate-800 dark:text-slate-200">The Modern Dispatch Infrastructure</h3>
-                            <p class="text-xs font-normal text-slate-400 dark:text-slate-500">Proudly deploying experienced certified technicians to deliver high-quality roadside brake pad and rotor fittings.</p>
+                            <p class="text-xs font-normal text-slate-400 dark:text-slate-500 leading-relaxed">Proudly deploying experienced certified technicians to deliver high-quality roadside brake pad and rotor fittings.</p>
                         </div>
                     </div>
 
@@ -432,7 +438,7 @@ if (mobileDashToggle && mobileDashLinks) {
                     </div>
 
                     <p class="text-sm sm:text-base font-normal text-slate-600 dark:text-slate-400 leading-relaxed">
-                        Our mission is to provide safe, affordable, and convenient brake repair services with honest pricing, quality parts, and exceptional customer service.
+                        Our mission is to provide safe, affordable, and convenient brake repair services with honest pricing, quality parts, and exceptional customer.
                     </p>
                 </div>
 
@@ -515,7 +521,7 @@ if (mobileDashToggle && mobileDashLinks) {
             <div class="group relative rounded-2xl bg-white dark:bg-slate-900 border border-slate-200/80 dark:border-slate-800/80 p-6 shadow-sm hover:shadow-xl hover:border-brand-500/30 dark:hover:border-brand-500/30 transition-all duration-300 flex flex-col justify-between">
                 <div class="space-y-4">
                     <div class="w-10 h-10 rounded-xl bg-brand-500/10 text-brand-500 flex items-center justify-center text-sm transition-colors duration-300 group-hover:bg-brand-500 group-hover:text-white">
-                        <i class="fa-solid fa-compact-disc"></i>
+                        <i class="fa-solid fa-bars"></i>
                     </div>
                     <div class="space-y-1.5">
                         <h3 class="text-base font-semibold text-slate-900 dark:text-white group-hover:text-brand-500 transition-colors">Rotor Replacement</h3>
@@ -598,7 +604,7 @@ if (mobileDashToggle && mobileDashLinks) {
 
         <!-- TRUST GRID PLATFORM -->
         <!-- Responsive layout breakpoints: 1 col on 360px mobile, 2 cols on tablet, 3/4 cols up to wide desktop screens -->
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 sm:gap-8 items-stretch">
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 gap-6 sm:gap-8 items-stretch">
             
             <!-- FEATURE 1: Certified Brake Technicians -->
             <div class="group relative rounded-2xl bg-slate-50 dark:bg-slate-800/40 p-5 sm:p-6 border border-slate-200/60 dark:border-slate-800/60 shadow-sm hover:shadow-md hover:border-brand-500/30 dark:hover:border-brand-500/30 transition-all duration-300 flex flex-col gap-4">
@@ -667,20 +673,36 @@ if (mobileDashToggle && mobileDashLinks) {
             </div>
 
             <!-- FEATURE 7: Friendly Professional Support Desk -->
-            <div class="group relative rounded-2xl bg-slate-50 dark:bg-slate-800/40 p-5 sm:p-6 border border-slate-200/60 dark:border-slate-800/60 shadow-sm hover:shadow-md hover:border-brand-500/30 dark:hover:border-brand-500/30 transition-all duration-300 flex flex-col gap-4 sm:col-span-2 lg:col-span-1 xl:col-span-2">
-                <div class="w-10 h-10 rounded-xl bg-brand-500/10 text-brand-500 flex items-center justify-center text-sm transition-colors duration-300 group-hover:bg-brand-500 group-hover:text-white shrink-0">
-                    <i class="fa-solid fa-headset"></i>
-                </div>
-                <div class="space-y-1">
-                    <h3 class="text-sm sm:text-base font-semibold text-slate-900 dark:text-white group-hover:text-brand-500 transition-colors">Friendly Support Channels</h3>
-                    <p class="text-xs font-normal text-slate-500 dark:text-slate-400 leading-relaxed">Attentive, helpful dispatch desks standing by to quickly answer operational questions or troubleshoot grinding noises.</p>
-                </div>
-            </div>
+            <!-- SUPPORT CHANNELS FEATURE CARD (Optimized for Full Width Across All Desktop Breakpoints) -->
+<!-- Breakpoints: Spans 1 col on mobile, spans 2 cols on tablet (sm), and expands to FULL width on all desktop views (lg & xl) -->
+<div class="group relative rounded-2xl bg-slate-50 dark:bg-slate-800/40 p-5 sm:p-6 border border-slate-200/60 dark:border-slate-800/60 shadow-sm hover:shadow-md hover:border-brand-500/30 dark:hover:border-brand-500/30 transition-all duration-300 flex flex-col gap-4 sm:col-span-2 lg:col-span-full xl:col-span-full">
+    
+    <!-- Fine blueprint mesh texture overlay -->
+    <div class="absolute inset-0 z-0 opacity-[0.02] dark:opacity-[0.04] pointer-events-none rounded-2xl overflow-hidden">
+        <div class="absolute inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:14px_14px]"></div>
+    </div>
+
+    <!-- Icon Frame Chassis Stack -->
+    <div class="w-10 h-10 rounded-xl bg-brand-500/10 text-brand-500 flex items-center justify-center text-sm transition-colors duration-300 group-hover:bg-brand-500 group-hover:text-white shrink-0 relative z-10">
+        <i class="fa-solid fa-headset"></i>
+    </div>
+    
+    <!-- Typography Stack Content Box (Maintains strict font sizes and weights 400 - 600) -->
+    <div class="space-y-1 relative z-10">
+        <h3 class="text-sm sm:text-base font-semibold text-slate-900 dark:text-white group-hover:text-brand-500 transition-colors">
+            Friendly Support Channels
+        </h3>
+        <p class="text-xs font-normal text-slate-500 dark:text-slate-400 leading-relaxed">
+            Attentive, helpful dispatch desks standing by to quickly answer operational questions or troubleshoot grinding noises.
+        </p>
+    </div>
+
+</div>
 
         </div>
     </div>
 </section>
-<!-- SERVICE AREAS SECTION (Modern Interactive Search Filter Matrix Component) -->
+<!-- SERVICE AREAS SECTION (1024px Desktop Alignment Strategy) -->
 <section id="service-areas-section" class="py-16 sm:py-24 bg-slate-50 dark:bg-slate-950 transition-colors duration-300 overflow-hidden">
     <!-- Alpine.js injection for live local neighborhood lookup metrics -->
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8" x-data="{ 
@@ -731,20 +753,20 @@ if (mobileDashToggle && mobileDashLinks) {
         </div>
 
         <!-- DYNAMIC NEIGHBORHOOD CHIPS GRID CHASSIS -->
-        <!-- Breakpoints: 1 col on mobile/360px, 2 cols on tablet, 3 cols at 1024px, 4 cols from large desktops up -->
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-6">
+        <!-- Fixed Breakpoint Layout: Forces 4 columns straight from lg (1024px) to look identical to desktop viewports -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
             
             <template x-for="loc in locations" :key="loc.name">
                 <div x-show="matches(loc)"
                      x-transition:enter="transition ease-out duration-200"
                      x-transition:enter-start="opacity-0 transform scale-95"
                      x-transition:enter-end="opacity-100 transform scale-100"
-                     class="group relative rounded-2xl bg-white dark:bg-slate-900 border border-slate-200/80 dark:border-slate-800/80 p-5 shadow-sm hover:shadow-md hover:border-brand-500/30 dark:hover:border-brand-500/30 transition-all duration-300 flex items-center justify-between">
+                     class="group relative rounded-2xl bg-white dark:bg-slate-900 border border-slate-200/80 dark:border-slate-800/80 p-5 shadow-sm hover:shadow-md hover:border-brand-500/30 dark:hover:border-brand-500/30 transition-all duration-300 flex items-center justify-between gap-3">
                     
-                    <div class="space-y-1">
-                        <!-- Location Title name text tracking line -->
-                        <h3 class="text-sm sm:text-base font-semibold text-slate-900 dark:text-white group-hover:text-brand-500 transition-colors" x-text="loc.name"></h3>
-                        <p class="text-2xs font-normal text-slate-400 dark:text-slate-500 uppercase tracking-wider" x-text="loc.type"></p>
+                    <div class="space-y-1 min-w-0">
+                        <!-- Location Title (min-w-0 + truncate prevents overflow layout breaking within narrower 4-column containers) -->
+                        <h3 class="text-sm font-semibold text-slate-900 dark:text-white group-hover:text-brand-500 transition-colors truncate" x-text="loc.name" :title="loc.name"></h3>
+                        <p class="text-[10px] font-normal text-slate-400 dark:text-slate-500 uppercase tracking-wider block" x-text="loc.type"></p>
                     </div>
 
                     <!-- Dispatch status indicator node icon bubble -->
@@ -786,90 +808,93 @@ if (mobileDashToggle && mobileDashLinks) {
 
         <!-- TESTIMONIAL CARDS MATRIX GRID -->
         <!-- Responsive mapping: 1 col on 360px/mobile, 2 cols on tablet, 3 cols from 1024px desktop up -->
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 items-start">
+      <!-- RE-ENGINEERED TESTIMONIAL GRID FRAMEWORK -->
+<!-- Breakpoints: 
+     - Mobile (360px): 1 single vertical column 
+     - Tablet (768px / md:): 2 columns (Cards 1 & 2 share the first row, Card 3 sits full width on row 2)
+     - Desktop (1024px / lg:): Resets cleanly to 3 columns on a single row line -->
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 items-stretch">
             
-            <!-- TESTIMONIAL CARD 1: At-Home Convenience -->
-            <div class="group relative p-6 sm:p-8 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200/60 dark:border-slate-800/80 shadow-sm hover:shadow-xl hover:border-brand-500/30 dark:hover:border-brand-500/30 transition-all duration-300 cursor-pointer flex flex-col justify-between">
-                <div class="space-y-4">
-                    <!-- Rating Stars (Single focus brand accent color) -->
-                    <div class="flex items-center space-x-1 rtl:space-x-reverse text-brand-500">
-                        <i class="fa-solid fa-star text-xs"></i>
-                        <i class="fa-solid fa-star text-xs"></i>
-                        <i class="fa-solid fa-star text-xs"></i>
-                        <i class="fa-solid fa-star text-xs"></i>
-                        <i class="fa-solid fa-star text-xs"></i>
-                    </div>
-                    <!-- Review text content -->
-                    <p class="text-sm font-normal text-slate-600 dark:text-slate-400 leading-relaxed italic">
-                        "Unbelievable convenience! The technician changed my front brake pads and rotors right in my driveway while I was working inside. No towing costs, no waiting rooms, and clean upfront pricing."
-                    </p>
-                </div>
-                <!-- User Profile Block -->
-                <div class="flex items-center gap-3 pt-6 mt-6 border-t border-slate-100 dark:border-slate-800">
-                    <div class="w-10 h-10 rounded-full overflow-hidden bg-slate-100 dark:bg-slate-800 shrink-0 border border-slate-200 dark:border-slate-700 transition-transform duration-300 group-hover:scale-105">
-                        <img src="assets/gt3" 
-                             alt="Sarah Jenkins" class="w-full h-full object-cover" />
-                    </div>
-                    <div>
-                        <h3 class="text-sm font-semibold text-slate-900 dark:text-white transition-colors group-hover:text-brand-500">Sarah Jenkins</h3>
-                        <p class="text-[11px] font-normal text-slate-400 dark:text-slate-500">Verified SUV Owner</p>
-                    </div>
-                </div>
+    <!-- TESTIMONIAL CARD 1: At-Home Convenience -->
+    <div class="group relative p-6 sm:p-8 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200/60 dark:border-slate-800/80 shadow-sm hover:shadow-xl hover:border-brand-500/30 dark:hover:border-brand-500/30 transition-all duration-300 cursor-pointer flex flex-col justify-between lg:col-span-1">
+        <div class="space-y-4">
+            <!-- Rating Stars (Single focus brand accent color) -->
+            <div class="flex items-center space-x-1 ltr:space-x-1 rtl:space-x-reverse text-brand-500">
+                <i class="fa-solid fa-star text-xs"></i>
+                <i class="fa-solid fa-star text-xs"></i>
+                <i class="fa-solid fa-star text-xs"></i>
+                <i class="fa-solid fa-star text-xs"></i>
+                <i class="fa-solid fa-star text-xs"></i>
             </div>
-
-            <!-- TESTIMONIAL CARD 2: Emergency Response Office Fix -->
-            <div class="group relative p-6 sm:p-8 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200/60 dark:border-slate-800/80 shadow-sm hover:shadow-xl hover:border-brand-500/30 dark:hover:border-brand-500/30 transition-all duration-300 cursor-pointer flex flex-col justify-between">
-                <div class="space-y-4">
-                    <div class="flex items-center space-x-1 rtl:space-x-reverse text-brand-500">
-                        <i class="fa-solid fa-star text-xs"></i>
-                        <i class="fa-solid fa-star text-xs"></i>
-                        <i class="fa-solid fa-star text-xs"></i>
-                        <i class="fa-solid fa-star text-xs"></i>
-                        <i class="fa-solid fa-star text-xs"></i>
-                    </div>
-                    <p class="text-sm font-normal text-slate-600 dark:text-slate-400 leading-relaxed italic">
-                        "Noticed an awful grinding sound on my drive to the office. Booked an emergency inspection online, and a certified specialist arrived by noon. Fixed the problem completely in the company parking lot!"
-                    </p>
-                </div>
-                <div class="flex items-center gap-3 pt-6 mt-6 border-t border-slate-100 dark:border-slate-800">
-                    <div class="w-10 h-10 rounded-full overflow-hidden bg-slate-100 dark:bg-slate-800 shrink-0 border border-slate-200 dark:border-slate-700 transition-transform duration-300 group-hover:scale-105">
-                        <img src="assets/bt2" 
-                             alt="Marcus Vance" class="w-full h-full object-cover" />
-                    </div>
-                    <div>
-                        <h3 class="text-sm font-semibold text-slate-900 dark:text-white transition-colors group-hover:text-brand-500">Marcus Vance</h3>
-                        <p class="text-[11px] font-normal text-slate-400 dark:text-slate-500">Sedan Commuter</p>
-                    </div>
-                </div>
-            </div>
-
-            <!-- TESTIMONIAL CARD 3: Fleet Management Review -->
-            <div class="group relative p-6 sm:p-8 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200/60 dark:border-slate-800/80 shadow-sm hover:shadow-xl hover:border-brand-500/30 dark:hover:border-brand-500/30 transition-all duration-300 cursor-pointer flex flex-col justify-between md:col-span-2 lg:col-span-1">
-                <div class="space-y-4">
-                    <div class="flex items-center space-x-1 rtl:space-x-reverse text-brand-500">
-                        <i class="fa-solid fa-star text-xs"></i>
-                        <i class="fa-solid fa-star text-xs"></i>
-                        <i class="fa-solid fa-star text-xs"></i>
-                        <i class="fa-solid fa-star text-xs"></i>
-                        <i class="fa-solid fa-star text-xs"></i>
-                    </div>
-                    <p class="text-sm font-normal text-slate-600 dark:text-slate-400 leading-relaxed italic">
-                        "We use their Commercial Fleet plan to manage routine brake safety checks for all our local delivery vans. The diagnostics are transparent, parts are premium OEM quality, and the response speed is outstanding."
-                    </p>
-                </div>
-                <div class="flex items-center gap-3 pt-6 mt-6 border-t border-slate-100 dark:border-slate-800">
-                    <div class="w-10 h-10 rounded-full overflow-hidden bg-slate-100 dark:bg-slate-800 shrink-0 border border-slate-200 dark:border-slate-700 transition-transform duration-300 group-hover:scale-105">
-                        <img src="assets/bt3" 
-                             alt="David Thorne" class="w-full h-full object-cover" />
-                    </div>
-                    <div>
-                        <h3 class="text-sm font-semibold text-slate-900 dark:text-white transition-colors group-hover:text-brand-500">David Thorne</h3>
-                        <p class="text-[11px] font-normal text-slate-400 dark:text-slate-500">Logistics Director</p>
-                    </div>
-                </div>
-            </div>
-
+            <!-- Review text content -->
+            <p class="text-sm font-normal text-slate-600 dark:text-slate-400 leading-relaxed italic">
+                "Unbelievable convenience! The technician changed my front brake pads and rotors right in my driveway while I was working inside. No towing costs, no waiting rooms, and clean upfront pricing."
+            </p>
         </div>
+        <!-- User Profile Block -->
+        <div class="flex items-center gap-3 pt-6 mt-6 border-t border-slate-100 dark:border-slate-800">
+            <div class="w-10 h-10 rounded-full overflow-hidden bg-slate-100 dark:bg-slate-800 shrink-0 border border-slate-200 dark:border-slate-700 transition-transform duration-300 group-hover:scale-105">
+                <img src="assets/gt3" alt="Sarah Jenkins" class="w-full h-full object-cover" />
+            </div>
+            <div>
+                <h3 class="text-sm font-semibold text-slate-900 dark:text-white transition-colors group-hover:text-brand-500">Sarah Jenkins</h3>
+                <p class="text-[11px] font-normal text-slate-400 dark:text-slate-500">Verified SUV Owner</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- TESTIMONIAL CARD 2: Emergency Response Office Fix -->
+    <div class="group relative p-6 sm:p-8 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200/60 dark:border-slate-800/80 shadow-sm hover:shadow-xl hover:border-brand-500/30 dark:hover:border-brand-500/30 transition-all duration-300 cursor-pointer flex flex-col justify-between lg:col-span-1">
+        <div class="space-y-4">
+            <div class="flex items-center space-x-1 ltr:space-x-1 rtl:space-x-reverse text-brand-500">
+                <i class="fa-solid fa-star text-xs"></i>
+                <i class="fa-solid fa-star text-xs"></i>
+                <i class="fa-solid fa-star text-xs"></i>
+                <i class="fa-solid fa-star text-xs"></i>
+                <i class="fa-solid fa-star text-xs"></i>
+            </div>
+            <p class="text-sm font-normal text-slate-600 dark:text-slate-400 leading-relaxed italic">
+                "Noticed an awful grinding sound on my drive to the office. Booked an emergency inspection online, and a certified specialist arrived by noon. Fixed the problem completely in the company."
+            </p>
+        </div>
+        <div class="flex items-center gap-3 pt-6 mt-6 border-t border-slate-100 dark:border-slate-800">
+            <div class="w-10 h-10 rounded-full overflow-hidden bg-slate-100 dark:bg-slate-800 shrink-0 border border-slate-200 dark:border-slate-700 transition-transform duration-300 group-hover:scale-105">
+                <img src="assets/bt2" alt="Marcus Vance" class="w-full h-full object-cover" />
+            </div>
+            <div>
+                <h3 class="text-sm font-semibold text-slate-900 dark:text-white transition-colors group-hover:text-brand-500">Marcus Vance</h3>
+                <p class="text-[11px] font-normal text-slate-400 dark:text-slate-500">Sedan Commuter</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- TESTIMONIAL CARD 3: Fleet Management Review -->
+    <!-- TARGETED LAYOUT TWEEK: md:col-span-2 forces it to occupy the full row width at 768px, while lg:col-span-1 resets it on desktop -->
+    <div class="group relative p-6 sm:p-8 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200/60 dark:border-slate-800/80 shadow-sm hover:shadow-xl hover:border-brand-500/30 dark:hover:border-brand-500/30 transition-all duration-300 cursor-pointer flex flex-col justify-between md:col-span-2 lg:col-span-1">
+        <div class="space-y-4">
+            <div class="flex items-center space-x-1 ltr:space-x-1 rtl:space-x-reverse text-brand-500">
+                <i class="fa-solid fa-star text-xs"></i>
+                <i class="fa-solid fa-star text-xs"></i>
+                <i class="fa-solid fa-star text-xs"></i>
+                <i class="fa-solid fa-star text-xs"></i>
+                <i class="fa-solid fa-star text-xs"></i>
+            </div>
+            <p class="text-sm font-normal text-slate-600 dark:text-slate-400 leading-relaxed italic">
+                "We use their Commercial Fleet plan to manage routine brake safety checks for all our local delivery vans. The diagnostics are transparent, parts are premium OEM quality, and the response."
+            </p>
+        </div>
+        <div class="flex items-center gap-3 pt-6 mt-6 border-t border-slate-100 dark:border-slate-800">
+            <div class="w-10 h-10 rounded-full overflow-hidden bg-slate-100 dark:bg-slate-800 shrink-0 border border-slate-200 dark:border-slate-700 transition-transform duration-300 group-hover:scale-105">
+                <img src="assets/bt3" alt="David Thorne" class="w-full h-full object-cover" />
+            </div>
+            <div>
+                <h3 class="text-sm font-semibold text-slate-900 dark:text-white transition-colors group-hover:text-brand-500">David Thorne</h3>
+                <p class="text-[11px] font-normal text-slate-400 dark:text-slate-500">Logistics Director</p>
+            </div>
+        </div>
+    </div>
+
+</div>
     </div>
 </section>
 <!-- FINAL CALL TO ACTION SECTION (Light Theme, Premium Contained Block Redesign) -->

@@ -330,20 +330,21 @@ if (mobileDashToggle && mobileDashLinks) {
     }
 </style>
 <!-- INTRO SECTION (Modern Light Layout with Precision Grid) -->
+<!-- INTRO SECTION (1024px Optimized Layout with Balanced Asymmetric Grid) -->
 <section id="convenient-intro-section" class="py-16 sm:py-24 bg-white dark:bg-slate-900 transition-colors duration-300 overflow-hidden">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         <!-- TWO-COLUMN CONTENT GRID LAYER -->
-        <!-- Breakpoints: 1 column on 360px mobile, asymmetric layout split from 1024px desktop up -->
-        <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
+        <!-- Calibrated Breakpoints: 1 column on mobile, drops smoothly into an side-by-side split structure from lg (1024px) up -->
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 xl:gap-16 items-center">
             
-            <!-- LEFT COLUMN: EDITORIAL HEADER & NARRATIVE (Fills 6 Columns from 1024px up) -->
+            <!-- LEFT COLUMN: EDITORIAL HEADER & NARRATIVE (Spans 6 of 12 columns at 1024px to prevent typography crowding) -->
             <div class="lg:col-span-6 space-y-5 text-center lg:text-left ltr:lg:text-left rtl:lg:text-right">
                 <span class="text-xs font-semibold uppercase tracking-widest text-brand-600 bg-brand-500/10 dark:text-brand-400 dark:bg-brand-500/15 px-3 py-1.5 rounded-full inline-block">
                     On-Site Excellence
                 </span>
                 <h2 class="text-2xl sm:text-3xl md:text-4xl font-semibold tracking-tight text-slate-900 dark:text-white leading-tight">
-                    Convenient Brake Repair <br class="hidden sm:inline">at Your Location
+                    Convenient Brake Repair <br class="hidden lg:inline">at Your Location
                 </h2>
                 <div class="h-1 w-12 bg-brand-500 rounded mx-auto lg:mx-0"></div>
                 <p class="text-sm sm:text-base font-normal text-slate-600 dark:text-slate-400 leading-relaxed max-w-xl mx-auto lg:mx-0">
@@ -351,8 +352,8 @@ if (mobileDashToggle && mobileDashLinks) {
                 </p>
             </div>
 
-            <!-- RIGHT COLUMN: CORE VALUES INTERACTIVE MATRIX GRID (Fills 6 Columns from 1024px up) -->
-            <div class="lg:col-span-6 grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6 w-full">
+            <!-- RIGHT COLUMN: CORE VALUES INTERACTIVE MATRIX GRID (Spans 6 of 12 columns at 1024px, stacking cleanly into a 1-column grid if needed or maintaining side-by-side flow via sm:) -->
+            <div class="lg:col-span-6 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-1 xl:grid-cols-2 gap-4 sm:gap-6 w-full">
                 
                 <!-- HIGHLIGHT 1: Time Saved -->
                 <div class="group relative rounded-2xl bg-slate-50 dark:bg-slate-800/40 p-5 sm:p-6 border border-slate-200/80 dark:border-slate-800/80 shadow-sm hover:shadow-md hover:border-brand-500/30 dark:hover:border-brand-500/30 transition-all duration-300 flex items-start gap-4 cursor-default">
@@ -379,7 +380,7 @@ if (mobileDashToggle && mobileDashLinks) {
                     </div>
                     <div class="space-y-1 relative z-10">
                         <h3 class="text-sm sm:text-base font-semibold text-slate-900 dark:text-white group-hover:text-brand-500 transition-colors duration-200">Fully Equipped Units</h3>
-                        <p class="text-xs font-normal text-slate-500 dark:text-slate-400 leading-relaxed">Our vans bring certified equipment straight to your home driveway or workplace.</p>
+                        <p class="text-xs font-normal text-slate-500 dark:text-slate-400 leading-relaxed">Our vans bring certified equipment straight to your home driveway.</p>
                     </div>
                 </div>
 
@@ -405,161 +406,127 @@ if (mobileDashToggle && mobileDashLinks) {
 
         <!-- 8-CARD COMPREHENSIVE SERVICES IMAGE GRID MATRIX -->
         <!-- Breakpoints: 1 col on mobile/360px, 2 cols on tablet/640px, 3 cols at 1024px, 4 cols from large desktops up -->
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 sm:gap-8 items-stretch">
+       <!-- 8-CARD COMPREHENSIVE SERVICES IMAGE GRID MATRIX -->
+<!-- Breakpoints: 1 col on mobile (360px), 2 cols on tablet (640px), 3 cols at 1024px (lg) to prevent typography crowding, 4 cols from 1280px (xl) up -->
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 gap-6 sm:gap-8 items-stretch">
             
-            <!-- SERVICE CARD 1: Brake Pad Replacement -->
-            <div class="group relative rounded-2xl bg-white dark:bg-slate-900 border border-slate-200/80 dark:border-slate-800/80 shadow-sm hover:shadow-xl hover:border-brand-500/30 dark:hover:border-brand-500/30 transition-all duration-300 flex flex-col overflow-hidden">
-                <div class="w-full h-44 overflow-hidden relative bg-slate-100 dark:bg-slate-950">
-                    <img src="assets/Brake Pad Replacement" 
-                         alt="Brake Pad Replacement Service" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" />
-                    <div class="absolute inset-0 bg-gradient-to-t from-slate-950/40 to-transparent"></div>
-                </div>
-                <div class="p-5 flex-grow flex flex-col justify-between space-y-4">
-                    <div class="space-y-1.5">
-                        <h3 class="text-base font-semibold text-slate-900 dark:text-white group-hover:text-brand-500 transition-colors">Brake Pad Replacement</h3>
-                        <p class="text-xs font-normal text-slate-500 dark:text-slate-400 leading-relaxed">Replace worn brake pads to restore quiet, responsive, and safe braking performance.</p>
-                    </div>
-                    <div class="text-xs font-semibold text-brand-600 dark:text-brand-400 inline-flex items-center gap-1 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                        <span>Book On-Site Fitting</span>
-                        <i class="fa-solid fa-chevron-right text-3xs transition-transform group-hover:translate-x-0.5 rtl:group-hover:-translate-x-0.5"></i>
-                    </div>
-                </div>
-            </div>
-
-            <!-- SERVICE CARD 2: Rotor Replacement -->
-            <div class="group relative rounded-2xl bg-white dark:bg-slate-900 border border-slate-200/80 dark:border-slate-800/80 shadow-sm hover:shadow-xl hover:border-brand-500/30 dark:hover:border-brand-500/30 transition-all duration-300 flex flex-col overflow-hidden">
-                <div class="w-full h-44 overflow-hidden relative bg-slate-100 dark:bg-slate-950">
-                    <img src="assets/motor replacement" 
-                         alt="Brake Rotor Replacement Service" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" />
-                    <div class="absolute inset-0 bg-gradient-to-t from-slate-950/40 to-transparent"></div>
-                </div>
-                <div class="p-5 flex-grow flex flex-col justify-between space-y-4">
-                    <div class="space-y-1.5">
-                        <h3 class="text-base font-semibold text-slate-900 dark:text-white group-hover:text-brand-500 transition-colors">Rotor Replacement</h3>
-                        <p class="text-xs font-normal text-slate-500 dark:text-slate-400 leading-relaxed">Install new rotors to eliminate vibration, improve stopping power, and extend brake life.</p>
-                    </div>
-                    <div class="text-xs font-semibold text-brand-600 dark:text-brand-400 inline-flex items-center gap-1 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                        <span>Book On-Site Fitting</span>
-                        <i class="fa-solid fa-chevron-right text-3xs transition-transform group-hover:translate-x-0.5 rtl:group-hover:-translate-x-0.5"></i>
-                    </div>
-                </div>
-            </div>
-
-            <!-- SERVICE CARD 3: Brake Inspection -->
-            <div class="group relative rounded-2xl bg-white dark:bg-slate-900 border border-slate-200/80 dark:border-slate-800/80 shadow-sm hover:shadow-xl hover:border-brand-500/30 dark:hover:border-brand-500/30 transition-all duration-300 flex flex-col overflow-hidden">
-                <div class="w-full h-44 overflow-hidden relative bg-slate-100 dark:bg-slate-950">
-                    <img src="assets/Comprehensive Brake Inspection1" 
-                         alt="Brake Inspection Service" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" />
-                    <div class="absolute inset-0 bg-gradient-to-t from-slate-950/40 to-transparent"></div>
-                </div>
-                <div class="p-5 flex-grow flex flex-col justify-between space-y-4">
-                    <div class="space-y-1.5">
-                        <h3 class="text-base font-semibold text-slate-900 dark:text-white group-hover:text-brand-500 transition-colors">Brake Inspection</h3>
-                        <p class="text-xs font-normal text-slate-500 dark:text-slate-400 leading-relaxed">Comprehensive inspections to identify worn components, unusual noises, and safety concerns.</p>
-                    </div>
-                    <div class="text-xs font-semibold text-brand-600 dark:text-brand-400 inline-flex items-center gap-1 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                        <span>Schedule Inspection</span>
-                        <i class="fa-solid fa-chevron-right text-3xs transition-transform group-hover:translate-x-0.5 rtl:group-hover:-translate-x-0.5"></i>
-                    </div>
-                </div>
-            </div>
-
-            <!-- SERVICE CARD 4: Front Brake Service -->
-            <div class="group relative rounded-2xl bg-white dark:bg-slate-900 border border-slate-200/80 dark:border-slate-800/80 shadow-sm hover:shadow-xl hover:border-brand-500/30 dark:hover:border-brand-500/30 transition-all duration-300 flex flex-col overflow-hidden">
-                <div class="w-full h-44 overflow-hidden relative bg-slate-100 dark:bg-slate-950">
-                    <img src="assets/Front Axle Brake Service" 
-                         alt="Front Axle Brake Service" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" />
-                    <div class="absolute inset-0 bg-gradient-to-t from-slate-950/40 to-transparent"></div>
-                </div>
-                <div class="p-5 flex-grow flex flex-col justify-between space-y-4">
-                    <div class="space-y-1.5">
-                        <h3 class="text-base font-semibold text-slate-900 dark:text-white group-hover:text-brand-500 transition-colors">Front Brake Service</h3>
-                        <p class="text-xs font-normal text-slate-500 dark:text-slate-400 leading-relaxed">Dedicated alignment, hardware reconditioning, and replacement of front brake pads and rotors.</p>
-                    </div>
-                    <div class="text-xs font-semibold text-brand-600 dark:text-brand-400 inline-flex items-center gap-1 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                        <span>Book Front Axle</span>
-                        <i class="fa-solid fa-chevron-right text-3xs transition-transform group-hover:translate-x-0.5 rtl:group-hover:-translate-x-0.5"></i>
-                    </div>
-                </div>
-            </div>
-
-            <!-- SERVICE CARD 5: Rear Brake Service -->
-            <div class="group relative rounded-2xl bg-white dark:bg-slate-900 border border-slate-200/80 dark:border-slate-800/80 shadow-sm hover:shadow-xl hover:border-brand-500/30 dark:hover:border-brand-500/30 transition-all duration-300 flex flex-col overflow-hidden">
-                <div class="w-full h-44 overflow-hidden relative bg-slate-100 dark:bg-slate-950">
-                    <img src="assets/Rear Axle Brake Service" 
-                         alt="Rear Axle Brake Service" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" />
-                    <div class="absolute inset-0 bg-gradient-to-t from-slate-950/40 to-transparent"></div>
-                </div>
-                <div class="p-5 flex-grow flex flex-col justify-between space-y-4">
-                    <div class="space-y-1.5">
-                        <h3 class="text-base font-semibold text-slate-900 dark:text-white group-hover:text-brand-500 transition-colors">Rear Brake Service</h3>
-                        <p class="text-xs font-normal text-slate-500 dark:text-slate-400 leading-relaxed">Professional rear brake maintenance, calibration of parking brake lines, and replacement.</p>
-                    </div>
-                    <div class="text-xs font-semibold text-brand-600 dark:text-brand-400 inline-flex items-center gap-1 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                        <span>Book Rear Axle</span>
-                        <i class="fa-solid fa-chevron-right text-3xs transition-transform group-hover:translate-x-0.5 rtl:group-hover:-translate-x-0.5"></i>
-                    </div>
-                </div>
-            </div>
-
-            <!-- SERVICE CARD 6: Full Brake Service -->
-            <div class="group relative rounded-2xl bg-white dark:bg-slate-900 border border-slate-200/80 dark:border-slate-800/80 shadow-sm hover:shadow-xl hover:border-brand-500/30 dark:hover:border-brand-500/30 transition-all duration-300 flex flex-col overflow-hidden">
-                <div class="w-full h-44 overflow-hidden relative bg-slate-100 dark:bg-slate-950">
-                    <img src="assets/Complete Overhaul Full Brake Service" 
-                         alt="Complete Overhaul Full Brake Service" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" />
-                    <div class="absolute inset-0 bg-gradient-to-t from-slate-950/40 to-transparent"></div>
-                </div>
-                <div class="p-5 flex-grow flex flex-col justify-between space-y-4">
-                    <div class="space-y-1.5">
-                        <h3 class="text-base font-semibold text-slate-900 dark:text-white group-hover:text-brand-500 transition-colors">Full Brake Service</h3>
-                        <p class="text-xs font-normal text-slate-500 dark:text-slate-400 leading-relaxed">Complete front and rear axle brake pad and rotor replacement for total piece of mind.</p>
-                    </div>
-                    <div class="text-xs font-semibold text-brand-600 dark:text-brand-400 inline-flex items-center gap-1 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                        <span>Book Full Overhaul</span>
-                        <i class="fa-solid fa-chevron-right text-3xs transition-transform group-hover:translate-x-0.5 rtl:group-hover:-translate-x-0.5"></i>
-                    </div>
-                </div>
-            </div>
-
-            <!-- SERVICE CARD 7: Brake Noise Diagnosis -->
-            <div class="group relative rounded-2xl bg-white dark:bg-slate-900 border border-slate-200/80 dark:border-slate-800/80 shadow-sm hover:shadow-xl hover:border-brand-500/30 dark:hover:border-brand-500/30 transition-all duration-300 flex flex-col overflow-hidden">
-                <div class="w-full h-44 overflow-hidden relative bg-slate-100 dark:bg-slate-950">
-                    <img src="assets/brake" 
-                         alt="Brake Noise Diagnostic Session" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" />
-                    <div class="absolute inset-0 bg-gradient-to-t from-slate-950/40 to-transparent"></div>
-                </div>
-                <div class="p-5 flex-grow flex flex-col justify-between space-y-4">
-                    <div class="space-y-1.5">
-                        <h3 class="text-base font-semibold text-slate-900 dark:text-white group-hover:text-brand-500 transition-colors">Brake Noise Diagnosis</h3>
-                        <p class="text-xs font-normal text-slate-500 dark:text-slate-400 leading-relaxed">Identify and resolve squeaking, grinding, and brake pedal pulsation issues accurately.</p>
-                    </div>
-                    <div class="text-xs font-semibold text-brand-600 dark:text-brand-400 inline-flex items-center gap-1 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                        <span>Isolate Noise Issue</span>
-                        <i class="fa-solid fa-chevron-right text-3xs transition-transform group-hover:translate-x-0.5 rtl:group-hover:-translate-x-0.5"></i>
-                    </div>
-                </div>
-            </div>
-
-            <!-- SERVICE CARD 8: Emergency Brake Repair -->
-            <div class="group relative rounded-2xl bg-white dark:bg-slate-900 border border-slate-200/80 dark:border-slate-800/80 shadow-sm hover:shadow-xl hover:border-brand-500/30 dark:hover:border-brand-500/30 transition-all duration-300 flex flex-col overflow-hidden">
-                <div class="w-full h-44 overflow-hidden relative bg-slate-100 dark:bg-slate-950">
-                    <img src="assets/emer" 
-                         alt="Emergency Mobile Response Repair" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" />
-                    <div class="absolute inset-0 bg-gradient-to-t from-slate-950/40 to-transparent"></div>
-                </div>
-                <div class="p-5 flex-grow flex flex-col justify-between space-y-4">
-                    <div class="space-y-1.5">
-                        <h3 class="text-base font-semibold text-slate-900 dark:text-white group-hover:text-brand-500 transition-colors">Emergency Brake Repair</h3>
-                        <p class="text-xs font-normal text-slate-500 dark:text-slate-400 leading-relaxed">Fast same-day dispatcher response routing for urgent brake failures or safety problems.</p>
-                    </div>
-                    <div class="text-xs font-semibold text-brand-600 dark:text-brand-400 inline-flex items-center gap-1 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                        <span>Dispatch Unit Now</span>
-                        <i class="fa-solid fa-chevron-right text-3xs transition-transform group-hover:translate-x-0.5 rtl:group-hover:-translate-x-0.5"></i>
-                    </div>
-                </div>
-            </div>
-
+    <!-- SERVICE CARD 1: Brake Pad Replacement -->
+    <div class="group relative rounded-2xl bg-white dark:bg-slate-900 border border-slate-200/80 dark:border-slate-800/80 shadow-sm hover:shadow-xl hover:border-brand-500/30 dark:hover:border-brand-500/30 transition-all duration-300 flex flex-col overflow-hidden">
+        <div class="w-full h-44 overflow-hidden relative bg-slate-100 dark:bg-slate-950">
+            <img src="assets/Brake Pad Replacement" 
+                 alt="Brake Pad Replacement Service" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" />
+            <div class="absolute inset-0 bg-gradient-to-t from-slate-950/40 to-transparent"></div>
         </div>
+        <div class="p-5 flex-grow flex flex-col justify-between space-y-4">
+            <div class="space-y-1.5">
+                <h3 class="text-base font-semibold text-slate-900 dark:text-white group-hover:text-brand-500 transition-colors">Brake Pad Replacement</h3>
+                <p class="text-xs font-normal text-slate-500 dark:text-slate-400 leading-relaxed">Replace worn brake pads to restore quiet, responsive, and safe braking performance.</p>
+            </div>
+            <div class="text-xs font-semibold text-brand-600 dark:text-brand-400 inline-flex items-center gap-1 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                <span>Book On-Site Fitting</span>
+                <i class="fa-solid fa-chevron-right text-3xs transition-transform group-hover:translate-x-0.5 ltr:group-hover:translate-x-0.5 rtl:group-hover:-translate-x-0.5"></i>
+            </div>
+        </div>
+    </div>
+
+    <!-- SERVICE CARD 2: Rotor Replacement -->
+    <div class="group relative rounded-2xl bg-white dark:bg-slate-900 border border-slate-200/80 dark:border-slate-800/80 shadow-sm hover:shadow-xl hover:border-brand-500/30 dark:hover:border-brand-500/30 transition-all duration-300 flex flex-col overflow-hidden">
+        <div class="w-full h-44 overflow-hidden relative bg-slate-100 dark:bg-slate-950">
+            <img src="assets/motor replacement" 
+                 alt="Brake Rotor Replacement Service" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" />
+            <div class="absolute inset-0 bg-gradient-to-t from-slate-950/40 to-transparent"></div>
+        </div>
+        <div class="p-5 flex-grow flex flex-col justify-between space-y-4">
+            <div class="space-y-1.5">
+                <h3 class="text-base font-semibold text-slate-900 dark:text-white group-hover:text-brand-500 transition-colors">Rotor Replacement</h3>
+                <p class="text-xs font-normal text-slate-500 dark:text-slate-400 leading-relaxed">Install new rotors to eliminate vibration, improve stopping power.</p>
+            </div>
+            <div class="text-xs font-semibold text-brand-600 dark:text-brand-400 inline-flex items-center gap-1 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                <span>Book On-Site Fitting</span>
+                <i class="fa-solid fa-chevron-right text-3xs transition-transform group-hover:translate-x-0.5 ltr:group-hover:translate-x-0.5 rtl:group-hover:-translate-x-0.5"></i>
+            </div>
+        </div>
+    </div>
+
+    <!-- SERVICE CARD 3: Brake Inspection -->
+    <div class="group relative rounded-2xl bg-white dark:bg-slate-900 border border-slate-200/80 dark:border-slate-800/80 shadow-sm hover:shadow-xl hover:border-brand-500/30 dark:hover:border-brand-500/30 transition-all duration-300 flex flex-col overflow-hidden">
+        <div class="w-full h-44 overflow-hidden relative bg-slate-100 dark:bg-slate-950">
+            <img src="assets/Comprehensive Brake Inspection1" 
+                 alt="Brake Inspection Service" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" />
+            <div class="absolute inset-0 bg-gradient-to-t from-slate-950/40 to-transparent"></div>
+        </div>
+        <div class="p-5 flex-grow flex flex-col justify-between space-y-4">
+            <div class="space-y-1.5">
+                <h3 class="text-base font-semibold text-slate-900 dark:text-white group-hover:text-brand-500 transition-colors">Brake Inspection</h3>
+                <p class="text-xs font-normal text-slate-500 dark:text-slate-400 leading-relaxed">Comprehensive inspections to identify worn components, unusual noises, and safety.</p>
+            </div>
+            <div class="text-xs font-semibold text-brand-600 dark:text-brand-400 inline-flex items-center gap-1 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                <span>Schedule Inspection</span>
+                <i class="fa-solid fa-chevron-right text-3xs transition-transform group-hover:translate-x-0.5 ltr:group-hover:translate-x-0.5 rtl:group-hover:-translate-x-0.5"></i>
+            </div>
+        </div>
+    </div>
+
+    <!-- SERVICE CARD 4: Front Brake Service -->
+    <div class="group relative rounded-2xl bg-white dark:bg-slate-900 border border-slate-200/80 dark:border-slate-800/80 shadow-sm hover:shadow-xl hover:border-brand-500/30 dark:hover:border-brand-500/30 transition-all duration-300 flex flex-col overflow-hidden">
+        <div class="w-full h-44 overflow-hidden relative bg-slate-100 dark:bg-slate-950">
+            <img src="assets/Front Axle Brake Service" 
+                 alt="Front Axle Brake Service" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" />
+            <div class="absolute inset-0 bg-gradient-to-t from-slate-950/40 to-transparent"></div>
+        </div>
+        <div class="p-5 flex-grow flex flex-col justify-between space-y-4">
+            <div class="space-y-1.5">
+                <h3 class="text-base font-semibold text-slate-900 dark:text-white group-hover:text-brand-500 transition-colors">Front Brake Service</h3>
+                <p class="text-xs font-normal text-slate-500 dark:text-slate-400 leading-relaxed">Dedicated alignment, hardware reconditioning, and replacement.</p>
+            </div>
+            <div class="text-xs font-semibold text-brand-600 dark:text-brand-400 inline-flex items-center gap-1 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                <span>Book Front Axle</span>
+                <i class="fa-solid fa-chevron-right text-3xs transition-transform group-hover:translate-x-0.5 ltr:group-hover:translate-x-0.5 rtl:group-hover:-translate-x-0.5"></i>
+            </div>
+        </div>
+    </div>
+
+    <!-- SERVICE CARD 5: Rear Brake Service -->
+    <div class="group relative rounded-2xl bg-white dark:bg-slate-900 border border-slate-200/80 dark:border-slate-800/80 shadow-sm hover:shadow-xl hover:border-brand-500/30 dark:hover:border-brand-500/30 transition-all duration-300 flex flex-col overflow-hidden">
+        <div class="w-full h-44 overflow-hidden relative bg-slate-100 dark:bg-slate-950">
+            <img src="assets/Rear Axle Brake Service" 
+                 alt="Rear Axle Brake Service" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" />
+            <div class="absolute inset-0 bg-gradient-to-t from-slate-950/40 to-transparent"></div>
+        </div>
+        <div class="p-5 flex-grow flex flex-col justify-between space-y-4">
+            <div class="space-y-1.5">
+                <h3 class="text-base font-semibold text-slate-900 dark:text-white group-hover:text-brand-500 transition-colors">Rear Brake Service</h3>
+                <p class="text-xs font-normal text-slate-500 dark:text-slate-400 leading-relaxed">Professional rear brake maintenance, calibration of parking brake lines.</p>
+            </div>
+            <div class="text-xs font-semibold text-brand-600 dark:text-brand-400 inline-flex items-center gap-1 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                <span>Book Rear Axle</span>
+                <i class="fa-solid fa-chevron-right text-3xs transition-transform group-hover:translate-x-0.5 ltr:group-hover:translate-x-0.5 rtl:group-hover:-translate-x-0.5"></i>
+            </div>
+        </div>
+    </div>
+
+    <!-- SERVICE CARD 6: Full Brake Service -->
+    <div class="group relative rounded-2xl bg-white dark:bg-slate-900 border border-slate-200/80 dark:border-slate-800/80 shadow-sm hover:shadow-xl hover:border-brand-500/30 dark:hover:border-brand-500/30 transition-all duration-300 flex flex-col overflow-hidden">
+        <div class="w-full h-44 overflow-hidden relative bg-slate-100 dark:bg-slate-950">
+            <img src="assets/Complete Overhaul Full Brake Service" 
+                 alt="Complete Overhaul Full Brake Service" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" />
+            <div class="absolute inset-0 bg-gradient-to-t from-slate-950/40 to-transparent"></div>
+        </div>
+        <div class="p-5 flex-grow flex flex-col justify-between space-y-4">
+            <div class="space-y-1.5">
+                <h3 class="text-base font-semibold text-slate-900 dark:text-white group-hover:text-brand-500 transition-colors">Full Brake Service</h3>
+                <p class="text-xs font-normal text-slate-500 dark:text-slate-400 leading-relaxed">Complete front and rear axle brake pad and rotor replacement for total piece of mind.</p>
+            </div>
+            <div class="text-xs font-semibold text-brand-600 dark:text-brand-400 inline-flex items-center gap-1 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                <span>Book Full Overhaul</span>
+                <i class="fa-solid fa-chevron-right text-3xs transition-transform group-hover:translate-x-0.5 ltr:group-hover:translate-x-0.5 rtl:group-hover:-translate-x-0.5"></i>
+            </div>
+        </div>
+    </div>
+
+   
+
+</div>
     </div>
 </section>
 <!-- SERVICES PAGE: WHY CHOOSE OUR SERVICES (Modern Light Theme Trust Matrix) -->
@@ -587,8 +554,8 @@ if (mobileDashToggle && mobileDashLinks) {
                     <i class="fa-solid fa-house-laptop"></i>
                 </div>
                 <div class="space-y-1">
-                    <h3 class="text-sm sm:text-base font-semibold text-slate-900 dark:text-white group-hover:text-brand-500 transition-colors">Mobile Service at Home or Office</h3>
-                    <p class="text-xs font-normal text-slate-500 dark:text-slate-400 leading-relaxed">We bypass the traditional garage lot completely, executing complete replacements right on your driveway or office spot.</p>
+                    <h3 class="text-sm sm:text-base font-semibold text-slate-900 dark:text-white group-hover:text-brand-500 transition-colors">Mobile Service at Home</h3>
+                    <p class="text-xs font-normal text-slate-500 dark:text-slate-400 leading-relaxed">We bypass the traditional garage lot completely, executing complete replacements right on your driveway.</p>
                 </div>
             </div>
 
@@ -598,7 +565,7 @@ if (mobileDashToggle && mobileDashLinks) {
                     <i class="fa-solid fa-user-check"></i>
                 </div>
                 <div class="space-y-1">
-                    <h3 class="text-sm sm:text-base font-semibold text-slate-900 dark:text-white group-hover:text-brand-500 transition-colors">Certified &amp; Experienced Technicians</h3>
+                    <h3 class="text-sm sm:text-base font-semibold text-slate-900 dark:text-white group-hover:text-brand-500 transition-colors">Certified Technicians</h3>
                     <p class="text-xs font-normal text-slate-500 dark:text-slate-400 leading-relaxed">Our operations team consists entirely of certified specialists masterfully vetted for precision mechanical.</p>
                 </div>
             </div>
@@ -642,7 +609,7 @@ if (mobileDashToggle && mobileDashLinks) {
                     <i class="fa-solid fa-calendar-plus"></i>
                 </div>
                 <div class="space-y-1">
-                    <h3 class="text-sm sm:text-base font-semibold text-slate-900 dark:text-white group-hover:text-brand-500 transition-colors">Same-Day Appointments Available</h3>
+                    <h3 class="text-sm sm:text-base font-semibold text-slate-900 dark:text-white group-hover:text-brand-500 transition-colors">Same-Day Appointments </h3>
                     <p class="text-xs font-normal text-slate-500 dark:text-slate-400 leading-relaxed">Encountering sudden grinding sounds? Secure rapid mobile workshop dispatches instantly today.</p>
                 </div>
             </div>
@@ -745,7 +712,7 @@ if (mobileDashToggle && mobileDashLinks) {
                     </div>
                     <div class="space-y-1.5">
                         <h3 class="text-sm sm:text-base font-semibold text-slate-900 dark:text-white group-hover:text-brand-500 transition-colors">Vehicle Pulling Side-to-Side</h3>
-                        <p class="text-xs font-normal text-slate-500 dark:text-slate-400 leading-relaxed">Lateral drifts trace directly back to unaligned caliper slide pins or sticking mechanical piston walls.</p>
+                        <p class="text-xs font-normal text-slate-500 dark:text-slate-400 leading-relaxed">Lateral drifts trace directly back to unaligned caliper slide pins or sticking mechanical piston.</p>
                     </div>
                 </div>
             </div>
@@ -770,102 +737,86 @@ if (mobileDashToggle && mobileDashLinks) {
 
     </div>
 </section>
-<!-- HOW IT WORKS SECTION (Modern Light Layout with Technical Matrix & Floating Steps) -->
-<section id="how-our-service-works" class="py-16 sm:py-24 bg-white dark:bg-slate-900 transition-colors duration-300 overflow-hidden">
+<!-- HOW IT WORKS SECTION (Modern Clean Step-by-Step Interactive Timeline) -->
+<section class="py-16 sm:py-24 bg-white dark:bg-slate-900 transition-colors duration-300 overflow-hidden">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
-        <!-- SECTION TITLE & HEADER -->
+        <!-- SECTION TITLE HEADER -->
         <div class="text-center max-w-3xl mx-auto space-y-4 mb-16 sm:mb-24">
             <span class="text-xs font-semibold uppercase tracking-widest text-brand-500 bg-brand-500/10 dark:bg-brand-500/15 px-3 py-1.5 rounded-full inline-block">
-                Streamlined Operation
+                Simple 4-Step Process
             </span>
             <h2 class="text-2xl sm:text-3xl md:text-4xl font-semibold tracking-tight text-slate-900 dark:text-white leading-tight">
-                Simple and Convenient
+                How Our Mobile Service Works
             </h2>
             <div class="h-1 w-12 bg-brand-500 rounded mx-auto"></div>
         </div>
 
-        <!-- FOUR-STEP FLOATING GRID MATRIX (Strictly No Connecting Lines) -->
-        <!-- Breakpoints: 1 col on mobile/360px, 2 cols on tablet/640px, 4 cols from 1024px desktop up -->
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8 items-stretch">
+        <!-- TIMELINE STEP MATRIX GRID -->
+        <!-- Responsive mapping: 1 col on mobile/360px, 2 cols on tablet, 4 cols from 1024px desktop up -->
+        <div class="relative grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10 lg:gap-8">
             
-            <!-- STEP 1: Request a Quote -->
-            <div class="group relative rounded-2xl bg-slate-50 dark:bg-slate-800/40 border border-slate-200/80 dark:border-slate-800/80 p-6 shadow-sm hover:shadow-xl hover:border-brand-500/30 dark:hover:border-brand-500/30 hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between">
-                <!-- Fine mesh blueprint grid background layer -->
-                <div class="absolute inset-0 z-0 opacity-[0.02] dark:opacity-[0.04] pointer-events-none rounded-2xl overflow-hidden">
-                    <div class="absolute inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:14px_14px]"></div>
-                </div>
+            <!-- Structural Connecting Progress Bar Line (Hidden on Mobile screens, visible on Desktop 1024px+) -->
+            <!-- <div class="hidden lg:block absolute top-7 left-10 right-10 h-0.5 bg-slate-100 dark:bg-slate-800 z-0 pointer-events-none"></div> -->
 
-                <div class="space-y-4 relative z-10">
-                    <!-- Numeric Indicator & Icon Stack -->
-                    <div class="flex items-center justify-between">
-                        <div class="w-10 h-10 rounded-xl bg-brand-500/10 text-brand-500 flex items-center justify-center text-sm font-semibold transition-colors duration-300 group-hover:bg-brand-500 group-hover:text-white">
-                            <i class="fa-solid fa-file-invoice-dollar"></i>
-                        </div>
-                        <span class="text-3xl font-semibold tracking-tighter text-slate-200 dark:text-slate-700 select-none group-hover:text-brand-500/20 transition-colors duration-300">01</span>
-                    </div>
-                    
-                    <div class="space-y-1.5">
-                        <h3 class="text-base font-semibold text-slate-900 dark:text-white group-hover:text-brand-500 transition-colors">Request a Quote</h3>
-                        <p class="text-xs font-normal text-slate-500 dark:text-slate-400 leading-relaxed">Request a quote with your vehicle details and required brake configuration options.</p>
-                    </div>
+            <!-- STEP 1: Book Online -->
+            <div class="group relative flex flex-col items-center lg:items-start text-center lg:text-left rtl:lg:text-right space-y-4 z-10 cursor-pointer">
+                <!-- Interactive Step Badge and Indicator Number -->
+                <div class="w-14 h-14 rounded-2xl bg-slate-50 dark:bg-slate-800 border-2 border-slate-200 dark:border-slate-700 flex items-center justify-center text-slate-700 dark:text-slate-300 font-semibold text-lg shadow-sm group-hover:border-brand-500 group-hover:bg-brand-500 group-hover:text-white transition-all duration-300 transform group-hover:scale-105">
+                    01
+                </div>
+                <div class="space-y-2">
+                    <h3 class="text-base sm:text-lg font-semibold text-slate-900 dark:text-white group-hover:text-brand-500 transition-colors duration-200">
+                        Book Online
+                    </h3>
+                    <p class="text-sm font-normal text-slate-600 dark:text-slate-400 leading-relaxed max-w-xs lg:max-w-none mx-auto">
+                        Choose your vehicle profile, select your required parts package, and pick a preferred appointment time.
+                    </p>
                 </div>
             </div>
 
-            <!-- STEP 2: Schedule an Appointment -->
-            <div class="group relative rounded-2xl bg-slate-50 dark:bg-slate-800/40 border border-slate-200/80 dark:border-slate-800/80 p-6 shadow-sm hover:shadow-xl hover:border-brand-500/30 dark:hover:border-brand-500/30 hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between">
-                <div class="absolute inset-0 z-0 opacity-[0.02] dark:opacity-[0.04] pointer-events-none rounded-2xl overflow-hidden">
-                    <div class="absolute inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:14px_14px]"></div>
+            <!-- STEP 2: We Come to You -->
+            <div class="group relative flex flex-col items-center lg:items-start text-center lg:text-left rtl:lg:text-right space-y-4 z-10 cursor-pointer">
+                <div class="w-14 h-14 rounded-2xl bg-slate-50 dark:bg-slate-800 border-2 border-slate-200 dark:border-slate-700 flex items-center justify-center text-slate-700 dark:text-slate-300 font-semibold text-lg shadow-sm group-hover:border-brand-500 group-hover:bg-brand-500 group-hover:text-white transition-all duration-300 transform group-hover:scale-105">
+                    02
                 </div>
-                <div class="space-y-4 relative z-10">
-                    <div class="flex items-center justify-between">
-                        <div class="w-10 h-10 rounded-xl bg-brand-500/10 text-brand-500 flex items-center justify-center text-sm font-semibold transition-colors duration-300 group-hover:bg-brand-500 group-hover:text-white">
-                            <i class="fa-solid fa-calendar-check"></i>
-                        </div>
-                        <span class="text-3xl font-semibold tracking-tighter text-slate-200 dark:text-slate-700 select-none group-hover:text-brand-500/20 transition-colors duration-300">02</span>
-                    </div>
-                    <div class="space-y-1.5">
-                        <h3 class="text-base font-semibold text-slate-900 dark:text-white group-hover:text-brand-500 transition-colors">Schedule Appointment</h3>
-                        <p class="text-xs font-normal text-slate-500 dark:text-slate-400 leading-relaxed">Schedule an appointment at your preferred location and convenient arrival time window.</p>
-                    </div>
+                <div class="space-y-2">
+                    <h3 class="text-base sm:text-lg font-semibold text-slate-900 dark:text-white group-hover:text-brand-500 transition-colors duration-200">
+                        We Come to You
+                    </h3>
+                    <p class="text-sm font-normal text-slate-600 dark:text-slate-400 leading-relaxed max-w-xs lg:max-w-none mx-auto">
+                        Our mechanic arrives at your home or workplace fully equipped with high-grade equipment and matching.
+                    </p>
                 </div>
             </div>
 
-            <!-- STEP 3: On-Site Repair -->
-            <div class="group relative rounded-2xl bg-slate-50 dark:bg-slate-800/40 border border-slate-200/80 dark:border-slate-800/80 p-6 shadow-sm hover:shadow-xl hover:border-brand-500/30 dark:hover:border-brand-500/30 hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between">
-                <div class="absolute inset-0 z-0 opacity-[0.02] dark:opacity-[0.04] pointer-events-none rounded-2xl overflow-hidden">
-                    <div class="absolute inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:14px_14px]"></div>
+            <!-- STEP 3: Your Brakes Are Repaired -->
+            <div class="group relative flex flex-col items-center lg:items-start text-center lg:text-left rtl:lg:text-right space-y-4 z-10 cursor-pointer">
+                <div class="w-14 h-14 rounded-2xl bg-slate-50 dark:bg-slate-800 border-2 border-slate-200 dark:border-slate-700 flex items-center justify-center text-slate-700 dark:text-slate-300 font-semibold text-lg shadow-sm group-hover:border-brand-500 group-hover:bg-brand-500 group-hover:text-white transition-all duration-300 transform group-hover:scale-105">
+                    03
                 </div>
-                <div class="space-y-4 relative z-10">
-                    <div class="flex items-center justify-between">
-                        <div class="w-10 h-10 rounded-xl bg-brand-500/10 text-brand-500 flex items-center justify-center text-sm font-semibold transition-colors duration-300 group-hover:bg-brand-500 group-hover:text-white">
-                            <i class="fa-solid fa-screwdriver-wrench"></i>
-                        </div>
-                        <span class="text-3xl font-semibold tracking-tighter text-slate-200 dark:text-slate-700 select-none group-hover:text-brand-500/20 transition-colors duration-300">03</span>
-                    </div>
-                    <div class="space-y-1.5">
-                        <h3 class="text-base font-semibold text-slate-900 dark:text-white group-hover:text-brand-500 transition-colors">On-Site Execution</h3>
-                        <p class="text-xs font-normal text-slate-500 dark:text-slate-400 leading-relaxed">Our technician arrives fully equipped and performs the repair on-site right before your eyes.</p>
-                    </div>
+                <div class="space-y-2">
+                    <h3 class="text-base sm:text-lg font-semibold text-slate-900 dark:text-white group-hover:text-brand-500 transition-colors duration-200">
+                        Brakes Are Repaired
+                    </h3>
+                    <p class="text-sm font-normal text-slate-600 dark:text-slate-400 leading-relaxed max-w-xs lg:max-w-none mx-auto">
+                        We inspect, install, flush, and perform real-world field-testing on your updated brake systems right on-site.
+                    </p>
                 </div>
             </div>
 
             <!-- STEP 4: Drive Safely -->
-            <div class="group relative rounded-2xl bg-slate-50 dark:bg-slate-800/40 border border-slate-200/80 dark:border-slate-800/80 p-6 shadow-sm hover:shadow-xl hover:border-brand-500/30 dark:hover:border-brand-500/30 hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between">
-                <div class="absolute inset-0 z-0 opacity-[0.02] dark:opacity-[0.04] pointer-events-none rounded-2xl overflow-hidden">
-                    <div class="absolute inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:14px_14px]"></div>
+            <div class="group relative flex flex-col items-center lg:items-start text-center lg:text-left rtl:lg:text-right space-y-4 z-10 cursor-pointer">
+                <div class="w-14 h-14 rounded-2xl bg-slate-50 dark:bg-slate-800 border-2 border-slate-200 dark:border-slate-700 flex items-center justify-center text-slate-700 dark:text-slate-300 font-semibold text-lg shadow-sm group-hover:border-brand-500 group-hover:bg-brand-500 group-hover:text-white transition-all duration-300 transform group-hover:scale-105">
+                    04
                 </div>
-                <div class="space-y-4 relative z-10">
-                    <div class="flex items-center justify-between">
-                        <div class="w-10 h-10 rounded-xl bg-brand-500/10 text-brand-500 flex items-center justify-center text-sm font-semibold transition-colors duration-300 group-hover:bg-brand-500 group-hover:text-white">
-                            <i class="fa-solid fa-car-rear"></i>
-                        </div>
-                        <span class="text-3xl font-semibold tracking-tighter text-slate-200 dark:text-slate-700 select-none group-hover:text-brand-500/20 transition-colors duration-300">04</span>
-                    </div>
-                    <div class="space-y-1.5">
-                        <h3 class="text-base font-semibold text-slate-900 dark:text-white group-hover:text-brand-500 transition-colors">Drive Safely</h3>
-                        <p class="text-xs font-normal text-slate-500 dark:text-slate-400 leading-relaxed">Drive away immediately with safe, reliable brakes backed by our structural product warranties.</p>
-                    </div>
+                <div class="space-y-2">
+                    <h3 class="text-base sm:text-lg font-semibold text-slate-900 dark:text-white group-hover:text-brand-500 transition-colors duration-200">
+                        Drive Safely
+                    </h3>
+                    <p class="text-sm font-normal text-slate-600 dark:text-slate-400 leading-relaxed max-w-xs lg:max-w-none mx-auto">
+                        Enjoy responsive stopping power and complete peace of mind with our fully warranty-backed mobile repair service.
+                    </p>
                 </div>
             </div>
 

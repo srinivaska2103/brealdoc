@@ -370,7 +370,7 @@ if (mobileDashToggle && mobileDashLinks) {
                 </div>
                 <div class="p-5 flex-grow flex flex-col justify-between space-y-4">
                     <div class="space-y-1.5">
-                        <h3 class="text-sm sm:text-base font-semibold text-slate-900 dark:text-white group-hover:text-brand-500 transition-colors duration-200">Slotted Rotor Fitting Axel Overhaul</h3>
+                        <h3 class="text-sm sm:text-base font-semibold text-slate-900 dark:text-white group-hover:text-brand-500 transition-colors duration-200">Slotted Rotor Fitting Axel</h3>
                         <p class="text-xs font-normal text-slate-500 dark:text-slate-400 leading-relaxed">Fitting ventilation matched brake discs to eliminate steering wheel vibration.</p>
                     </div>
                     <div class="text-xs font-semibold text-brand-600 dark:text-brand-400 inline-flex items-center gap-1 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
@@ -531,29 +531,38 @@ if (mobileDashToggle && mobileDashLinks) {
 
 
 <!-- QUALITY & SAFETY SECTION (Modern Minimalist Light Layout with Precision Grid) -->
+<!-- QUALITY SAFETY FRAMEWORK SECTION (Dual-Breakpoint Responsive Optimization) -->
 <section id="quality-safety-framework" class="py-16 sm:py-24 bg-white dark:bg-slate-900 transition-colors duration-300 overflow-hidden">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         <!-- TWO-COLUMN CONTENT GRID LAYER -->
-        <!-- Breakpoints: 1 column on 360px mobile, asymmetric layout split from 1024px desktop up -->
-        <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
+        <!-- Responsive Grid Scaling: 
+             - Mobile (<768px): 1 column layout
+             - Tablet (768px / md:): Split asymmetric 12-column grid layout where text columns span full-width or wrap neatly
+             - Desktop (1024px / lg:): Spans side-by-side with 5/7 structural column allocations -->
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 md:gap-12 lg:gap-16 items-center">
             
-            <!-- LEFT COLUMN: EDITORIAL HEADER & NARRATIVE (Fills 5 Columns) -->
-            <div class="lg:col-span-5 space-y-5 text-center lg:text-left rtl:lg:text-right">
+            <!-- LEFT COLUMN: EDITORIAL HEADER & NARRATIVE -->
+            <!-- Layout Adaptations: Center-aligned on mobile, changes to strict left-alignment on tablet (md:) and desktop (lg:) viewports -->
+            <div class="lg:col-span-5 space-y-5 text-center md:text-left ltr:md:text-left rtl:md:text-right">
                 <span class="text-xs font-semibold uppercase tracking-widest text-brand-600 bg-brand-500/10 dark:text-brand-400 dark:bg-brand-500/15 px-3 py-1.5 rounded-full inline-block">
                     Zero Compromise Blueprint
                 </span>
                 <h2 class="text-2xl sm:text-3xl md:text-4xl font-semibold tracking-tight text-slate-900 dark:text-white leading-tight">
-                    Professional Service You Can Trust
+                    Professional Service <br class="hidden md:inline lg:hidden xl:inline">You Can Trust
                 </h2>
-                <div class="h-1 w-12 bg-brand-500 rounded mx-auto lg:mx-0"></div>
-                <p class="text-sm sm:text-base font-normal text-slate-600 dark:text-slate-400 leading-relaxed max-w-xl mx-auto lg:mx-0">
+                <div class="h-1 w-12 bg-brand-500 rounded mx-auto md:mx-0"></div>
+                <p class="text-sm sm:text-base font-normal text-slate-600 dark:text-slate-400 leading-relaxed max-w-xl mx-auto md:mx-0">
                     Every photo in our work library reflects our systematic dedication to safety, mechanical excellence, and transparent driveway care.
                 </p>
             </div>
 
-            <!-- RIGHT COLUMN: CORE VALUES INTERACTIVE MATRIX GRID (Fills 7 Columns) -->
-            <div class="lg:col-span-7 grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6 w-full">
+            <!-- RIGHT COLUMN: CORE VALUES INTERACTIVE MATRIX GRID -->
+            <!-- Grid Breakpoint Specifications:
+                 - Mobile (<768px): 1 vertical column 
+                 - Tablet (768px / md:): Fits exactly 2 columns to prevent layout lines grouping messily
+                 - Desktop Entry (1024px / lg:): Keeps the 2-column matrix layout safely nested within its 7-column wrapper track -->
+            <div class="lg:col-span-7 grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6 w-full">
                 
                 <!-- PRINCIPLE 1: Safe and Precise Workmanship -->
                 <div class="group relative rounded-2xl bg-slate-50 dark:bg-slate-800/40 p-5 sm:p-6 border border-slate-200/80 dark:border-slate-800/80 shadow-sm hover:shadow-md hover:border-brand-500/30 dark:hover:border-brand-500/30 transition-all duration-300 flex items-start gap-4 cursor-default">
@@ -565,7 +574,7 @@ if (mobileDashToggle && mobileDashLinks) {
                         <i class="fa-solid fa-shield"></i>
                     </div>
                     <div class="space-y-1 relative z-10">
-                        <h3 class="text-sm sm:text-base font-semibold text-slate-900 dark:text-white group-hover:text-brand-500 transition-colors duration-200">Safe & Precise Workmanship</h3>
+                        <h3 class="text-sm sm:text-base font-semibold text-slate-900 dark:text-white group-hover:text-brand-500 transition-colors duration-200">Safe &amp; Precise Workmanship</h3>
                         <p class="text-xs font-normal text-slate-500 dark:text-slate-400 leading-relaxed">Strict adherence to manufacturing torque settings and digital line calibrations.</p>
                     </div>
                 </div>
@@ -580,7 +589,7 @@ if (mobileDashToggle && mobileDashLinks) {
                     </div>
                     <div class="space-y-1 relative z-10">
                         <h3 class="text-sm sm:text-base font-semibold text-slate-900 dark:text-white group-hover:text-brand-500 transition-colors duration-200">Premium Replacement Parts</h3>
-                        <p class="text-xs font-normal text-slate-500 dark:text-slate-400 leading-relaxed">Exclusively deploying trusted OEM matching hardware and premium ceramic formulations.</p>
+                        <p class="text-xs font-normal text-slate-500 dark:text-slate-400 leading-relaxed">Exclusively deploying trusted OEM matching hardware and premium ceramic.</p>
                     </div>
                 </div>
 
@@ -593,7 +602,7 @@ if (mobileDashToggle && mobileDashLinks) {
                         <i class="fa-solid fa-broom-ball"></i>
                     </div>
                     <div class="space-y-1 relative z-10">
-                        <h3 class="text-sm sm:text-base font-semibold text-slate-900 dark:text-white group-hover:text-brand-500 transition-colors duration-200">Clean & Organized Service</h3>
+                        <h3 class="text-sm sm:text-base font-semibold text-slate-900 dark:text-white group-hover:text-brand-500 transition-colors duration-200">Clean &amp; Organized Service</h3>
                         <p class="text-xs font-normal text-slate-500 dark:text-slate-400 leading-relaxed">Zero fluid spills left on your home driveway with total technical waste disposal included.</p>
                     </div>
                 </div>
@@ -617,7 +626,7 @@ if (mobileDashToggle && mobileDashLinks) {
         </div>
     </div>
 </section>
-<!-- SERVICE AREAS SECTION (Modern Interactive Search Filter Component with Vanilla JS) -->
+<!-- SERVICE AREAS SECTION (Optimized Full-Width 4-Column 1024px Layout) -->
 <section id="service-areas-section" class="py-16 sm:py-24 bg-slate-50 dark:bg-slate-950 transition-colors duration-300 overflow-hidden">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
@@ -651,14 +660,17 @@ if (mobileDashToggle && mobileDashLinks) {
         </div>
 
         <!-- DYNAMIC NEIGHBORHOOD CHIPS GRID CHASSIS -->
-        <!-- Breakpoints: 1 col on mobile/360px, 2 cols on tablet, 3 cols at 1024px, 4 cols from large desktops up -->
-        <div id="service-areas-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-6">
+        <!-- Responsive Grid Breakdown: 
+             - Mobile (<640px): 1 column layout configuration
+             - Tablet (>=640px / sm:): 2 columns layout matrix
+             - Desktop Viewports (>=1024px / lg:): Configured for 4 full-width columns to stay uniform with widescreen displays (xl:) -->
+        <div id="service-areas-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
             
             <!-- Zone item 1 -->
-            <div class="area-card group relative rounded-2xl bg-white dark:bg-slate-900 border border-slate-200/80 dark:border-slate-800/80 p-5 shadow-sm hover:shadow-md hover:border-brand-500/30 dark:hover:border-brand-500/30 transition-all duration-300 flex items-center justify-between" data-name="downtown hub" data-type="primary base">
-                <div class="space-y-1">
-                    <h3 class="text-sm sm:text-base font-semibold text-slate-900 dark:text-white group-hover:text-brand-500 transition-colors">Downtown Hub</h3>
-                    <p class="text-[10px] font-semibold text-slate-400 dark:text-slate-500 uppercase tracking-wider">Primary Base</p>
+            <div class="area-card group relative rounded-2xl bg-white dark:bg-slate-900 border border-slate-200/80 dark:border-slate-800/80 p-5 shadow-sm hover:shadow-md hover:border-brand-500/30 dark:hover:border-brand-500/30 transition-all duration-300 flex items-center justify-between gap-3" data-name="downtown hub" data-type="primary base">
+                <div class="space-y-1 min-w-0">
+                    <h3 class="text-sm font-semibold text-slate-900 dark:text-white group-hover:text-brand-500 transition-colors truncate" title="Downtown Hub">Downtown Hub</h3>
+                    <p class="text-[10px] font-semibold text-slate-400 dark:text-slate-500 uppercase tracking-wider block">Primary Base</p>
                 </div>
                 <div class="w-8 h-8 rounded-lg bg-brand-500/5 text-brand-500 dark:bg-brand-500/10 flex items-center justify-center text-xs shrink-0 group-hover:bg-brand-500 group-hover:text-white transition-colors duration-300">
                     <i class="fa-solid fa-truck-fast"></i>
@@ -666,10 +678,10 @@ if (mobileDashToggle && mobileDashLinks) {
             </div>
 
             <!-- Zone item 2 -->
-            <div class="area-card group relative rounded-2xl bg-white dark:bg-slate-900 border border-slate-200/80 dark:border-slate-800/80 p-5 shadow-sm hover:shadow-md hover:border-brand-500/30 dark:hover:border-brand-500/30 transition-all duration-300 flex items-center justify-between" data-name="northside metro" data-type="dispatch zone">
-                <div class="space-y-1">
-                    <h3 class="text-sm sm:text-base font-semibold text-slate-900 dark:text-white group-hover:text-brand-500 transition-colors">Northside Metro</h3>
-                    <p class="text-[10px] font-semibold text-slate-400 dark:text-slate-500 uppercase tracking-wider">Dispatch Zone</p>
+            <div class="area-card group relative rounded-2xl bg-white dark:bg-slate-900 border border-slate-200/80 dark:border-slate-800/80 p-5 shadow-sm hover:shadow-md hover:border-brand-500/30 dark:hover:border-brand-500/30 transition-all duration-300 flex items-center justify-between gap-3" data-name="northside metro" data-type="dispatch zone">
+                <div class="space-y-1 min-w-0">
+                    <h3 class="text-sm font-semibold text-slate-900 dark:text-white group-hover:text-brand-500 transition-colors truncate" title="Northside Metro">Northside Metro</h3>
+                    <p class="text-[10px] font-semibold text-slate-400 dark:text-slate-500 uppercase tracking-wider block">Dispatch Zone</p>
                 </div>
                 <div class="w-8 h-8 rounded-lg bg-brand-500/5 text-brand-500 dark:bg-brand-500/10 flex items-center justify-center text-xs shrink-0 group-hover:bg-brand-500 group-hover:text-white transition-colors duration-300">
                     <i class="fa-solid fa-truck-fast"></i>
@@ -677,10 +689,10 @@ if (mobileDashToggle && mobileDashLinks) {
             </div>
 
             <!-- Zone item 3 -->
-            <div class="area-card group relative rounded-2xl bg-white dark:bg-slate-900 border border-slate-200/80 dark:border-slate-800/80 p-5 shadow-sm hover:shadow-md hover:border-brand-500/30 dark:hover:border-brand-500/30 transition-all duration-300 flex items-center justify-between" data-name="east suburban district" data-type="extended coverage">
-                <div class="space-y-1">
-                    <h3 class="text-sm sm:text-base font-semibold text-slate-900 dark:text-white group-hover:text-brand-500 transition-colors">East Suburban District</h3>
-                    <p class="text-[10px] font-semibold text-slate-400 dark:text-slate-500 uppercase tracking-wider">Extended Coverage</p>
+            <div class="area-card group relative rounded-2xl bg-white dark:bg-slate-900 border border-slate-200/80 dark:border-slate-800/80 p-5 shadow-sm hover:shadow-md hover:border-brand-500/30 dark:hover:border-brand-500/30 transition-all duration-300 flex items-center justify-between gap-3" data-name="east suburban district" data-type="extended coverage">
+                <div class="space-y-1 min-w-0">
+                    <h3 class="text-sm font-semibold text-slate-900 dark:text-white group-hover:text-brand-500 transition-colors truncate" title="East Suburban District">East Suburban District</h3>
+                    <p class="text-[10px] font-semibold text-slate-400 dark:text-slate-500 uppercase tracking-wider block">Extended Coverage</p>
                 </div>
                 <div class="w-8 h-8 rounded-lg bg-brand-500/5 text-brand-500 dark:bg-brand-500/10 flex items-center justify-center text-xs shrink-0 group-hover:bg-brand-500 group-hover:text-white transition-colors duration-300">
                     <i class="fa-solid fa-truck-fast"></i>
@@ -688,10 +700,10 @@ if (mobileDashToggle && mobileDashLinks) {
             </div>
 
             <!-- Zone item 4 -->
-            <div class="area-card group relative rounded-2xl bg-white dark:bg-slate-900 border border-slate-200/80 dark:border-slate-800/80 p-5 shadow-sm hover:shadow-md hover:border-brand-500/30 dark:hover:border-brand-500/30 transition-all duration-300 flex items-center justify-between" data-name="west corporate park" data-type="dispatch zone">
-                <div class="space-y-1">
-                    <h3 class="text-sm sm:text-base font-semibold text-slate-900 dark:text-white group-hover:text-brand-500 transition-colors">West Corporate Park</h3>
-                    <p class="text-[10px] font-semibold text-slate-400 dark:text-slate-500 uppercase tracking-wider">Dispatch Zone</p>
+            <div class="area-card group relative rounded-2xl bg-white dark:bg-slate-900 border border-slate-200/80 dark:border-slate-800/80 p-5 shadow-sm hover:shadow-md hover:border-brand-500/30 dark:hover:border-brand-500/30 transition-all duration-300 flex items-center justify-between gap-3" data-name="west corporate park" data-type="dispatch zone">
+                <div class="space-y-1 min-w-0">
+                    <h3 class="text-sm font-semibold text-slate-900 dark:text-white group-hover:text-brand-500 transition-colors truncate" title="West Corporate Park">West Corporate Park</h3>
+                    <p class="text-[10px] font-semibold text-slate-400 dark:text-slate-500 uppercase tracking-wider block">Dispatch Zone</p>
                 </div>
                 <div class="w-8 h-8 rounded-lg bg-brand-500/5 text-brand-500 dark:bg-brand-500/10 flex items-center justify-center text-xs shrink-0 group-hover:bg-brand-500 group-hover:text-white transition-colors duration-300">
                     <i class="fa-solid fa-truck-fast"></i>
@@ -699,10 +711,10 @@ if (mobileDashToggle && mobileDashLinks) {
             </div>
 
             <!-- Zone item 5 -->
-            <div class="area-card group relative rounded-2xl bg-white dark:bg-slate-900 border border-slate-200/80 dark:border-slate-800/80 p-5 shadow-sm hover:shadow-md hover:border-brand-500/30 dark:hover:border-brand-500/30 transition-all duration-300 flex items-center justify-between" data-name="southside harbor area" data-type="primary base">
-                <div class="space-y-1">
-                    <h3 class="text-sm sm:text-base font-semibold text-slate-900 dark:text-white group-hover:text-brand-500 transition-colors">Southside Harbor Area</h3>
-                    <p class="text-[10px] font-semibold text-slate-400 dark:text-slate-500 uppercase tracking-wider">Primary Base</p>
+            <div class="area-card group relative rounded-2xl bg-white dark:bg-slate-900 border border-slate-200/80 dark:border-slate-800/80 p-5 shadow-sm hover:shadow-md hover:border-brand-500/30 dark:hover:border-brand-500/30 transition-all duration-300 flex items-center justify-between gap-3" data-name="southside harbor area" data-type="primary base">
+                <div class="space-y-1 min-w-0">
+                    <h3 class="text-sm font-semibold text-slate-900 dark:text-white group-hover:text-brand-500 transition-colors truncate" title="Southside Harbor Area">Southside Harbor Area</h3>
+                    <p class="text-[10px] font-semibold text-slate-400 dark:text-slate-500 uppercase tracking-wider block">Primary Base</p>
                 </div>
                 <div class="w-8 h-8 rounded-lg bg-brand-500/5 text-brand-500 dark:bg-brand-500/10 flex items-center justify-center text-xs shrink-0 group-hover:bg-brand-500 group-hover:text-white transition-colors duration-300">
                     <i class="fa-solid fa-truck-fast"></i>
@@ -710,10 +722,10 @@ if (mobileDashToggle && mobileDashLinks) {
             </div>
 
             <!-- Zone item 6 -->
-            <div class="area-card group relative rounded-2xl bg-white dark:bg-slate-900 border border-slate-200/80 dark:border-slate-800/80 p-5 shadow-sm hover:shadow-md hover:border-brand-500/30 dark:hover:border-brand-500/30 transition-all duration-300 flex items-center justify-between" data-name="midtown business center" data-type="primary base">
-                <div class="space-y-1">
-                    <h3 class="text-sm sm:text-base font-semibold text-slate-900 dark:text-white group-hover:text-brand-500 transition-colors">Midtown Business Center</h3>
-                    <p class="text-[10px] font-semibold text-slate-400 dark:text-slate-500 uppercase tracking-wider">Primary Base</p>
+            <div class="area-card group relative rounded-2xl bg-white dark:bg-slate-900 border border-slate-200/80 dark:border-slate-800/80 p-5 shadow-sm hover:shadow-md hover:border-brand-500/30 dark:hover:border-brand-500/30 transition-all duration-300 flex items-center justify-between gap-3" data-name="midtown business center" data-type="primary base">
+                <div class="space-y-1 min-w-0">
+                    <h3 class="text-sm font-semibold text-slate-900 dark:text-white group-hover:text-brand-500 transition-colors truncate" title="Midtown Business Center">Midtown Business Center</h3>
+                    <p class="text-[10px] font-semibold text-slate-400 dark:text-slate-500 uppercase tracking-wider block">Primary Base</p>
                 </div>
                 <div class="w-8 h-8 rounded-lg bg-brand-500/5 text-brand-500 dark:bg-brand-500/10 flex items-center justify-center text-xs shrink-0 group-hover:bg-brand-500 group-hover:text-white transition-colors duration-300">
                     <i class="fa-solid fa-truck-fast"></i>
@@ -721,10 +733,10 @@ if (mobileDashToggle && mobileDashLinks) {
             </div>
 
             <!-- Zone item 7 -->
-            <div class="area-card group relative rounded-2xl bg-white dark:bg-slate-900 border border-slate-200/80 dark:border-slate-800/80 p-5 shadow-sm hover:shadow-md hover:border-brand-500/30 dark:hover:border-brand-500/30 transition-all duration-300 flex items-center justify-between" data-name="tech valley corridor" data-type="extended coverage">
-                <div class="space-y-1">
-                    <h3 class="text-sm sm:text-base font-semibold text-slate-900 dark:text-white group-hover:text-brand-500 transition-colors">Tech Valley Corridor</h3>
-                    <p class="text-[10px] font-semibold text-slate-400 dark:text-slate-500 uppercase tracking-wider">Extended Coverage</p>
+            <div class="area-card group relative rounded-2xl bg-white dark:bg-slate-900 border border-slate-200/80 dark:border-slate-800/80 p-5 shadow-sm hover:shadow-md hover:border-brand-500/30 dark:hover:border-brand-500/30 transition-all duration-300 flex items-center justify-between gap-3" data-name="tech valley corridor" data-type="extended coverage">
+                <div class="space-y-1 min-w-0">
+                    <h3 class="text-sm font-semibold text-slate-900 dark:text-white group-hover:text-brand-500 transition-colors truncate" title="Tech Valley Corridor">Tech Valley Corridor</h3>
+                    <p class="text-[10px] font-semibold text-slate-400 dark:text-slate-500 uppercase tracking-wider block">Extended Coverage</p>
                 </div>
                 <div class="w-8 h-8 rounded-lg bg-brand-500/5 text-brand-500 dark:bg-brand-500/10 flex items-center justify-center text-xs shrink-0 group-hover:bg-brand-500 group-hover:text-white transition-colors duration-300">
                     <i class="fa-solid fa-truck-fast"></i>
@@ -732,10 +744,10 @@ if (mobileDashToggle && mobileDashLinks) {
             </div>
 
             <!-- Zone item 8 -->
-            <div class="area-card group relative rounded-2xl bg-white dark:bg-slate-900 border border-slate-200/80 dark:border-slate-800/80 p-5 shadow-sm hover:shadow-md hover:border-brand-500/30 dark:hover:border-brand-500/30 transition-all duration-300 flex items-center justify-between" data-name="airport logistics loop" data-type="extended coverage">
-                <div class="space-y-1">
-                    <h3 class="text-sm sm:text-base font-semibold text-slate-900 dark:text-white group-hover:text-brand-500 transition-colors">Airport Logistics Loop</h3>
-                    <p class="text-[10px] font-semibold text-slate-400 dark:text-slate-500 uppercase tracking-wider">Extended Coverage</p>
+            <div class="area-card group relative rounded-2xl bg-white dark:bg-slate-900 border border-slate-200/80 dark:border-slate-800/80 p-5 shadow-sm hover:shadow-md hover:border-brand-500/30 dark:hover:border-brand-500/30 transition-all duration-300 flex items-center justify-between gap-3" data-name="airport logistics loop" data-type="extended coverage">
+                <div class="space-y-1 min-w-0">
+                    <h3 class="text-sm font-semibold text-slate-900 dark:text-white group-hover:text-brand-500 transition-colors truncate" title="Airport Logistics Loop">Airport Logistics Loop</h3>
+                    <p class="text-[10px] font-semibold text-slate-400 dark:text-slate-500 uppercase tracking-wider block">Extended Coverage</p>
                 </div>
                 <div class="w-8 h-8 rounded-lg bg-brand-500/5 text-brand-500 dark:bg-brand-500/10 flex items-center justify-center text-xs shrink-0 group-hover:bg-brand-500 group-hover:text-white transition-colors duration-300">
                     <i class="fa-solid fa-truck-fast"></i>
