@@ -41,16 +41,18 @@
 </head>
 <body class="bg-slate-50 text-slate-900 dark:bg-slate-900 dark:text-slate-100 transition-colors duration-300">
 
-<!-- NAVIGATION BAR -->
 <nav class="sticky top-0 z-50 bg-white/90 dark:bg-slate-900/90 backdrop-blur-md border-b border-slate-200 dark:border-slate-800 transition-colors duration-300">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex items-center justify-between h-20">
             
             <!-- Logo -->
-            <div class="flex-shrink-0 flex items-center gap-2">
+             <a href="index.html">
+                 <div class="flex-shrink-0 flex items-center gap-2">
                 <i class="fa-solid fa-car-burst text-brand-500 text-2xl xl:text-3xl"></i>
                 <span class="text-lg xl:text-xl font-bold tracking-tight text-slate-900 dark:text-white">Brake<span class="text-brand-500">Doc</span></span>
             </div>
+             </a>
+           
 
             <!-- Desktop & Tablet 1024px Navigation Links -->
             <!-- Changed 'lg:flex' to 'lg:flex space-x-4 xl:space-x-6' to prevent layout break at 1024px -->
@@ -77,14 +79,15 @@
 
             <!-- Utility Controls & CTAs (Responsive at 1024px) -->
             <div class="hidden lg:flex items-center space-x-3 xl:space-x-4 rtl:space-x-reverse">
-                <!-- LTR/RTL Toggle -->
-                <button id="rtl-toggle" class="p-2 rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:text-brand-500 transition-all text-xs font-semibold" title="Toggle Layout Direction">
-                    LTR
-                </button>
-                <!-- Light/Dark Toggle -->
-                <button id="theme-toggle" class="p-2 rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:text-brand-500 transition-all" title="Toggle Theme">
-                    <i id="theme-icon" class="fa-solid fa-moon"></i>
-                </button>
+              <!-- LTR/RTL Layout Flow Toggle -->
+<button id="rtl-toggle" class="w-10 h-10 inline-flex items-center justify-center rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:text-brand-500 hover:bg-slate-200/50 dark:hover:bg-slate-700/50 transition-all text-xs font-bold shrink-0" title="Toggle Layout Direction">
+    LTR
+</button>
+
+<!-- Light/Dark Mode Theme Toggle -->
+<button id="theme-toggle" class="w-10 h-10 inline-flex items-center justify-center rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:text-brand-500 hover:bg-slate-200/50 dark:hover:bg-slate-700/50 transition-all shrink-0" title="Toggle Theme">
+    <i id="theme-icon" class="fa-solid fa-moon text-sm"></i>
+</button>
                 
                 <!-- Login CTA (Styled like Book Now CTA) -->
                 <a href="login.html" class="bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-800 dark:text-slate-200 font-medium text-xs xl:text-sm px-4 xl:px-5 py-2.5 rounded-lg transition-all border border-slate-200 dark:border-slate-700">Login</a>
@@ -95,7 +98,7 @@
 
             <!-- Mobile & Tablet Menu Button (Visible under 1024px) -->
             <div class="flex items-center lg:hidden gap-2.5">
-                
+              
                 
                 <button id="mobile-menu-btn" class="inline-flex items-center justify-center p-2 rounded-md text-slate-600 dark:text-slate-300 hover:text-brand-500 hover:bg-slate-100 dark:hover:bg-slate-800 focus:outline-none">
                     <i id="menu-icon" class="fa-solid fa-bars text-xl"></i>
@@ -135,7 +138,7 @@
             <button id="rtl-toggle-mobile" class="px-3 py-1.5 rounded-md bg-slate-100 dark:bg-slate-800 text-xs font-bold text-slate-700 dark:text-slate-300">
                 LTR Mode
             </button>
-            <button id="theme-toggle-mobile" class="p-2 rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 text-sm">
+              <button id="theme-toggle-mobile" class="p-2 rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 text-sm">
                     <i id="theme-icon-mobile" class="fa-solid fa-moon"></i>
                 </button>
         </div>
@@ -337,7 +340,7 @@ if (mobileDashToggle && mobileDashLinks) {
     <!-- MAP ZONE SECTION -->
     <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-16 sm:pb-24 w-full">
         <div class="space-y-4 mb-6 text-center lg:text-left rtl:lg:text-right">
-            <h2 class="text-xl sm:text-2xl font-semibold tracking-tight text-slate-900 dark:text-white">Our Service Dispatch Zone</h2>
+            <h2 class="text-xl sm:text-2xl text-center font-semibold tracking-tight text-slate-900 dark:text-white">Our Service Dispatch Zone</h2>
 <p class="text-sm font-normal text-center text-slate-500 dark:text-slate-400 max-w-xl mx-auto">
     We bring our completely equipped mobile workshop vehicle vans out to a 30-mile coverage zone surrounding our primary city hub center.
 </p>        </div>

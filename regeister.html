@@ -49,14 +49,15 @@
 
         <!-- Persistent Layout Control Toggle Buttons -->
         <div class="flex items-center space-x-2 sm:space-x-3 rtl:space-x-reverse">
-            <!-- LTR/RTL Orientation Layout Toggle Button -->
-            <button id="rtl-toggle" class="p-2 text-xs font-semibold rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-slate-600 dark:text-slate-400 hover:text-brand-500 dark:hover:text-brand-500 shadow-sm transition-all focus:outline-none" title="Toggle System Directionality">
-                LTR
-            </button>
-            <!-- Light/Dark Ambient Theme Toggle Button -->
-            <button id="theme-toggle" class="p-2 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-slate-600 dark:text-slate-400 hover:text-brand-500 dark:hover:text-brand-500 shadow-sm transition-all focus:outline-none" title="Toggle UI Theme Mode">
-                <i id="theme-icon" class="fa-solid fa-moon"></i>
-            </button>
+                         <!-- LTR/RTL Layout Flow Toggle -->
+<button id="rtl-toggle" class="w-10 h-10 inline-flex items-center justify-center rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:text-brand-500 hover:bg-slate-200/50 dark:hover:bg-slate-700/50 transition-all text-xs font-bold shrink-0" title="Toggle Layout Direction">
+    LTR
+</button>
+
+<!-- Light/Dark Mode Theme Toggle -->
+<button id="theme-toggle" class="w-10 h-10 inline-flex items-center justify-center rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:text-brand-500 hover:bg-slate-200/50 dark:hover:bg-slate-700/50 transition-all shrink-0" title="Toggle Theme">
+    <i id="theme-icon" class="fa-solid fa-moon text-sm"></i>
+</button>
         </div>
     </header>
 
