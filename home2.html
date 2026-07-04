@@ -1142,109 +1142,126 @@ if (mobileDashToggle && mobileDashLinks) {
     }
 </script>
 <!-- TESTIMONIALS SECTION (Modern Clean Masonry Grid with Interactive Glow Cards) -->
-<section id="testimonials-section" class="py-16 sm:py-24 bg-slate-50 dark:bg-slate-950 transition-colors duration-300 overflow-hidden">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<section id="testimonials-section" class="py-16 sm:py-24 bg-slate-50 dark:bg-slate-950 transition-colors duration-300 overflow-hidden relative">
+    
+    <!-- Ambient subtle focus lens flare backdrop -->
+    <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-brand-500/[0.02] dark:bg-brand-500/[0.04] rounded-full blur-3xl pointer-events-none"></div>
+
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full">
         
-        <!-- SECTION TITLE & HEADER -->
-        <div class="text-center max-w-3xl mx-auto space-y-4 mb-12 sm:mb-20">
-            <span class="text-xs font-semibold uppercase tracking-widest text-brand-500 bg-brand-500/10 dark:bg-brand-500/15 px-3 py-1.5 rounded-full inline-block">
-                Client Reviews
-            </span>
-            <h2 class="text-2xl sm:text-3xl md:text-4xl font-semibold tracking-tight text-slate-900 dark:text-white leading-tight">
-                Trusted by Thousands of Drivers
-            </h2>
-            <div class="h-1 w-12 bg-brand-500 rounded mx-auto"></div>
-        </div>
-
-        <!-- TESTIMONIAL CARDS MATRIX GRID -->
-        <!-- Responsive mapping: 1 col on 360px/mobile, 2 cols on tablet, 3 cols from 1024px desktop up -->
-      <!-- RE-ENGINEERED TESTIMONIAL GRID FRAMEWORK -->
-<!-- Breakpoints: 
-     - Mobile (360px): 1 single vertical column 
-     - Tablet (768px / md:): 2 columns (Cards 1 & 2 share the first row, Card 3 sits full width on row 2)
-     - Desktop (1024px / lg:): Resets cleanly to 3 columns on a single row line -->
-<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 items-stretch">
+        <!-- TOP CHANNEL BANNER: CONVERSION RATINGS HEADER -->
+        <!-- Responsive Layout: Stacks on mobile, aligns horizontally side-by-side on desktop viewports -->
+        <div class="flex flex-col md:flex-row items-center justify-between gap-6 mb-16 sm:mb-20 text-center md:text-left ltr:md:text-left rtl:md:text-right border-b border-slate-200/50 dark:border-slate-800/40 pb-8">
+            <div class="space-y-3 max-w-2xl">
+                <span class="text-xs font-semibold uppercase tracking-widest text-brand-600 bg-brand-500/10 dark:text-brand-400 dark:bg-brand-500/15 px-3.5 py-1.5 rounded-full inline-block border border-brand-500/10 shadow-sm select-none">
+                    Client Reviews
+                </span>
+                <h2 class="text-2xl sm:text-3xl lg:text-4xl font-extrabold tracking-tight text-slate-950 dark:text-white leading-tight">
+                    Trusted by Thousands of Drivers
+                </h2>
+            </div>
             
-    <!-- TESTIMONIAL CARD 1: At-Home Convenience -->
-    <div class="group relative p-6 sm:p-8 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200/60 dark:border-slate-800/80 shadow-sm hover:shadow-xl hover:border-brand-500/30 dark:hover:border-brand-500/30 transition-all duration-300 cursor-pointer flex flex-col justify-between lg:col-span-1">
-        <div class="space-y-4">
-            <!-- Rating Stars (Single focus brand accent color) -->
-            <div class="flex items-center space-x-1 ltr:space-x-1 rtl:space-x-reverse text-brand-500">
-                <i class="fa-solid fa-star text-xs"></i>
-                <i class="fa-solid fa-star text-xs"></i>
-                <i class="fa-solid fa-star text-xs"></i>
-                <i class="fa-solid fa-star text-xs"></i>
-                <i class="fa-solid fa-star text-xs"></i>
-            </div>
-            <!-- Review text content -->
-            <p class="text-sm font-normal text-slate-600 dark:text-slate-400 leading-relaxed italic">
-                "Unbelievable convenience! The technician changed my front brake pads and rotors right in my driveway while I was working inside. No towing costs, no waiting rooms, and clean upfront pricing."
-            </p>
-        </div>
-        <!-- User Profile Block -->
-        <div class="flex items-center gap-3 pt-6 mt-6 border-t border-slate-100 dark:border-slate-800">
-            <div class="w-10 h-10 rounded-full overflow-hidden bg-slate-100 dark:bg-slate-800 shrink-0 border border-slate-200 dark:border-slate-700 transition-transform duration-300 group-hover:scale-105">
-                <img src="assets/gt3" alt="Sarah Jenkins" class="w-full h-full object-cover" />
-            </div>
-            <div>
-                <h3 class="text-sm font-semibold text-slate-900 dark:text-white transition-colors group-hover:text-brand-500">Sarah Jenkins</h3>
-                <p class="text-[11px] font-normal text-slate-400 dark:text-slate-500">Verified SUV Owner</p>
+            <!-- Modern Consolidated Total Rating Chassis Box (Relocated to Top Banner) -->
+            <div class="p-4 sm:p-5 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200/80 dark:border-slate-800/80 shadow-sm shrink-0 w-full sm:w-auto max-w-sm">
+                <div class="flex items-center justify-center gap-4">
+                    <div class="text-3xl font-black text-slate-950 dark:text-white tracking-tight">4.9</div>
+                    <div class="space-y-0.5 text-left ltr:text-left rtl:text-right">
+                        <div class="flex items-center gap-0.5 text-amber-500 text-xs">
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                        </div>
+                        <p class="text-[10px] font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wide">Verified Platform Average</p>
+                    </div>
+                </div>
             </div>
         </div>
-    </div>
 
-    <!-- TESTIMONIAL CARD 2: Emergency Response Office Fix -->
-    <div class="group relative p-6 sm:p-8 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200/60 dark:border-slate-800/80 shadow-sm hover:shadow-xl hover:border-brand-500/30 dark:hover:border-brand-500/30 transition-all duration-300 cursor-pointer flex flex-col justify-between lg:col-span-1">
-        <div class="space-y-4">
-            <div class="flex items-center space-x-1 ltr:space-x-1 rtl:space-x-reverse text-brand-500">
-                <i class="fa-solid fa-star text-xs"></i>
-                <i class="fa-solid fa-star text-xs"></i>
-                <i class="fa-solid fa-star text-xs"></i>
-                <i class="fa-solid fa-star text-xs"></i>
-                <i class="fa-solid fa-star text-xs"></i>
+        <!-- UNIFORM ROW STACK MATRIX GRID -->
+        <!-- Responsive Mapping: 
+             - Mobile (<768px): 1 single column alignment track safely optimized for 360px viewports
+             - Tablet (>=768px / md:): Resizes to 2 balanced columns 
+             - Desktop (>=1024px / lg:): Snaps into a perfectly unified 3-card horizontal row layout -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 items-stretch w-full">
+            
+            <!-- REVIEW CARD 1: At-Home Convenience (Sarah Jenkins) -->
+            <div class="group relative p-6 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200/70 dark:border-slate-800/80 shadow-sm hover:shadow-xl hover:border-brand-500/30 dark:hover:border-brand-500/30 transition-all duration-300 flex flex-col justify-between overflow-hidden cursor-default">
+                <!-- Structural Quote Vector Stamp Accent -->
+                <i class="fa-solid fa-quote-right absolute right-5 top-5 text-slate-100 dark:text-slate-800/40 text-4xl pointer-events-none transition-colors group-hover:text-brand-500/5"></i>
+                
+                <div class="space-y-4 relative z-10">
+                    <div class="flex items-center gap-0.5 text-amber-500 text-[10px]">
+                        <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                    </div>
+                    <!-- Height-normalized paragraph frame to keep cards identical across row viewports -->
+                    <p class="text-xs sm:text-sm font-medium text-slate-600 dark:text-slate-400 leading-relaxed italic min-h-[96px] sm:min-h-[84px] lg:min-h-[110px] flex items-start">
+                        "Unbelievable convenience! The technician changed my front brake pads and rotors right in my driveway while I was working inside. No towing costs, no waiting rooms, and clean upfront pricing."
+                    </p>
+                </div>
+                
+                <div class="flex items-center gap-3 pt-5 mt-5 border-t border-slate-100 dark:border-slate-800 relative z-10">
+                    <div class="w-9 h-9 rounded-full overflow-hidden bg-slate-100 dark:bg-slate-800 shrink-0 border border-slate-200 dark:border-slate-700 transition-transform duration-300 group-hover:scale-105">
+                        <img src="assets/gt3" alt="Sarah Jenkins" class="w-full h-full object-cover" />
+                    </div>
+                    <div class="min-w-0">
+                        <h4 class="text-xs sm:text-sm font-bold text-slate-955 dark:text-white transition-colors duration-200 group-hover:text-brand-500 truncate">Sarah Jenkins</h4>
+                        <p class="text-[10px] font-semibold text-slate-400 dark:text-slate-500 uppercase tracking-wider block truncate">Verified SUV Owner</p>
+                    </div>
+                </div>
             </div>
-            <p class="text-sm font-normal text-slate-600 dark:text-slate-400 leading-relaxed italic">
-                "Noticed an awful grinding sound on my drive to the office. Booked an emergency inspection online, and a certified specialist arrived by noon. Fixed the problem completely in the company."
-            </p>
-        </div>
-        <div class="flex items-center gap-3 pt-6 mt-6 border-t border-slate-100 dark:border-slate-800">
-            <div class="w-10 h-10 rounded-full overflow-hidden bg-slate-100 dark:bg-slate-800 shrink-0 border border-slate-200 dark:border-slate-700 transition-transform duration-300 group-hover:scale-105">
-                <img src="assets/bt2" alt="Marcus Vance" class="w-full h-full object-cover" />
-            </div>
-            <div>
-                <h3 class="text-sm font-semibold text-slate-900 dark:text-white transition-colors group-hover:text-brand-500">Marcus Vance</h3>
-                <p class="text-[11px] font-normal text-slate-400 dark:text-slate-500">Sedan Commuter</p>
-            </div>
-        </div>
-    </div>
 
-    <!-- TESTIMONIAL CARD 3: Fleet Management Review -->
-    <!-- TARGETED LAYOUT TWEEK: md:col-span-2 forces it to occupy the full row width at 768px, while lg:col-span-1 resets it on desktop -->
-    <div class="group relative p-6 sm:p-8 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200/60 dark:border-slate-800/80 shadow-sm hover:shadow-xl hover:border-brand-500/30 dark:hover:border-brand-500/30 transition-all duration-300 cursor-pointer flex flex-col justify-between md:col-span-2 lg:col-span-1">
-        <div class="space-y-4">
-            <div class="flex items-center space-x-1 ltr:space-x-1 rtl:space-x-reverse text-brand-500">
-                <i class="fa-solid fa-star text-xs"></i>
-                <i class="fa-solid fa-star text-xs"></i>
-                <i class="fa-solid fa-star text-xs"></i>
-                <i class="fa-solid fa-star text-xs"></i>
-                <i class="fa-solid fa-star text-xs"></i>
+            <!-- REVIEW CARD 2: Emergency Response Office Fix (Marcus Vance) -->
+            <div class="group relative p-6 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200/70 dark:border-slate-800/80 shadow-sm hover:shadow-xl hover:border-brand-500/30 dark:hover:border-brand-500/30 transition-all duration-300 flex flex-col justify-between overflow-hidden cursor-default">
+                <i class="fa-solid fa-quote-right absolute right-5 top-5 text-slate-100 dark:text-slate-800/40 text-4xl pointer-events-none transition-colors group-hover:text-brand-500/5"></i>
+                
+                <div class="space-y-4 relative z-10">
+                    <div class="flex items-center gap-0.5 text-amber-500 text-[10px]">
+                        <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                    </div>
+                    <p class="text-xs sm:text-sm font-medium text-slate-600 dark:text-slate-400 leading-relaxed italic min-h-[96px] sm:min-h-[84px] lg:min-h-[110px] flex items-start">
+                        "Noticed an awful grinding sound on my drive to the office. Booked an emergency inspection online, and a certified specialist arrived by noon. Fixed the problem completely in the corporate lot while I attended my meetings."
+                    </p>
+                </div>
+                
+                <div class="flex items-center gap-3 pt-5 mt-5 border-t border-slate-100 dark:border-slate-800 relative z-10">
+                    <div class="w-9 h-9 rounded-full overflow-hidden bg-slate-100 dark:bg-slate-800 shrink-0 border border-slate-200 dark:border-slate-700 transition-transform duration-300 group-hover:scale-105">
+                        <img src="assets/bt2" alt="Marcus Vance" class="w-full h-full object-cover" />
+                    </div>
+                    <div class="min-w-0">
+                        <h4 class="text-xs sm:text-sm font-bold text-slate-955 dark:text-white transition-colors duration-200 group-hover:text-brand-500 truncate">Marcus Vance</h4>
+                        <p class="text-[10px] font-semibold text-slate-400 dark:text-slate-500 uppercase tracking-wider block truncate">Sedan Commuter</p>
+                    </div>
+                </div>
             </div>
-            <p class="text-sm font-normal text-slate-600 dark:text-slate-400 leading-relaxed italic">
-                "We use their Commercial Fleet plan to manage routine brake safety checks for all our local delivery vans. The diagnostics are transparent, parts are premium OEM quality, and the response."
-            </p>
-        </div>
-        <div class="flex items-center gap-3 pt-6 mt-6 border-t border-slate-100 dark:border-slate-800">
-            <div class="w-10 h-10 rounded-full overflow-hidden bg-slate-100 dark:bg-slate-800 shrink-0 border border-slate-200 dark:border-slate-700 transition-transform duration-300 group-hover:scale-105">
-                <img src="assets/b" alt="David Thorne" class="w-full h-full object-cover" />
-            </div>
-            <div>
-                <h3 class="text-sm font-semibold text-slate-900 dark:text-white transition-colors group-hover:text-brand-500">David Thorne</h3>
-                <p class="text-[11px] font-normal text-slate-400 dark:text-slate-500">Logistics Director</p>
-            </div>
-        </div>
-    </div>
 
-</div>
+            <!-- REVIEW CARD 3: Fleet Management Review (David Thorne) -->
+            <!-- Layout adaptation: Extends across 2 columns on tablet viewports to optimize layout symmetry before resetting on desktop row lines -->
+            <div class="group relative p-6 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200/70 dark:border-slate-800/80 shadow-sm hover:shadow-xl hover:border-brand-500/30 dark:hover:border-brand-500/30 transition-all duration-300 flex flex-col justify-between overflow-hidden cursor-default md:col-span-2 lg:col-span-1">
+                <i class="fa-solid fa-quote-right absolute right-5 top-5 text-slate-100 dark:text-slate-800/40 text-4xl pointer-events-none transition-colors group-hover:text-brand-500/5"></i>
+                
+                <div class="space-y-4 relative z-10">
+                    <div class="flex items-center gap-0.5 text-amber-500 text-[10px]">
+                        <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                    </div>
+                    <p class="text-xs sm:text-sm font-medium text-slate-600 dark:text-slate-400 leading-relaxed italic min-h-[96px] sm:min-h-[84px] lg:min-h-[110px] flex items-start">
+                        "We use their Commercial Fleet plan to manage routine brake safety checks for all our local delivery vans. The diagnostics are transparent, parts are premium OEM quality, and the response time is incredible."
+                    </p>
+                </div>
+                
+                <div class="flex items-center gap-3 pt-5 mt-5 border-t border-slate-100 dark:border-slate-800 relative z-10">
+                    <div class="w-9 h-9 rounded-full overflow-hidden bg-slate-100 dark:bg-slate-800 shrink-0 border border-slate-200 dark:border-slate-700 transition-transform duration-300 group-hover:scale-105">
+                        <img src="assets/bt3" alt="David Thorne" class="w-full h-full object-cover" />
+                    </div>
+                    <div class="min-w-0">
+                        <h4 class="text-xs sm:text-sm font-bold text-slate-955 dark:text-white transition-colors duration-200 group-hover:text-brand-500 truncate">David Thorne</h4>
+                        <p class="text-[10px] font-semibold text-slate-400 dark:text-slate-500 uppercase tracking-wider block truncate">Logistics Director</p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
     </div>
 </section>
 <!-- FINAL BOOKING CALL TO ACTION (Contained Light-Theme Asymmetric Conversion Block) -->

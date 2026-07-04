@@ -881,121 +881,94 @@ if (mobileDashToggle && mobileDashLinks) {
 <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
 <!-- TESTIMONIALS SECTION (Modern Clean Masonry Grid with Interactive Glow Cards) -->
 <!-- RE-ENGINEERED TOP-HEADER HORIZONTAL TESTIMONIALS MODULE -->
-<section id="testimonials-section" class="py-16 sm:py-24 bg-slate-50 dark:bg-slate-950 transition-colors duration-300 overflow-hidden relative">
-    
-    <!-- Ambient subtle focus lens flare backdrop -->
-    <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-brand-500/[0.02] dark:bg-brand-500/[0.04] rounded-full blur-3xl pointer-events-none"></div>
-
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full">
+<section class="bg-slate-50 dark:bg-slate-900 py-16 px-4 sm:px-6 lg:px-8 transition-colors duration-300">
+    <div class="max-w-7xl mx-auto">
         
-        <!-- TOP CHANNEL BANNER: CONVERSION RATINGS HEADER -->
-        <!-- Responsive Layout: Stacks on mobile, aligns horizontally side-by-side on desktop viewports -->
-        <div class="flex flex-col md:flex-row items-center justify-between gap-6 mb-16 sm:mb-20 text-center md:text-left ltr:md:text-left rtl:md:text-right border-b border-slate-200/50 dark:border-slate-800/40 pb-8">
-            <div class="space-y-3 max-w-2xl">
-                <span class="text-xs font-semibold uppercase tracking-widest text-brand-600 bg-brand-500/10 dark:text-brand-400 dark:bg-brand-500/15 px-3.5 py-1.5 rounded-full inline-block border border-brand-500/10 shadow-sm select-none">
-                    Client Reviews
-                </span>
-                <h2 class="text-2xl sm:text-3xl lg:text-4xl font-extrabold tracking-tight text-slate-950 dark:text-white leading-tight">
-                    Trusted by Thousands of Drivers
-                </h2>
-            </div>
-            
-            <!-- Modern Consolidated Total Rating Chassis Box (Relocated to Top Banner) -->
-            <div class="p-4 sm:p-5 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200/80 dark:border-slate-800/80 shadow-sm shrink-0 w-full sm:w-auto max-w-sm">
-                <div class="flex items-center justify-center gap-4">
-                    <div class="text-3xl font-black text-slate-950 dark:text-white tracking-tight">4.9</div>
-                    <div class="space-y-0.5 text-left ltr:text-left rtl:text-right">
-                        <div class="flex items-center gap-0.5 text-amber-500 text-xs">
-                            <i class="fa-solid fa-star"></i>
-                            <i class="fa-solid fa-star"></i>
-                            <i class="fa-solid fa-star"></i>
-                            <i class="fa-solid fa-star"></i>
-                            <i class="fa-solid fa-star"></i>
-                        </div>
-                        <p class="text-[10px] font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wide">Verified Platform Average</p>
-                    </div>
-                </div>
-            </div>
+        <!-- Section Header -->
+        <div class="text-center max-w-3xl mx-auto mb-16">
+            <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900 dark:text-white tracking-tight mb-4">
+                Meet Our Leadership Team
+            </h2>
+            <p class="text-lg text-slate-600 dark:text-slate-400">
+                The strategic minds driving innovation, delivering exceptional UI/UX solutions, and steering our technical excellence forward.
+            </p>
         </div>
 
-        <!-- UNIFORM ROW STACK MATRIX GRID -->
-        <!-- Responsive Mapping: 
-             - Mobile (<768px): 1 single column alignment track safely optimized for 360px viewports
-             - Tablet (>=768px / md:): Resizes to 2 balanced columns 
-             - Desktop (>=1024px / lg:): Snaps into a perfectly unified 3-card horizontal row layout -->
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 items-stretch w-full">
+        <!-- Team Grid Layout -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
             
-            <!-- REVIEW CARD 1: At-Home Convenience (Sarah Jenkins) -->
-            <div class="group relative p-6 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200/70 dark:border-slate-800/80 shadow-sm hover:shadow-xl hover:border-brand-500/30 dark:hover:border-brand-500/30 transition-all duration-300 flex flex-col justify-between overflow-hidden cursor-default">
-                <!-- Structural Quote Vector Stamp Accent -->
-                <i class="fa-solid fa-quote-right absolute right-5 top-5 text-slate-100 dark:text-slate-800/40 text-4xl pointer-events-none transition-colors group-hover:text-brand-500/5"></i>
-                
-                <div class="space-y-4 relative z-10">
-                    <div class="flex items-center gap-0.5 text-amber-500 text-[10px]">
-                        <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
-                    </div>
-                    <!-- Height-normalized paragraph frame to keep cards identical across row viewports -->
-                    <p class="text-xs sm:text-sm font-medium text-slate-600 dark:text-slate-400 leading-relaxed italic min-h-[96px] sm:min-h-[84px] lg:min-h-[110px] flex items-start">
-                        "Unbelievable convenience! The technician changed my front brake pads and rotors right in my driveway while I was working inside. No towing costs, no waiting rooms, and clean upfront pricing."
-                    </p>
+            <!-- Card 1: CEO -->
+            <div class="group bg-white dark:bg-slate-800 rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 border border-slate-100 dark:border-slate-700">
+                <div class="relative overflow-hidden aspect-[4/5]">
+                    <img src="assets/team1" 
+                         alt="Srinivas K A" 
+                         class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                    <div class="absolute inset-0 bg-gradient-to-t from-slate-900/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                 </div>
-                
-                <div class="flex items-center gap-3 pt-5 mt-5 border-t border-slate-100 dark:border-slate-800 relative z-10">
-                    <div class="w-9 h-9 rounded-full overflow-hidden bg-slate-100 dark:bg-slate-800 shrink-0 border border-slate-200 dark:border-slate-700 transition-transform duration-300 group-hover:scale-105">
-                        <img src="assets/gt3" alt="Sarah Jenkins" class="w-full h-full object-cover" />
-                    </div>
-                    <div class="min-w-0">
-                        <h4 class="text-xs sm:text-sm font-bold text-slate-955 dark:text-white transition-colors duration-200 group-hover:text-brand-500 truncate">Sarah Jenkins</h4>
-                        <p class="text-[10px] font-semibold text-slate-400 dark:text-slate-500 uppercase tracking-wider block truncate">Verified SUV Owner</p>
+                <div class="p-6 text-center">
+                    <h3 class="text-xl font-bold text-slate-900 dark:text-white mb-1">Sri Ram</h3>
+                    <p class="text-sm font-medium text-primary dark:text-blue-400 mb-4">CEO & Founder</p>
+                    <div class="flex justify-center space-x-4 text-slate-400 dark:text-slate-500">
+                        <a href="#" class="hover:text-slate-600 dark:hover:text-white transition-colors">
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
+                        </a>
                     </div>
                 </div>
             </div>
 
-            <!-- REVIEW CARD 2: Emergency Response Office Fix (Marcus Vance) -->
-            <div class="group relative p-6 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200/70 dark:border-slate-800/80 shadow-sm hover:shadow-xl hover:border-brand-500/30 dark:hover:border-brand-500/30 transition-all duration-300 flex flex-col justify-between overflow-hidden cursor-default">
-                <i class="fa-solid fa-quote-right absolute right-5 top-5 text-slate-100 dark:text-slate-800/40 text-4xl pointer-events-none transition-colors group-hover:text-brand-500/5"></i>
-                
-                <div class="space-y-4 relative z-10">
-                    <div class="flex items-center gap-0.5 text-amber-500 text-[10px]">
-                        <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
-                    </div>
-                    <p class="text-xs sm:text-sm font-medium text-slate-600 dark:text-slate-400 leading-relaxed italic min-h-[96px] sm:min-h-[84px] lg:min-h-[110px] flex items-start">
-                        "Noticed an awful grinding sound on my drive to the office. Booked an emergency inspection online, and a certified specialist arrived by noon. Fixed the problem completely in the corporate lot while I attended my meetings."
-                    </p>
+            <!-- Card 2: CTO -->
+            <div class="group bg-white dark:bg-slate-800 rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 border border-slate-100 dark:border-slate-700">
+                <div class="relative overflow-hidden aspect-[4/5]">
+                    <img src="assets/team2" 
+                         alt="Heamanath" 
+                         class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                    <div class="absolute inset-0 bg-gradient-to-t from-slate-900/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                 </div>
-                
-                <div class="flex items-center gap-3 pt-5 mt-5 border-t border-slate-100 dark:border-slate-800 relative z-10">
-                    <div class="w-9 h-9 rounded-full overflow-hidden bg-slate-100 dark:bg-slate-800 shrink-0 border border-slate-200 dark:border-slate-700 transition-transform duration-300 group-hover:scale-105">
-                        <img src="assets/bt2" alt="Marcus Vance" class="w-full h-full object-cover" />
-                    </div>
-                    <div class="min-w-0">
-                        <h4 class="text-xs sm:text-sm font-bold text-slate-955 dark:text-white transition-colors duration-200 group-hover:text-brand-500 truncate">Marcus Vance</h4>
-                        <p class="text-[10px] font-semibold text-slate-400 dark:text-slate-500 uppercase tracking-wider block truncate">Sedan Commuter</p>
+                <div class="p-6 text-center">
+                    <h3 class="text-xl font-bold text-slate-900 dark:text-white mb-1">Heamanath</h3>
+                    <p class="text-sm font-medium text-primary dark:text-blue-400 mb-4">Chief Technology Officer</p>
+                    <div class="flex justify-center space-x-4 text-slate-400 dark:text-slate-500">
+                        <a href="#" class="hover:text-slate-600 dark:hover:text-white transition-colors">
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
+                        </a>
                     </div>
                 </div>
             </div>
 
-            <!-- REVIEW CARD 3: Fleet Management Review (David Thorne) -->
-            <!-- Layout adaptation: Extends across 2 columns on tablet viewports to optimize layout symmetry before resetting on desktop row lines -->
-            <div class="group relative p-6 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200/70 dark:border-slate-800/80 shadow-sm hover:shadow-xl hover:border-brand-500/30 dark:hover:border-brand-500/30 transition-all duration-300 flex flex-col justify-between overflow-hidden cursor-default md:col-span-2 lg:col-span-1">
-                <i class="fa-solid fa-quote-right absolute right-5 top-5 text-slate-100 dark:text-slate-800/40 text-4xl pointer-events-none transition-colors group-hover:text-brand-500/5"></i>
-                
-                <div class="space-y-4 relative z-10">
-                    <div class="flex items-center gap-0.5 text-amber-500 text-[10px]">
-                        <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
-                    </div>
-                    <p class="text-xs sm:text-sm font-medium text-slate-600 dark:text-slate-400 leading-relaxed italic min-h-[96px] sm:min-h-[84px] lg:min-h-[110px] flex items-start">
-                        "We use their Commercial Fleet plan to manage routine brake safety checks for all our local delivery vans. The diagnostics are transparent, parts are premium OEM quality, and the response time is incredible."
-                    </p>
+            <!-- Card 3: UI/UX Designer -->
+            <div class="group bg-white dark:bg-slate-800 rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 border border-slate-100 dark:border-slate-700">
+                <div class="relative overflow-hidden aspect-[4/5]">
+                    <img src="assets/team3" 
+                         alt="Sree Sabarish A" 
+                         class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                    <div class="absolute inset-0 bg-gradient-to-t from-slate-900/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                 </div>
-                
-                <div class="flex items-center gap-3 pt-5 mt-5 border-t border-slate-100 dark:border-slate-800 relative z-10">
-                    <div class="w-9 h-9 rounded-full overflow-hidden bg-slate-100 dark:bg-slate-800 shrink-0 border border-slate-200 dark:border-slate-700 transition-transform duration-300 group-hover:scale-105">
-                        <img src="assets/bt3" alt="David Thorne" class="w-full h-full object-cover" />
+                <div class="p-6 text-center">
+                    <h3 class="text-xl font-bold text-slate-900 dark:text-white mb-1">Sree Abirami</h3>
+                    <p class="text-sm font-medium text-primary dark:text-blue-400 mb-4"> Designer</p>
+                    <div class="flex justify-center space-x-4 text-slate-400 dark:text-slate-500">
+                        <a href="#" class="hover:text-slate-600 dark:hover:text-white transition-colors">
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
+                        </a>
                     </div>
-                    <div class="min-w-0">
-                        <h4 class="text-xs sm:text-sm font-bold text-slate-955 dark:text-white transition-colors duration-200 group-hover:text-brand-500 truncate">David Thorne</h4>
-                        <p class="text-[10px] font-semibold text-slate-400 dark:text-slate-500 uppercase tracking-wider block truncate">Logistics Director</p>
+                </div>
+            </div>
+
+            <!-- Card 4: Frontend Developer -->
+            <div class="group bg-white dark:bg-slate-800 rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 border border-slate-100 dark:border-slate-700">
+                <div class="relative overflow-hidden aspect-[4/5]">
+                    <img src="assets/team4" 
+                         alt="Tejeshwar M G" 
+                         class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                    <div class="absolute inset-0 bg-gradient-to-t from-slate-900/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                </div>
+                <div class="p-6 text-center">
+                    <h3 class="text-xl font-bold text-slate-900 dark:text-white mb-1">Tejeshwari</h3>
+                    <p class="text-sm font-medium text-primary dark:text-blue-400 mb-4"> Developer</p>
+                    <div class="flex justify-center space-x-4 text-slate-400 dark:text-slate-500">
+                        <a href="#" class="hover:text-slate-600 dark:hover:text-white transition-colors">
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
+                        </a>
                     </div>
                 </div>
             </div>
