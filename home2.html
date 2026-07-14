@@ -925,50 +925,91 @@ if (mobileDashToggle && mobileDashLinks) {
 
         <!-- COMPARISON GRID TABLE -->
         <div class="overflow-x-auto rounded-2xl border border-slate-200/80 dark:border-slate-800 shadow-md">
-            <table class="w-full text-left border-collapse min-w-[700px]">
+            <table class="w-full text-left border-collapse table-fixed min-w-[320px]">
                 <thead>
                     <tr class="bg-slate-50 dark:bg-slate-950 border-b border-slate-200/80 dark:border-slate-800">
-                        <th class="p-5 text-xs font-bold text-slate-400 uppercase tracking-wider w-1/4">FEATURE</th>
-                        <th class="p-5 text-xs font-bold text-brand-500 uppercase tracking-wider w-1/4 bg-brand-500/[0.03]">BRAKEDOC MOBILE</th>
-                        <th class="p-5 text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider w-1/4">LOCAL REPAIR SHOP</th>
-                        <th class="p-5 text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider w-1/4">CAR DEALERSHIP</th>
+                        <th class="p-2 sm:p-5 text-[9px] sm:text-xs font-bold text-slate-400 uppercase tracking-wider w-[20%] sm:w-1/4">FEATURE</th>
+                        <th class="p-2 sm:p-5 text-[9px] sm:text-xs font-bold text-brand-500 uppercase tracking-wider w-[32%] sm:w-1/4 bg-brand-500/[0.03]">
+                            <span class="sm:hidden">BRAKEDOC</span><span class="hidden sm:inline">BRAKEDOC MOBILE</span>
+                        </th>
+                        <th class="p-2 sm:p-5 text-[9px] sm:text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider w-[24%] sm:w-1/4">
+                            <span class="sm:hidden">SHOP</span><span class="hidden sm:inline">LOCAL REPAIR SHOP</span>
+                        </th>
+                        <th class="p-2 sm:p-5 text-[9px] sm:text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider w-[24%] sm:w-1/4">
+                            <span class="sm:hidden">DEALER</span><span class="hidden sm:inline">CAR DEALERSHIP</span>
+                        </th>
                     </tr>
                 </thead>
-                <tbody class="divide-y divide-slate-100 dark:divide-slate-800 text-xs sm:text-sm">
+                <tbody class="divide-y divide-slate-100 dark:divide-slate-800 text-[9px] sm:text-sm">
                     <!-- Row 1: Convenience -->
                     <tr>
-                        <td class="p-5 font-semibold text-slate-900 dark:text-white">Service Location</td>
-                        <td class="p-5 text-slate-700 dark:text-slate-300 font-medium bg-brand-500/[0.03]"><i class="fa-solid fa-circle-check text-brand-500 mr-1.5"></i> Driveway / Office Lot</td>
-                        <td class="p-5 text-slate-500">Requires driving/towing there</td>
-                        <td class="p-5 text-slate-500">Must drop vehicle off</td>
+                        <td class="p-2 sm:p-5 font-semibold text-slate-900 dark:text-white">Service Location</td>
+                        <td class="p-2 sm:p-5 text-slate-700 dark:text-slate-300 font-medium bg-brand-500/[0.03]">
+                            <i class="fa-solid fa-circle-check text-brand-500 mr-0.5 sm:mr-1.5"></i>
+                            <span class="sm:hidden">Driveway/Office</span><span class="hidden sm:inline">Driveway / Office Lot</span>
+                        </td>
+                        <td class="p-2 sm:p-5 text-slate-500">
+                            <span class="sm:hidden">Drive/tow there</span><span class="hidden sm:inline">Requires driving/towing there</span>
+                        </td>
+                        <td class="p-2 sm:p-5 text-slate-500">
+                            <span class="sm:hidden">Drop-off only</span><span class="hidden sm:inline">Must drop vehicle off</span>
+                        </td>
                     </tr>
                     <!-- Row 2: Appointment Speed -->
                     <tr>
-                        <td class="p-5 font-semibold text-slate-900 dark:text-white">Scheduling Speed</td>
-                        <td class="p-5 text-slate-700 dark:text-slate-300 font-medium bg-brand-500/[0.03]"><i class="fa-solid fa-circle-check text-brand-500 mr-1.5"></i> Same-Day / Next-Day</td>
-                        <td class="p-5 text-slate-500">2 - 4 Days booking delay</td>
-                        <td class="p-5 text-slate-500">1 - 2 Weeks booking wait</td>
+                        <td class="p-2 sm:p-5 font-semibold text-slate-900 dark:text-white">Scheduling Speed</td>
+                        <td class="p-2 sm:p-5 text-slate-700 dark:text-slate-300 font-medium bg-brand-500/[0.03]">
+                            <i class="fa-solid fa-circle-check text-brand-500 mr-0.5 sm:mr-1.5"></i>
+                            <span class="sm:hidden">Same/Next-Day</span><span class="hidden sm:inline">Same-Day / Next-Day</span>
+                        </td>
+                        <td class="p-2 sm:p-5 text-slate-500">
+                            <span class="sm:hidden">2-4 Days wait</span><span class="hidden sm:inline">2 - 4 Days booking delay</span>
+                        </td>
+                        <td class="p-2 sm:p-5 text-slate-500">
+                            <span class="sm:hidden">1-2 Weeks wait</span><span class="hidden sm:inline">1 - 2 Weeks booking wait</span>
+                        </td>
                     </tr>
                     <!-- Row 3: Surcharges / Diagnosis -->
                     <tr>
-                        <td class="p-5 font-semibold text-slate-900 dark:text-white">Diagnostic Fee</td>
-                        <td class="p-5 text-slate-700 dark:text-slate-300 font-medium bg-brand-500/[0.03]"><i class="fa-solid fa-circle-check text-brand-500 mr-1.5"></i> $0.00 (Waived with repair)</td>
-                        <td class="p-5 text-slate-500">$89 - $120 standard charge</td>
-                        <td class="p-5 text-slate-500">$150+ dealership surcharge</td>
+                        <td class="p-2 sm:p-5 font-semibold text-slate-900 dark:text-white">Diagnostic Fee</td>
+                        <td class="p-2 sm:p-5 text-slate-700 dark:text-slate-300 font-medium bg-brand-500/[0.03]">
+                            <i class="fa-solid fa-circle-check text-brand-500 mr-0.5 sm:mr-1.5"></i>
+                            <span class="sm:hidden">$0 (Waived)</span><span class="hidden sm:inline">$0.00 (Waived with repair)</span>
+                        </td>
+                        <td class="p-2 sm:p-5 text-slate-500">
+                            <span class="sm:hidden">$89-$120</span><span class="hidden sm:inline">$89 - $120 standard charge</span>
+                        </td>
+                        <td class="p-2 sm:p-5 text-slate-500">
+                            <span class="sm:hidden">$150+</span><span class="hidden sm:inline">$150+ dealership surcharge</span>
+                        </td>
                     </tr>
                     <!-- Row 4: Warranty -->
                     <tr>
-                        <td class="p-5 font-semibold text-slate-900 dark:text-white">Parts &amp; Labor Warranty</td>
-                        <td class="p-5 text-slate-700 dark:text-slate-300 font-medium bg-brand-500/[0.03]"><i class="fa-solid fa-circle-check text-brand-500 mr-1.5"></i> Up to 36 Months</td>
-                        <td class="p-5 text-slate-500">Varies (usually 3 - 6 months)</td>
-                        <td class="p-5 text-slate-500">12 Months limit</td>
+                        <td class="p-2 sm:p-5 font-semibold text-slate-900 dark:text-white">Warranty</td>
+                        <td class="p-2 sm:p-5 text-slate-700 dark:text-slate-300 font-medium bg-brand-500/[0.03]">
+                            <i class="fa-solid fa-circle-check text-brand-500 mr-0.5 sm:mr-1.5"></i>
+                            <span class="sm:hidden">36 Months</span><span class="hidden sm:inline">Up to 36 Months</span>
+                        </td>
+                        <td class="p-2 sm:p-5 text-slate-500">
+                            <span class="sm:hidden">3-6 Months</span><span class="hidden sm:inline">Varies (usually 3 - 6 months)</span>
+                        </td>
+                        <td class="p-2 sm:p-5 text-slate-500">
+                            <span class="sm:hidden">12 Months</span><span class="hidden sm:inline">12 Months limit</span>
+                        </td>
                     </tr>
                     <!-- Row 5: Price Transparency -->
                     <tr>
-                        <td class="p-5 font-semibold text-slate-900 dark:text-white">Price Guarantee</td>
-                        <td class="p-5 text-slate-700 dark:text-slate-300 font-medium bg-brand-500/[0.03]"><i class="fa-solid fa-circle-check text-brand-500 mr-1.5"></i> Instantly generated flat-rate</td>
-                        <td class="p-5 text-slate-500">Estimate provided post-disassembly</td>
-                        <td class="p-5 text-slate-500">Highly variable post-facto billing</td>
+                        <td class="p-2 sm:p-5 font-semibold text-slate-900 dark:text-white">Price Guarantee</td>
+                        <td class="p-2 sm:p-5 text-slate-700 dark:text-slate-300 font-medium bg-brand-500/[0.03]">
+                            <i class="fa-solid fa-circle-check text-brand-500 mr-0.5 sm:mr-1.5"></i>
+                            <span class="sm:hidden">Instant rate</span><span class="hidden sm:inline">Instantly generated flat-rate</span>
+                        </td>
+                        <td class="p-2 sm:p-5 text-slate-500">
+                            <span class="sm:hidden">Post-assembly</span><span class="hidden sm:inline">Estimate provided post-disassembly</span>
+                        </td>
+                        <td class="p-2 sm:p-5 text-slate-500">
+                            <span class="sm:hidden">Post-billing</span><span class="hidden sm:inline">Highly variable post-facto billing</span>
+                        </td>
                     </tr>
                 </tbody>
             </table>
