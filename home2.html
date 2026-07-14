@@ -3,993 +3,1541 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" href="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' fill='none' stroke='%236366f1' viewBox='0 0 24 24'><path stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M13 10V3L4 14h7v7l9-11h-7z'/></svg>">
-    <title>TaskVibe | Premium Virtual Personal Assistant & Administrative Support</title>
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%220.9em%22 font-size=%2290%22>🚗</text></svg>">
+    <title>BrakeDoc | Mobile Brake Repair & Rotor Replacement</title>
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Alpine.js CDN for interactive state management -->
-    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
-    <!-- Google Fonts: Plus Jakarta Sans for clean, modern corporate typography (400-600 weights) -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght=400;500;600&display=swap" rel="stylesheet">
-    
+    <!-- Tailwind Configuration for Custom Fonts/Themes if needed -->
     <script>
-        // Tailwind Configuration for strict theme harmony using a unique corporate Indigo palette
         tailwind.config = {
             darkMode: 'class',
             theme: {
-                screens: {
-                    'xs': '360px',
-                    'sm': '640px',
-                    'md': '768px',
-                    'lg': '1024px',
-                    'xl': '1280px',
-                },
                 extend: {
                     fontFamily: {
-                        sans: ['Plus Jakarta Sans', 'sans-serif'],
+                        sans: ['Inter', 'system-ui', 'sans-serif'],
                     },
                     colors: {
                         brand: {
-                            50: '#f0f3ff',
-                            100: '#e1e7ff',
-                            500: '#4f46e5', /* Core Unique Accent Color */
-                            600: '#4338ca',
-                            700: '#3730a3',
-                            900: '#1e1b4b',
+                            50: '#fff1f2',
+                            100: '#ffe4e6',
+                            500: '#f43f5e', /* Primary Accent - Sleek Automotive Red */
+                            600: '#e11d48',
+                            700: '#be123c',
                         }
                     }
                 }
             }
-        };
-
-        // Strict Immediate Injected Initializer to guarantee zero flash layout transitions
-        (function() {
-            const initialTheme = localStorage.getItem('theme') || 'light';
-            if (initialTheme === 'dark') {
-                document.documentElement.classList.add('dark');
-            } else {
-                document.documentElement.classList.remove('dark');
-            }
-            const savedDir = localStorage.getItem('direction') || 'ltr';
-            document.documentElement.setAttribute('dir', savedDir);
-        })();
-
-        // Register Global Alpine Custom Theme Repaint Rules before bootstrap execution
-        document.addEventListener('alpine:init', () => {
-            Alpine.store('globalTheme', {
-                current: localStorage.getItem('theme') || 'light',
-                init() {
-                    this.updateDOM();
-                },
-                toggle() {
-                    this.current = this.current === 'dark' ? 'light' : 'dark';
-                    localStorage.setItem('theme', this.current);
-                    this.updateDOM();
-                },
-                updateDOM() {
-                    if (this.current === 'dark') {
-                        document.documentElement.classList.add('dark');
-                    } else {
-                        document.documentElement.classList.remove('dark');
-                    }
-                }
-            });
-        });
-    </script>
-
-    <style>
-        body {
-            font-family: 'Plus Jakarta Sans', sans-serif;
-            font-weight: 400; /* Maintained within 400-600 restriction */
         }
+    </script>
+    <!-- Google Fonts & FontAwesome for Icons -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        body { font-family: 'Inter', sans-serif; }
     </style>
 </head>
-<body 
-    x-data="{ 
-        isLtr: localStorage.getItem('direction') !== 'rtl',
-        mobileMenuOpen: false,
-        desktopDashOpen: false,
-        mobileDashOpen: false,
-        toggleDirection() {
-            this.isLtr = !this.isLtr;
-            const dir = this.isLtr ? 'ltr' : 'rtl';
-            document.documentElement.setAttribute('dir', dir);
-            localStorage.setItem('direction', dir);
-        }
-    }"
-    class="bg-slate-50 text-slate-800 dark:bg-slate-900 dark:text-slate-100 transition-colors duration-300 min-h-screen flex flex-col"
->
+<body class="bg-slate-50 text-slate-900 dark:bg-slate-900 dark:text-slate-100 transition-colors duration-300">
 
-    <!-- HEADER / NAVIGATION -->
-    <header class="sticky top-0 z-50 bg-white/90 dark:bg-slate-900/90 backdrop-blur-md border-b border-slate-200/80 dark:border-slate-800/80 transition-colors duration-300">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+<nav class="sticky top-0 z-50 bg-white/90 dark:bg-slate-900/90 backdrop-blur-md border-b border-slate-200 dark:border-slate-800 transition-colors duration-300">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex items-center justify-between h-20">
             
-            <!-- Unique Name Logo -->
-            <a href="index.html" class="flex items-center space-x-2 font-semibold text-xl tracking-tight text-brand-500 dark:text-brand-500">
-                <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
-                </svg>
-                <span>TaskVibe</span>
-            </a>
-
-            <!-- Desktop Navigation Menus (>= 1024px) -->
-            <nav 
-    x-data="{ currentPath: window.location.pathname.split('/').pop() || 'index.html' }" 
-    class="hidden lg:flex items-center space-x-8 font-medium text-sm text-slate-600 dark:text-slate-300"
->
-    <a href="index.html" 
-       :class="currentPath === 'index.html' ? 'text-brand-500 dark:text-brand-500 font-semibold' : 'hover:text-brand-500 transition-colors'"
-       class="transition-colors">Home</a>
-       
-    <a href="home2.html" 
-       :class="currentPath === 'home2.html' ? 'text-brand-500 dark:text-brand-500 font-semibold' : 'hover:text-brand-500 transition-colors'"
-       class="transition-colors">Home 2</a>
-       
-    <a href="aboutus.html" 
-       :class="currentPath === 'aboutus.html' ? 'text-brand-500 dark:text-brand-500 font-semibold' : 'hover:text-brand-500 transition-colors'"
-       class="transition-colors">About Us</a>
-       
-    <a href="services.html" 
-       :class="currentPath === 'services.html' ? 'text-brand-500 dark:text-brand-500 font-semibold' : 'hover:text-brand-500 transition-colors'"
-       class="transition-colors">Services</a>
-       
-    <a href="contact.html" 
-       :class="currentPath === 'contact.html' ? 'text-brand-500 dark:text-brand-500 font-semibold' : 'hover:text-brand-500 transition-colors'"
-       class="transition-colors">Contact</a>
-    
-    <!-- Dashboard Dropdown Container -->
-    <div class="relative" @click.away="desktopDashOpen = false">
-        <button @click="desktopDashOpen = !desktopDashOpen" 
-                :class="currentPath === 'user.html' ? 'text-brand-500 dark:text-brand-500 font-semibold' : 'hover:text-brand-500'"
-                class="flex items-center space-x-1 font-medium transition-colors focus:outline-none">
-            <span>Dashboard</span>
-            <svg class="w-4 h-4 transition-transform duration-200" :class="desktopDashOpen ? 'rotate-180' : ''" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
-        </button>
-        <!-- Dropdown Content -->
-        <div x-show="desktopDashOpen" 
-             x-transition:enter="transition ease-out duration-100"
-             x-transition:enter-start="transform opacity-0 scale-95"
-             x-transition:enter-end="transform opacity-100 scale-100"
-             x-transition:leave="transition ease-in duration-75"
-             x-transition:leave-start="transform opacity-100 scale-100"
-             x-transition:leave-end="transform opacity-0 scale-95"
-             class="absolute right-0 mt-2 w-48 bg-white dark:bg-slate-800 rounded-xl shadow-xl border border-slate-100 dark:border-slate-700 py-2 z-50">
-            <a href="user.html" 
-               :class="currentPath === 'user.html' ? 'bg-slate-50 dark:bg-slate-700 text-brand-500' : 'text-slate-700 dark:text-slate-200'"
-               class="block px-4 py-2.5 text-sm hover:bg-slate-50 dark:hover:bg-slate-700 font-medium transition-colors">User Profile</a>
-        </div>
-    </div>
-</nav>
-
-            <!-- Utility Functional Buttons (Desktop) -->
-            <div class="hidden lg:flex items-center space-x-4">
-    <!-- Accessibility Theme Toggle Controls -->
-    <button @click="$store.globalTheme.toggle()" class="p-2.5 text-slate-500 hover:text-brand-500 rounded-xl bg-slate-100 dark:bg-slate-800 transition-colors" title="Toggle Theme">
-        <svg x-show="$store.globalTheme.current === 'light'" class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path></svg>
-        <svg x-show="$store.globalTheme.current === 'dark'" class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 9H3m15.364-6.364l-.707.707M6.343 17.657l-.707.707M16.243 17.657l.707.707M6.343 4.343l.707-.707M12 7a5 5 0 100 10 5 5 0 000-10z"></path></svg>
-    </button>
-    
-    <button @click="toggleDirection()" class="w-10 h-10 flex items-center justify-center text-slate-500 hover:text-brand-500 rounded-xl bg-slate-100 dark:bg-slate-800 transition-colors text-xs font-semibold tracking-wider" title="Toggle Text Direction">
-        <span x-text="isLtr ? 'RTL' : 'LTR'"></span>
-    </button>
-
-    <!-- CTA Action Links: Standardized height and width -->
-    <a href="login.html" 
-       class="w-28 py-2.5 text-sm font-semibold text-center text-slate-800 dark:text-slate-200 
-              bg-slate-100 hover:bg-slate-200 
-              dark:bg-slate-800 dark:hover:bg-slate-700 
-              border border-slate-200 dark:border-slate-700 
-              rounded-xl shadow-sm transition-all transform hover:-translate-y-0.5">
-        Login
-    </a>
-    
-    <a href="booknow.html" 
-       class="w-28 py-2.5 text-sm font-semibold text-center text-white 
-              bg-brand-500 hover:bg-brand-600 
-              rounded-xl shadow-md shadow-brand-500/10 
-              transition-all transform hover:-translate-y-0.5">
-        Book Now
-    </a>
-</div>
-
-            <!-- Mobile & Tablet Menu Interactive Trigger (< 1024px) -->
-            <div class="flex items-center space-x-3 lg:hidden">
-               
-
-                <button @click="mobileMenuOpen = !mobileMenuOpen" class="p-2 rounded-lg text-slate-600 dark:text-slate-300 bg-slate-100 dark:bg-slate-800 focus:outline-none">
-                    <svg class="w-6 h-6" x-show="!mobileMenuOpen" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
-                    <svg class="w-6 h-6" x-show="mobileMenuOpen" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
-                </button>
+            <!-- Logo -->
+             <a href="index.html">
+                 <div class="flex-shrink-0 flex items-center gap-2">
+                <i class="fa-solid fa-car-burst text-brand-500 text-2xl xl:text-3xl"></i>
+                <span class="text-lg xl:text-xl font-bold tracking-tight text-slate-900 dark:text-white">Brake<span class="text-brand-500">Doc</span></span>
             </div>
-        </div>
-
-        <!-- Mobile Canvas Navigation Menu Container -->
-        <div x-show="mobileMenuOpen" 
-     x-data="{ mobilePath: window.location.pathname.split('/').pop() || 'index.html' }"
-     x-init="if(mobilePath === 'user.html') mobileDashOpen = true"
-     x-transition:enter="transition ease-out duration-200"
-     x-transition:enter-start="opacity-0 -translate-y-4"
-     x-transition:enter-end="opacity-100 translate-y-0"
-     x-transition:leave="transition ease-in duration-150"
-     x-transition:leave-start="opacity-100 translate-y-0"
-     x-transition:leave-end="opacity-0 -translate-y-4"
-     class="lg:hidden border-t border-slate-100 dark:border-slate-800 bg-white dark:bg-slate-900 px-4 pt-4 pb-6 space-y-3 shadow-inner">
-    
-    <a href="index.html" 
-       :class="mobilePath === 'index.html' ? 'bg-brand-50 dark:bg-brand-950/50 text-brand-500 font-semibold' : 'text-slate-700 dark:text-slate-200 hover:bg-slate-50 dark:hover:bg-slate-800'"
-       class="block px-3 py-2 rounded-xl text-base font-medium transition-colors">Home</a>
-       
-    <a href="home2.html" 
-       :class="mobilePath === 'home2.html' ? 'bg-brand-50 dark:bg-brand-950/50 text-brand-500 font-semibold' : 'text-slate-700 dark:text-slate-200 hover:bg-slate-50 dark:hover:bg-slate-800'"
-       class="block px-3 py-2 rounded-xl text-base font-medium transition-colors">Home 2</a>
-       
-    <a href="aboutus.html" 
-       :class="mobilePath === 'aboutus.html' ? 'bg-brand-50 dark:bg-brand-950/50 text-brand-500 font-semibold' : 'text-slate-700 dark:text-slate-200 hover:bg-slate-50 dark:hover:bg-slate-800'"
-       class="block px-3 py-2 rounded-xl text-base font-medium transition-colors">About Us</a>
-       
-    <a href="services.html" 
-       :class="mobilePath === 'services.html' ? 'bg-brand-50 dark:bg-brand-950/50 text-brand-500 font-semibold' : 'text-slate-700 dark:text-slate-200 hover:bg-slate-50 dark:hover:bg-slate-800'"
-       class="block px-3 py-2 rounded-xl text-base font-medium transition-colors">Services</a>
-       
-    <a href="contact.html" 
-       :class="mobilePath === 'contact.html' ? 'bg-brand-50 dark:bg-brand-950/50 text-brand-500 font-semibold' : 'text-slate-700 dark:text-slate-200 hover:bg-slate-50 dark:hover:bg-slate-800'"
-       class="block px-3 py-2 rounded-xl text-base font-medium transition-colors">Contact</a>
-    
-    <!-- Mobile Dropdown Component -->
-    <div class="pt-1">
-        <button @click="mobileDashOpen = !mobileDashOpen" 
-                :class="mobilePath === 'user.html' ? 'text-brand-500 font-semibold' : 'text-slate-700 dark:text-slate-200'"
-                class="w-full flex items-center justify-between px-3 py-2 rounded-xl text-base font-medium hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors focus:outline-none">
-            <span>Dashboard</span>
-            <svg class="w-4 h-4 transition-transform duration-200" :class="mobileDashOpen ? 'rotate-180' : ''" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
-        </button>
-        <div x-show="mobileDashOpen" class="mt-1 ml-4 border-l-2 border-slate-200 dark:border-slate-700 x-init= transition-all duration-200 pl-4 space-y-1">
-            <a href="user.html" 
-               :class="mobilePath === 'user.html' ? 'text-brand-500 font-semibold bg-brand-50/50 dark:bg-brand-950/30' : 'text-slate-600 dark:text-slate-400 hover:text-brand-500'"
-               class="block px-3 py-2 text-sm font-medium rounded-lg">User Profile</a>
-        </div>
-    </div>
-<div class="pt-4 border-t border-slate-100 dark:border-slate-800 flex flex-col space-y-3">
-    <!-- Row for Toggles -->
-    <div class="grid grid-cols-2 gap-3">
-        <button @click="$store.globalTheme.toggle()" class="flex items-center justify-center p-2.5 text-slate-500 hover:text-brand-500 rounded-xl bg-slate-100 dark:bg-slate-800 transition-colors" title="Toggle Theme">
-            <svg x-show="$store.globalTheme.current === 'light'" class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path></svg>
-            <svg x-show="$store.globalTheme.current === 'dark'" class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 9H3m15.364-6.364l-.707.707M6.343 17.657l-.707.707M16.243 17.657l.707.707M6.343 4.343l.707-.707M12 7a5 5 0 100 10 5 5 0 000-10z"></path></svg>
-        </button>
-        
-        <button @click="toggleDirection()" class="flex items-center justify-center p-2.5 text-slate-500 hover:text-brand-500 rounded-xl bg-slate-100 dark:bg-slate-800 transition-colors text-xs font-bold tracking-wider uppercase" title="Toggle Text Direction">
-            <span x-text="isLtr ? 'RTL' : 'LTR'"></span>
-        </button>
-    </div>
-
-    <!-- Action Links -->
-    <a href="login.html" class="w-full text-center py-3 rounded-xl font-semibold text-slate-700 dark:text-slate-300 bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700 transition-colors">
-        Login
-    </a>
-    <a href="booknow.html" class="w-full text-center py-3 rounded-xl font-semibold text-white bg-brand-500 hover:bg-brand-600 shadow-md transition-all">
-        Book Now
-    </a>
-</div>
-</div>
-    </header>
-<!-- PREMIUM INTERACTIVE HOME HERO SECTION -->
-<section class="relative py-16 px-4 md:py-24 md:px-6 flex items-center justify-center overflow-hidden">
-    
-    <div class="absolute inset-0 z-0">
-        <img src="assets/herohome2" alt="Professional service background" class="w-full h-full object-cover">
-        <div class="absolute inset-0 bg-white/85 dark:bg-slate-950/75 transition-colors duration-300"></div>
-    </div>
-    
-    <div class="max-w-4xl text-center relative z-10 w-full">
-        <h1 class="text-3xl xs:text-4xl md:text-6xl font-semibold text-slate-900 dark:text-white mb-5 md:mb-6 leading-[1.2]">
-            Smart Remote Support Solutions for <span class="text-brand-500">Busy Professionals</span>
-        </h1>
-        
-        <p class="text-base xs:text-lg md:text-xl text-slate-700 dark:text-slate-200 mb-8 md:mb-10 max-w-2xl mx-auto font-normal leading-relaxed">
-            From administrative tasks and customer support to scheduling and business operations, our virtual assistants help you focus on growth while we handle the daily workload.
-        </p>
-
-        <div class="flex flex-col gap-3 xs:flex-row xs:gap-4 justify-center w-full xs:w-auto">
-            <a href="signup.html" class="w-full xs:w-auto">
-                <button class="w-full px-6 py-3.5 md:px-8 md:py-4 bg-brand-500 hover:bg-brand-600 text-white font-semibold rounded-2xl transition-all shadow-lg shadow-brand-500/20 text-base md:text-lg">
-                    Book a Free Consultation
-                </button>
-            </a>
-            <a href="booknow.html" class="w-full xs:w-auto">
-                <button class="w-full px-6 py-3.5 md:px-8 md:py-4 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 text-slate-900 dark:text-white font-semibold rounded-2xl transition-all text-base md:text-lg hover:bg-slate-100 dark:hover:bg-slate-800">
-                    Hire a Virtual Assistant
-                </button>
-            </a>
-        </div>
-    </div>
-</section>
-<!-- WHY OUTSOURCE TO US SECTION -->
-<section class="relative bg-slate-50 dark:bg-slate-950 py-16 xs:py-20 md:py-24 transition-colors duration-300">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        
-        <!-- Header -->
-        <div class="text-center mb-12 md:mb-16">
-            <span class="text-xs font-semibold uppercase tracking-widest text-brand-500 dark:text-brand-400 bg-brand-500/10 dark:bg-brand-500/20 px-4 py-1.5 rounded-full inline-block mb-4">
-                Strategic Advantage
-            </span>
-            <h2 class="text-2xl xs:text-3xl sm:text-4xl font-semibold tracking-tight text-slate-900 dark:text-white leading-tight">
-                Why Businesses Outsource to TaskVibe
-            </h2>
-        </div>
-
-        <!-- Benefits Grid: 3-column layout on Desktop -->
-        <!-- BENEFIT CARDS: Optimized for 768px -->
-<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
-    
-    <!-- 1. Reduce Operational Workload -->
-    <div class="group bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 p-8 md:p-6 lg:p-8 rounded-3xl hover:border-brand-500/50 transition-all duration-300 hover:shadow-xl hover:shadow-brand-500/5 cursor-default">
-        <div class="w-12 h-12 rounded-2xl bg-brand-500/10 text-brand-500 flex items-center justify-center mb-6 group-hover:bg-brand-500 group-hover:text-white transition-colors">
-            <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
-        </div>
-        <h3 class="text-lg font-semibold text-slate-900 dark:text-white mb-3">Reduce Workload</h3>
-        <p class="text-sm text-slate-500 dark:text-slate-400 font-normal leading-relaxed">Offload repetitive technical overhead and focus your core team on high-value business development metrics and fast.</p>
-    </div>
-
-    <!-- 2. Save Hiring & Office Costs -->
-    <div class="group bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 p-8 md:p-6 lg:p-8 rounded-3xl hover:border-brand-500/50 transition-all duration-300 hover:shadow-xl hover:shadow-brand-500/5 cursor-default">
-        <div class="w-12 h-12 rounded-2xl bg-brand-500/10 text-brand-500 flex items-center justify-center mb-6 group-hover:bg-brand-500 group-hover:text-white transition-colors">
-            <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
-        </div>
-        <h3 class="text-lg font-semibold text-slate-900 dark:text-white mb-3">Save Hiring & Office Costs</h3>
-        <p class="text-sm text-slate-500 dark:text-slate-400 font-normal leading-relaxed">Eliminate recruitment cycles, benefits, and physical infrastructure expenses with our plug-and-play remote model.</p>
-    </div>
-
-  <!-- 3. Improve Productivity (Rectangle Card) -->
-<div class="w-full bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 p-6 md:p-8 rounded-3xl hover:border-brand-500/50 transition-all duration-300 hover:shadow-xl hover:shadow-brand-500/5 cursor-default group flex flex-col md:flex-row lg:flex-col md:items-center lg:items-start md:gap-6 lg:gap-0 md:col-span-2 lg:col-span-1">
-    
-    <!-- Icon Container -->
-    <!-- mb-6 handles the margin for mobile and desktop, md:mb-0 removes it for the horizontal tablet view -->
-    <div class="w-12 h-12 rounded-2xl bg-brand-500/10 text-brand-500 flex items-center justify-center mb-6 md:mb-0 lg:mb-6 flex-shrink-0 group-hover:bg-brand-500 group-hover:text-white transition-colors duration-300">
-        <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
-        </svg>
-    </div>
-
-    <!-- Title & Content -->
-    <div class="flex-1">
-        <h3 class="text-lg md:text-xl font-semibold text-slate-900 dark:text-white mb-1 md:mb-2">Improve Productivity</h3>
-        <p class="text-sm md:text-base text-slate-500 dark:text-slate-400 font-normal leading-relaxed">
-            Streamline your output with dedicated support that ensures tasks are executed accurately and on schedule.
-        </p>
-    </div>
-</div>
-</div>
-
-        <!-- Highlight Bar -->
-        <div class="mt-12 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-3xl p-8 shadow-sm">
-            <div class="grid grid-cols-2 lg:grid-cols-4 gap-8 text-center">
-                <div>
-                    <h4 class="text-xl font-semibold text-brand-500">Trained VAs</h4>
-                    <p class="text-[11px] uppercase tracking-wider text-slate-400 mt-1">Ready to start</p>
-                </div>
-                <div>
-                    <h4 class="text-xl font-semibold text-brand-500">Confidential</h4>
-                    <p class="text-[11px] uppercase tracking-wider text-slate-400 mt-1">100% Secure</p>
-                </div>
-                <div>
-                    <h4 class="text-xl font-semibold text-brand-500">Flexible</h4>
-                    <p class="text-[11px] uppercase tracking-wider text-slate-400 mt-1">Work hours</p>
-                </div>
-                <div>
-                    <h4 class="text-xl font-semibold text-brand-500">Affordable</h4>
-                    <p class="text-[11px] uppercase tracking-wider text-slate-400 mt-1">Custom Packages</p>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-<!-- INTERACTIVE PRODUCTIVITY SECTION WITH SYNCED ANIMATION -->
-<section 
-    x-data="{ 
-        inView: false,
-        count1: 100, count2: 10, count3: 100,
-        // Define your target numbers here
-        targets: { t1: 40, t2: 15, t3: 98 },
-        
-        animateStats() {
-            if (this.inView) return;
-            this.inView = true;
-            
-            const duration = 2000; // Animation duration in ms
-            
-            // Helper to animate a single counter
-            const runCounter = (key, target) => {
-                let current = 0;
-                let stepTime = duration / target;
-                let interval = setInterval(() => {
-                    current++;
-                    this[key] = current;
-                    if (current >= target) clearInterval(interval);
-                }, stepTime);
-            };
-
-            runCounter('count1', this.targets.t1);
-            runCounter('count2', this.targets.t2);
-            runCounter('count3', this.targets.t3);
-        }
-    }"
-    x-intersect.once="animateStats()"
-    class="relative bg-white dark:bg-slate-950 py-16 xs:py-20 md:py-24 transition-colors duration-300"
->
-    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        
-        <!-- Header -->
-        <div class="text-center mb-16 select-none">
-            <span class="text-xs font-semibold uppercase tracking-widest text-brand-500 dark:text-brand-400 bg-brand-500/10 dark:bg-brand-500/20 px-4 py-1.5 rounded-full inline-block mb-4">
-                Impact Analysis
-            </span>
-            <h2 class="text-2xl xs:text-3xl sm:text-4xl font-semibold tracking-tight text-slate-900 dark:text-white leading-tight">
-                Focus on What Matters Most
-            </h2>
-            <p class="text-xs xs:text-sm text-slate-500 dark:text-slate-400 font-normal mt-4 max-w-xl mx-auto leading-relaxed">
-                Our virtual assistant services help business owners reduce stress, improve organization, and manage daily operations efficiently.
-            </p>
-        </div>
-
-        <!-- Animated Statistics Grid -->
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-center mb-16">
-            <!-- Counter 1 -->
-            <div class="p-6 rounded-3xl bg-slate-50 dark:bg-slate-900 border border-slate-100 dark:border-slate-800">
-                <div class="text-brand-500 text-4xl sm:text-5xl font-semibold mb-2 tabular-nums">
-                    <span x-text="count1">0</span><span class="text-2xl font-medium">%</span>
-                </div>
-                <h4 class="text-sm font-semibold text-slate-900 dark:text-white">Time Reclaimed</h4>
-                <p class="text-xs text-slate-500 dark:text-slate-400 mt-2 font-normal">Average weekly hours saved per client.</p>
-            </div>
-            <!-- Counter 2 -->
-            <div class="p-6 rounded-3xl bg-slate-50 dark:bg-slate-900 border border-slate-100 dark:border-slate-800">
-                <div class="text-brand-500 text-4xl sm:text-5xl font-semibold mb-2 tabular-nums">
-                    <span x-text="count2">0</span><span class="text-2xl font-medium">x</span>
-                </div>
-                <h4 class="text-sm font-semibold text-slate-900 dark:text-white">Workflow Velocity</h4>
-                <p class="text-xs text-slate-500 dark:text-slate-400 mt-2 font-normal">Accelerated project completion rates.</p>
-            </div>
-            <!-- Counter 3 -->
-            <div class="p-6 rounded-3xl bg-slate-50 dark:bg-slate-900 border border-slate-100 dark:border-slate-800">
-                <div class="text-brand-500 text-4xl sm:text-5xl font-semibold mb-2 tabular-nums">
-                    <span x-text="count3">0</span><span class="text-2xl font-medium">%</span>
-                </div>
-                <h4 class="text-sm font-semibold text-slate-900 dark:text-white">Client Satisfaction</h4>
-                <p class="text-xs text-slate-500 dark:text-slate-400 mt-2 font-normal">Retention rate across enterprise tiers.</p>
-            </div>
-        </div>
-
-       
-    </div>
-</section>
-
-<!-- Required Alpine.js Intersection Plugin -->
-<script defer src="https://cdn.jsdelivr.net/npm/@alpinejs/intersect@3.x.x/dist/cdn.min.js"></script>
-<section 
-    x-data="{ activeCategory: 'all' }"
-    class="relative bg-slate-50 dark:bg-slate-900 py-16 xs:py-20 md:py-24 lg:py-32 transition-colors duration-300 border-b border-slate-200/60 dark:border-slate-800/60"
->
-    <!-- Background Design Accent Elements -->
-    <div class="absolute inset-0 pointer-events-none overflow-hidden">
-        <div class="absolute top-[15%] left-[-10%] w-[300px] h-[300px] xs:w-[400px] xs:h-[400px] bg-brand-500/[0.03] dark:bg-brand-500/[0.02] rounded-full blur-3xl"></div>
-        <div class="absolute bottom-[15%] right-[-10%] w-[300px] h-[300px] xs:w-[400px] xs:h-[400px] bg-brand-500/[0.03] dark:bg-brand-500/[0.02] rounded-full blur-3xl"></div>
-    </div>
-
-<!-- Responsive grid logic: 1 col on 360px, 2 col on sm, 3 col on lg -->
-<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 max-w-7xl mx-auto px-4">
-
-    <!-- Card 1: Executive Administration -->
-    <div class="reveal group relative aspect-[4/5] sm:aspect-[3/4] md:aspect-[4/5] rounded-[2rem] overflow-hidden border border-slate-200/80 dark:border-slate-700/80 shadow-md hover:shadow-xl transition-all duration-500 hover:-translate-y-2 w-full min-w-0 bg-slate-900">
-        <!-- Background Immersive Image -->
-        <img src="assets/Executive Administration1" alt="Executive Administration" class="absolute inset-0 w-full h-full object-cover opacity-100 group-hover:scale-105 transition-transform duration-700 ease-out" />
-        
-        <!-- Bottom Vignette Gradient -->
-        <div class="absolute inset-0 bg-gradient-to-t from-black/95 via-black/60 to-transparent opacity-100 z-10"></div>
-        
-        <!-- Inside-Image Floating Content -->
-        <div class="absolute inset-0 z-20 p-5 xs:p-6 flex flex-col justify-end text-left">
-            <div class="space-y-2 translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
-                <h3 class="text-base xs:text-lg font-black text-white truncate drop-shadow-sm">Executive Administration</h3>
-                <p class="text-[11px] xs:text-xs text-slate-200 font-medium leading-relaxed opacity-0 group-hover:opacity-100 transition-opacity duration-500 line-clamp-3">Inbox zero strategies, priority filtering, multi-timezone calendar synchronization, boundary protection, and client response routing.</p>
-            </div>
-            
-            <!-- Compact Interactive CTA Link (Changed to White Color) -->
-            <a href="services.html" class="inline-flex items-center text-xs font-bold text-white mt-4 group/btn whitespace-nowrap pt-2 hover:text-brand-400 transition-colors">
-                <span class="tracking-wide">Explore Workflow</span>
-                <svg class="w-3.5 h-3.5 ml-1 transform group-hover/btn:translate-x-1 transition-transform" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"></path></svg>
-            </a>
-        </div>
-    </div>
-
-    <!-- Card 2: Customer Support Operations -->
-    <div class="reveal delay-70 group relative aspect-[4/5] sm:aspect-[3/4] md:aspect-[4/5] rounded-[2rem] overflow-hidden border border-slate-200/80 dark:border-slate-700/80 shadow-md hover:shadow-xl transition-all duration-500 hover:-translate-y-2 w-full min-w-0 bg-slate-900">
-        <img src="assets/Customer Support1" alt="Customer Support" class="absolute inset-0 w-full h-full object-cover opacity-100 group-hover:scale-105 transition-transform duration-700 ease-out" />
-        <div class="absolute inset-0 bg-gradient-to-t from-black/95 via-black/60 to-transparent opacity-100 z-10"></div>
-        
-        <div class="absolute inset-0 z-20 p-5 xs:p-6 flex flex-col justify-end text-left">
-            <div class="space-y-2 translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
-                <h3 class="text-base xs:text-lg font-black text-white truncate drop-shadow-sm">Customer Support</h3>
-                <p class="text-[11px] xs:text-xs text-slate-200 font-medium leading-relaxed opacity-0 group-hover:opacity-100 transition-opacity duration-500 line-clamp-3">Live web chat coverage, standard ticket triage, system escalation updates, client help desk monitoring, and feedback collection management.</p>
-            </div>
-            <!-- Compact Interactive CTA Link (Changed to White Color) -->
-            <a href="services.html" class="inline-flex items-center text-xs font-bold text-white mt-4 group/btn whitespace-nowrap pt-2 hover:text-brand-400 transition-colors">
-                <span class="tracking-wide">Explore Workflow</span>
-                <svg class="w-3.5 h-3.5 ml-1 transform group-hover/btn:translate-x-1 transition-transform" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"></path></svg>
-            </a>
-        </div>
-    </div>
-
-    <!-- Card 3: Data & Systems Management -->
-    <div class="reveal delay-100 group relative aspect-[4/5] sm:aspect-[3/4] md:aspect-[4/5] rounded-[2rem] overflow-hidden border border-slate-200/80 dark:border-slate-700/80 shadow-md hover:shadow-xl transition-all duration-500 hover:-translate-y-2 w-full min-w-0 bg-slate-900">
-        <img src="assets/virtual assistants1" alt="Data & CRM Management" class="absolute inset-0 w-full h-full object-cover opacity-100 group-hover:scale-105 transition-transform duration-700 ease-out" />
-        <div class="absolute inset-0 bg-gradient-to-t from-black/95 via-black/60 to-transparent opacity-100 z-10"></div>
-        
-        <div class="absolute inset-0 z-20 p-5 xs:p-6 flex flex-col justify-end text-left">
-            <div class="space-y-2 translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
-                <h3 class="text-base xs:text-lg font-black text-white truncate drop-shadow-sm">Virtual Assistant Systems</h3>
-                <p class="text-[11px] xs:text-xs text-slate-200 font-medium leading-relaxed opacity-0 group-hover:opacity-100 transition-opacity duration-500 line-clamp-3">Spreadsheet normalization, pipeline status metrics updates, clean contact tag verification, deal logging, and cloud folder hierarchy organization.</p>
-            </div>
-            <!-- Compact Interactive CTA Link (Changed to White Color) -->
-            <a href="services.html" class="inline-flex items-center text-xs font-bold text-white mt-4 group/btn whitespace-nowrap pt-2 hover:text-brand-400 transition-colors">
-                <span class="tracking-wide">Explore Workflow</span>
-                <svg class="w-3.5 h-3.5 ml-1 transform group-hover/btn:translate-x-1 transition-transform" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"></path></svg>
-            </a>
-        </div>
-    </div>
-
-    <!-- Card 4: Social Media Engagement -->
-    <div class="reveal delay-150 group relative aspect-[4/5] sm:aspect-[3/4] md:aspect-[4/5] rounded-[2rem] overflow-hidden border border-slate-200/80 dark:border-slate-700/80 shadow-md hover:shadow-xl transition-all duration-500 hover:-translate-y-2 w-full min-w-0 bg-slate-900">
-        <img src="assets/remote collaboration1" alt="Social Media Assistance" class="absolute inset-0 w-full h-full object-cover opacity-100 group-hover:scale-105 transition-transform duration-700 ease-out" />
-        <div class="absolute inset-0 bg-gradient-to-t from-black/95 via-black/60 to-transparent opacity-100 z-10"></div>
-        
-        <div class="absolute inset-0 z-20 p-5 xs:p-6 flex flex-col justify-end text-left">
-            <div class="space-y-2 translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
-                <h3 class="text-base xs:text-lg font-black text-white truncate drop-shadow-sm">Remote Collaboration</h3>
-                <p class="text-[11px] xs:text-xs text-slate-200 font-medium leading-relaxed opacity-0 group-hover:opacity-100 transition-opacity duration-500 line-clamp-3">Post scheduling queue maintenance, strategic asset formatting, active comment monitoring, and follower activity analytics tracking.</p>
-            </div>
-            <!-- Compact Interactive CTA Link (Changed to White Color) -->
-            <a href="services.html" class="inline-flex items-center text-xs font-bold text-white mt-4 group/btn whitespace-nowrap pt-2 hover:text-brand-400 transition-colors">
-                <span class="tracking-wide">Explore Workflow</span>
-                <svg class="w-3.5 h-3.5 ml-1 transform group-hover/btn:translate-x-1 transition-transform" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"></path></svg>
-            </a>
-        </div>
-    </div>
-
-    <!-- Card 5: Logistics & Travel Strategy -->
-    <div class="reveal delay-200 group relative aspect-[4/5] sm:aspect-[3/4] md:aspect-[4/5] rounded-[2rem] overflow-hidden border border-slate-200/80 dark:border-slate-700/80 shadow-md hover:shadow-xl transition-all duration-500 hover:-translate-y-2 w-full min-w-0 bg-slate-900">
-        <img src="assets/Email Management1" alt="Travel Planning" class="absolute inset-0 w-full h-full object-cover opacity-100 group-hover:scale-105 transition-transform duration-700 ease-out" />
-        <div class="absolute inset-0 bg-gradient-to-t from-black/95 via-black/60 to-transparent opacity-100 z-10"></div>
-        
-        <div class="absolute inset-0 z-20 p-5 xs:p-6 flex flex-col justify-end text-left">
-            <div class="space-y-2 translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
-                <h3 class="text-base xs:text-lg font-black text-white truncate drop-shadow-sm">Email Management</h3>
-                <p class="text-[11px] xs:text-xs text-slate-200 font-medium leading-relaxed opacity-0 group-hover:opacity-100 transition-opacity duration-500 line-clamp-3">Flight itinerary matrix mapping, lodging reservations, corporate expenditure logs, medical appointment setups, and vendor verification syncs.</p>
-            </div>
-            <!-- Compact Interactive CTA Link (Changed to White Color) -->
-            <a href="services.html" class="inline-flex items-center text-xs font-bold text-white mt-4 group/btn whitespace-nowrap pt-2 hover:text-brand-400 transition-colors">
-                <span class="tracking-wide">Explore Workflow</span>
-                <svg class="w-3.5 h-3.5 ml-1 transform group-hover/btn:translate-x-1 transition-transform" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"></path></svg>
-            </a>
-        </div>
-    </div>
-
-    <!-- Card 6: Intelligence & Project Operations -->
-    <div class="reveal delay-250 group relative aspect-[4/5] sm:aspect-[3/4] md:aspect-[4/5] rounded-[2rem] overflow-hidden border border-slate-200/80 dark:border-slate-700/80 shadow-md hover:shadow-xl transition-all duration-500 hover:-translate-y-2 w-full min-w-0 bg-slate-900">
-        <img src="assets/Business operations1" alt="Intelligence & Project Coordination" class="absolute inset-0 w-full h-full object-cover opacity-100 group-hover:scale-105 transition-transform duration-700 ease-out" />
-        <div class="absolute inset-0 bg-gradient-to-t from-black/95 via-black/60 to-transparent opacity-100 z-10"></div>
-        
-        <div class="absolute inset-0 z-20 p-5 xs:p-6 flex flex-col justify-end text-left">
-            <div class="space-y-2 translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
-                <h3 class="text-base xs:text-lg font-black text-white truncate drop-shadow-sm">Business Operations</h3>
-                <p class="text-[11px] xs:text-xs text-slate-200 font-medium leading-relaxed opacity-0 group-hover:opacity-100 transition-opacity duration-500 line-clamp-3">Competitor analysis tracking metrics, sector target compilation, outbound expense logging collection, milestone mapping, and project bottleneck flagging.</p>
-            </div>
-            <!-- Compact Interactive CTA Link (Changed to White Color) -->
-            <a href="services.html" class="inline-flex items-center text-xs font-bold text-white mt-4 group/btn whitespace-nowrap pt-2 hover:text-brand-400 transition-colors">
-                <span class="tracking-wide">Explore Workflow</span>
-                <svg class="w-3.5 h-3.5 ml-1 transform group-hover/btn:translate-x-1 transition-transform" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"></path></svg>
-            </a>
-        </div>
-    </div>
-
-</div>
-</section>
-<!-- INTERACTIVE TEAM SHOWCASE SECTION -->
-<section class="bg-white dark:bg-slate-950 py-16 md:py-24 transition-colors duration-300">
-    <div class="max-w-7xl mx-auto px-6"
-         x-data="{ team: [
-            { name: 'Sarah J.', role: 'Operations Lead', exp: '6 Years Experience', skills: ['CRM', 'Email', 'SMM'], img: 'assets/t1' },
-            { name: 'Madhan', role: 'Operations Lead', exp: '5 Years Experience', skills: ['Data', 'Admin', 'Research'], img: 'assets/te2' },
-            { name: 'John', role: 'Technical Lead', exp: '8 Years Experience', skills: ['Automation', 'QA', 'Coding'], img: 'assets/te3' },
-            { name: 'Sam', role: 'Strategy Lead', exp: '4 Years Experience', skills: ['Growth', 'Analysis', 'PPC'], img: 'assets/te4' }
-         ] }">
-        
-        <div class="text-center mb-16">
-            <span class="text-xs font-bold uppercase tracking-widest text-blue-600 bg-blue-600/10 px-4 py-1.5 rounded-full inline-block mb-4">
-                The Human Element
-            </span>
-            <h2 class="text-3xl md:text-4xl font-semibold text-slate-900 dark:text-white">
-                Meet Your Virtual Assistant
-            </h2>
-        </div>
-
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
-            <template x-for="person in team" :key="person.name">
-                <div class="group bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-3xl p-6 transition-all duration-300 hover:border-blue-500/50 hover:shadow-xl hover:shadow-blue-500/5">
-                    
-                    <!-- Profile Image -->
-                    <div class="w-24 h-24 mx-auto rounded-full bg-slate-200 dark:bg-slate-800 mb-6 overflow-hidden border-4 border-white dark:border-slate-800 shadow-sm group-hover:scale-105 transition-transform duration-500">
-                        <img :src="person.img" :alt="person.name" class="w-full h-full object-cover">
-                    </div>
-
-                    <!-- Info -->
-                    <div class="text-center">
-                        <h3 class="text-lg font-semibold text-slate-900 dark:text-white" x-text="person.name"></h3>
-                        <p class="text-sm text-blue-600 font-medium mt-1" x-text="person.role"></p>
-                        <p class="text-xs text-slate-400 mt-1" x-text="person.exp"></p>
-
-                        <!-- Skills -->
-                        <div class="flex flex-wrap gap-2 justify-center mt-6">
-                            <template x-for="skill in person.skills" :key="skill">
-                                <span class="px-3 py-1 bg-white dark:bg-slate-950 border border-slate-200 dark:border-slate-700 rounded-full text-[10px] font-semibold text-slate-600 dark:text-slate-300 uppercase" x-text="skill"></span>
-                            </template>
-                        </div>
-                    </div>
-                </div>
-            </template>
-        </div>
-    </div>
-</section>
-<!-- INDUSTRIES WE SERVE SECTION (6 CARD CONFIGURATION) -->
-<section class="relative bg-white dark:bg-slate-950 py-16 xs:py-20 md:py-24 transition-colors duration-300">
-    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        
-        <!-- Header -->
-        <div class="text-center mb-16 select-none">
-            <span class="text-xs font-semibold uppercase tracking-widest text-brand-500 dark:text-brand-400 bg-brand-500/10 dark:bg-brand-500/20 px-4 py-1.5 rounded-full inline-block mb-4">
-                Sector Expertise
-            </span>
-            <h2 class="text-2xl xs:text-3xl sm:text-4xl font-semibold tracking-tight text-slate-900 dark:text-white leading-tight">
-                Industries We Serve
-            </h2>
-        </div>
-
-        <!-- Interactive Industry Grid: Fixed to 6 Cards -->
-        <!-- Responsive layout: 1 col (360px), 2 cols (tablet), 3 cols (desktop) -->
-        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6"
-     x-data="{ industries: [
-        { name: 'Real Estate', icon: 'M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6', img: 'assets/img1' },
-        { name: 'E-Commerce', icon: 'M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z', img: 'assets/img2' },
-        { name: 'Healthcare', icon: 'M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z', img: 'assets/img3' },
-        { name: 'Finance', icon: 'M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z', img: 'assets/img4' },
-        { name: 'Legal Firms', icon: 'M3 6l3 1m0 0l3-9a1 1 0 011 0l3 9m-6 0h6m2 9H7a2 2 0 01-2-2V5a2 2 0 012-2h10a2 2 0 012 2v14a2 2 0 01-2 2z', img: 'assets/img5' },
-        { name: 'Startups', icon: 'M13 10V3L4 14h7v7l9-11h-7z', img: 'assets/img6' }
-     ] }">
-    
-    <template x-for="industry in industries" :key="industry.name">
-        <div class="group relative bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 p-8 rounded-3xl overflow-hidden transition-all duration-500 hover:border-blue-500/50 cursor-pointer flex flex-col items-center text-center shadow-sm">
-            
-            <!-- Background Image: Fades in on hover -->
-            <img :src="industry.img" alt="" class="absolute inset-0 w-full h-full object-cover opacity-0 group-hover:opacity-100 transition-all duration-700 scale-105">
-            
-            <!-- Dynamic Overlay: Ensures text is always readable -->
-            <div class="absolute inset-0 bg-white/95 dark:bg-slate-900/95 transition-colors duration-500 group-hover:bg-white/80 dark:group-hover:bg-slate-900/80"></div>
-
-            <!-- Icon -->
-            <div class="relative z-10 w-16 h-16 rounded-2xl bg-blue-500/10 text-blue-600 flex items-center justify-center mb-6 group-hover:bg-blue-600 group-hover:text-white transition-all duration-300 shadow-inner">
-                <svg class="w-8 h-8" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" :d="industry.icon"></path></svg>
-            </div>
-            
-            <!-- Text -->
-            <h3 class="relative z-10 text-lg font-semibold text-slate-800 dark:text-slate-100 group-hover:text-blue-600 transition-colors">
-                <span x-text="industry.name"></span>
-            </h3>
-        </div>
-    </template>
-</div>
-    </div>
-</section>
-<!-- SAAS PRICING TIER SECTION -->
-<section 
-    id="pricing"
-    x-data="{ 
-        billingCycle: 'annual', // 'monthly' or 'annual'
-        plans: [
-            {
-                name: 'Starter',
-                desc: 'Essential operational delegation for busy solo founders and emerging freelancers.',
-                monthlyPrice: 29,
-                annualPrice: 23, // Calculated with ~20% discount margin
-                features: ['20 Hours / Mo Assistance', '1 Dedicated Assistant', 'Email & Calendar Triage', 'Standard 24h Response Speed', 'Secure Password Vaulting'],
-                popular: false,
-                cta: 'Start Starter Trial',
-                link: 'checkout-starter.html'
-            },
-            {
-                name: 'Growth Professional',
-                desc: 'Vibrant custom workflows engineered for scaling product teams and multi-founder setups.',
-                monthlyPrice: 79,
-                annualPrice: 63,
-                features: ['60 Hours / Mo Assistance', 'Primary + Backup Assistant', 'Full Inbox & CRM Infrastructure', 'Accelerated 2h Turnaround Guarantee', 'Slack & WhatsApp Integration', 'Weekly Operational Metric Reports'],
-                popular: true, // Applies premium primary highlight card layout
-                cta: 'Scale with Growth',
-                link: 'checkout-growth.html'
-            },
-            {
-                name: 'Enterprise Executive',
-                desc: 'Complete back-office infrastructure management for high-volume corporate ecosystems.',
-                monthlyPrice: 149,
-                annualPrice: 119,
-                features: ['Unlimited Task Operations Queue', 'Dedicated 3-Assistant Pod Layer', 'Full Pipeline CRM & Invoice Support', 'Instant 15-Min Response Pipeline', 'Custom Run-Book Process Mapping', 'Dedicated Account Operations Lead'],
-                popular: false,
-                cta: 'Contact Enterprise Sales',
-                link: 'contact.html'
-            }
-        ]
-    }"
-    class="relative bg-slate-50 dark:bg-slate-900 py-16 xs:py-20 md:py-24 lg:py-32 transition-colors duration-300 border-b border-slate-200/60 dark:border-slate-800/60"
->
-    <!-- Architectural Accent Ambient Radial Glows -->
-    <div class="absolute inset-0 pointer-events-none overflow-hidden">
-        <div class="absolute bottom-[-10%] left-[-10%] w-[350px] h-[350px] xs:w-[450px] xs:h-[450px] bg-brand-500/[0.03] dark:bg-brand-500/[0.02] rounded-full blur-3xl"></div>
-    </div>
-
-    <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 z-10">
-        
-        <!-- Section Header Area & Interactive Cycle Toggle Trigger -->
-        <div class="max-w-3xl mx-auto text-center mb-16 xs:mb-20">
-            <span class="text-xs font-semibold uppercase tracking-widest text-brand-500 dark:text-brand-400 bg-brand-500/10 dark:bg-brand-500/20 px-4 py-1.5 rounded-full inline-block mb-4">
-                Predictable Scalability
-            </span>
-            <h2 class="text-2xl xs:text-3xl sm:text-4xl md:text-5xl font-semibold tracking-tight text-slate-900 dark:text-white leading-tight">
-                Our Packages
-            </h2>
+             </a>
            
 
-            <!-- INTERACTIVE CYCLE CONTROLLER MODULE -->
-            <div class="mt-10 inline-flex items-center gap-3 bg-white dark:bg-slate-800 p-1.5 rounded-2xl border border-slate-200/80 dark:border-slate-700/80 shadow-inner select-none">
-                <button 
-                    @click="billingCycle = 'monthly'"
-                    type="button"
-                    class="px-4 py-2 rounded-xl text-xs font-semibold uppercase tracking-wider transition-all focus:outline-none"
-                    :class="billingCycle === 'monthly' ? 'bg-brand-500 text-white shadow-md' : 'text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-200'"
-                >
-                    Monthly
-                </button>
-                <button 
-                    @click="billingCycle = 'annual'"
-                    type="button"
-                    class="px-4 py-2 rounded-xl text-xs font-semibold uppercase tracking-wider transition-all focus:outline-none relative flex items-center gap-1.5"
-                    :class="billingCycle === 'annual' ? 'bg-brand-500 text-white shadow-md' : 'text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-200'"
-                >
-                    <span>Annually</span>
-                    <!-- Flashy Incentive Percentage Sticker Tag -->
-<span class="text-[9px] font-bold px-1.5 py-0.5 rounded-md uppercase tracking-wide border transition-colors duration-300"
-      :class="billingCycle === 'annual' 
-        ? 'bg-emerald-600 text-white border-emerald-500' 
-        : 'bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border-emerald-500/20'">
-    Save 20%
-</span>                </button>
-            </div>
-        </div>
-
-        <!-- PRICING TIERS CARD MATRIX GRID -->
-        <!-- Responsive layout strategy: 1 col on 360px micro viewports, stacks up fluidly onto 3 cols on desktop screen frames -->
-      <!-- SYSTEM RESPONSIVE GRID MATRIX -->
-<!-- 
-  xs (360px): Single stacked layout model card view 
-  md (768px): Dual column structure array pattern 
-  lg/xl (1024px+): Unified horizontal 3-column deployment configuration
--->
-<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8 items-stretch w-full max-w-sm sm:max-w-xl md:max-w-3xl lg:max-w-6xl xl:max-w-7xl mx-auto transition-all duration-300">
-    
-    <template x-for="(plan, index) in plans" :key="index">
-        <!-- Individual Plan Blueprint Card Box -->
-        <!-- Fixed: Configured responsive md:first:col-span-1 md:last:col-span-2 lg:last:col-span-1 to keep structural balance on dual layouts -->
-        <div 
-            class="rounded-3xl border transition-all duration-300 flex flex-col p-6 xs:p-8 relative h-full w-full"
-            :class="[
-                plan.popular 
-                    ? 'bg-white dark:bg-slate-800 border-brand-500 shadow-xl lg:-translate-y-4 ring-4 ring-brand-500/10 z-10' 
-                    : 'bg-white/80 dark:bg-slate-800/60 border-slate-200/80 dark:border-slate-700/60 shadow-sm hover:shadow-md hover:border-slate-300 dark:hover:border-slate-600 z-0',
-                index === 2 ? 'md:col-span-2 lg:col-span-1 md:max-w-md md:mx-auto lg:w-full lg:max-w-none' : 'md:col-span-1'
-            ]"
-        >
-            <!-- Featured Floating Popular Anchor Badge Strip -->
-            <div x-show="plan.popular" class="absolute -top-3.5 left-1/2 -translate-x-1/2 px-4 py-1 rounded-full bg-brand-500 text-[10px] font-semibold text-white uppercase tracking-widest shadow-md whitespace-nowrap select-none">
-                Most Popular Selection
-            </div>
-
-            <!-- Top Copy Pricing Matrix Blocks -->
-            <div class="space-y-4 border-b border-slate-100 dark:border-slate-700/60 pb-6 flex-shrink-0 text-left">
-                <h3 class="text-lg sm:text-xl font-semibold text-slate-900 dark:text-white" x-text="plan.name"></h3>
-                <p class="text-xs xs:text-sm text-slate-500 dark:text-slate-400 font-normal leading-relaxed min-h-[48px]" x-text="plan.desc"></p>
+            <!-- Desktop & Tablet 1024px Navigation Links -->
+            <!-- Changed 'lg:flex' to 'lg:flex space-x-4 xl:space-x-6' to prevent layout break at 1024px -->
+            <div id="desktop-nav-links" class="hidden lg:flex items-center space-x-4 xl:space-x-6 rtl:space-x-reverse font-medium text-sm text-slate-600 dark:text-slate-300">
+                <a href="index.html" class="nav-link hover:text-brand-500 transition-colors py-1">Home</a>
+                <a href="home2.html" class="nav-link hover:text-brand-500 transition-colors py-1">Home 2</a>
+                <a href="abouts.html" class="nav-link hover:text-brand-500 transition-colors py-1">About Us</a>
+                <a href="service.html" class="nav-link hover:text-brand-500 transition-colors py-1">Service</a>
+                <a href="contact.html" class="nav-link hover:text-brand-500 transition-colors py-1">Contact</a>
                 
-                <!-- Core Numerical Price Tag Module Layout -->
-                <div class="pt-2 flex items-baseline gap-1 select-none">
-                    <span class="text-slate-400 dark:text-slate-500 text-2xl font-normal tracking-tight">$</span>
-                    <span class="text-4xl xs:text-5xl font-semibold text-slate-900 dark:text-white tracking-tight tabular-nums transition-all" 
-                          x-text="billingCycle === 'annual' ? plan.annualPrice : plan.monthlyPrice">
-                    </span>
-                    <span class="text-slate-400 dark:text-slate-500 text-xs font-normal tracking-wide pl-1" x-text="billingCycle === 'annual' ? '/ assistant / mo billed yearly' : '/ assistant / mo'"></span>
+                <!-- Desktop Dashboard Dropdown -->
+                <div class="relative group py-2">
+                    <a href="user.html">
+                         <button id="dashboard-menu-btn" class="nav-link flex items-center gap-1 hover:text-brand-500 transition-colors focus:outline-none py-1">
+                        Client Portal
+                    </button>
+                    </a>
+                   
+                    <!-- Dropdown Menu items -->
+                    
                 </div>
             </div>
 
-            <!-- Core Feature Checklist Block (Takes full internal stretch alignment) -->
-            <div class="pt-6 pb-8 flex-grow flex flex-col justify-between text-left">
-                <ul class="space-y-3.5">
-                    <template x-for="(feature, fIndex) in plan.features" :key="fIndex">
-                        <li class="flex items-start gap-3 text-xs xs:text-sm text-slate-600 dark:text-slate-300 font-normal leading-tight">
-                            <!-- Primary Accent Vector Check Icon Graphic -->
-                            <div class="flex-shrink-0 w-4 h-4 rounded-md bg-brand-500/10 text-brand-500 flex items-center justify-center mt-0.5 select-none">
-                                <svg class="w-2.5 h-2.5" fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"></path></svg>
-                            </div>
-                            <span x-text="feature"></span>
-                        </li>
-                    </template>
-                </ul>
+            <!-- Utility Controls & CTAs (Responsive at 1024px) -->
+            <div class="hidden lg:flex items-center space-x-3 xl:space-x-4 rtl:space-x-reverse">
+              <!-- LTR/RTL Layout Flow Toggle -->
+<button id="rtl-toggle" class="w-10 h-10 inline-flex items-center justify-center rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:text-brand-500 hover:bg-slate-200/50 dark:hover:bg-slate-700/50 transition-all text-xs font-bold shrink-0" title="Toggle Layout Direction">
+    LTR
+</button>
+
+<!-- Light/Dark Mode Theme Toggle -->
+<button id="theme-toggle" class="w-10 h-10 inline-flex items-center justify-center rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:text-brand-500 hover:bg-slate-200/50 dark:hover:bg-slate-700/50 transition-all shrink-0" title="Toggle Theme">
+    <i id="theme-icon" class="fa-solid fa-moon text-sm"></i>
+</button>
+                
+                <!-- Login CTA (Styled like Book Now CTA) -->
+                <a href="login.html" class="bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-800 dark:text-slate-200 font-medium text-xs xl:text-sm px-4 xl:px-5 py-2.5 rounded-lg transition-all border border-slate-200 dark:border-slate-700">Login</a>
+                
+                <!-- Book Now CTA -->
+                <a href="booknow.html" class="bg-brand-500 hover:bg-brand-600 text-white font-medium text-xs xl:text-sm px-4 xl:px-5 py-2.5 rounded-lg shadow-md hover:shadow-brand-500/20 transition-all">Book Now</a>
             </div>
 
-            <!-- Target Plan Checkout Action Trigger Link -->
-            <div class="flex-shrink-0 pt-2 select-none">
-                <a 
-                    :href="plan.link"
-                    class="w-full block text-center py-3.5 rounded-xl font-medium text-sm transition-all transform active:scale-[0.99] focus:outline-none focus:ring-2 focus:ring-offset-2 dark:focus:ring-offset-slate-950"
-                    :class="plan.popular 
-                        ? 'bg-brand-500 hover:bg-brand-600 text-white shadow-lg shadow-brand-500/20 focus:ring-brand-500' 
-                        : 'bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-800 dark:text-slate-100 focus:ring-slate-600'"
-                    x-text="plan.cta"
-                ></a>
+            <!-- Mobile & Tablet Menu Button (Visible under 1024px) -->
+            <div class="flex items-center lg:hidden gap-2.5">
+              
+                
+                <button id="mobile-menu-btn" class="inline-flex items-center justify-center p-2 rounded-md text-slate-600 dark:text-slate-300 hover:text-brand-500 hover:bg-slate-100 dark:hover:bg-slate-800 focus:outline-none">
+                    <i id="menu-icon" class="fa-solid fa-bars text-xl"></i>
+                </button>
             </div>
 
         </div>
-    </template>
+    </div>
 
+    <!-- Mobile & Tablet Menu Dropdown -->
+    <!-- SYSTEM NAVIGATION DETACHED ABSOLUTE MOBILE OVERLAY FRAMEWORK -->
+<!-- Changes: Added 'absolute left-0 right-0 top-full z-50 shadow-xl border-t' so it overlays rather than pushing content down -->
+<div id="mobile-menu" class="hidden lg:hidden absolute left-0 right-0 top-full z-50 border-b border-t border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 px-4 pt-2 pb-6 space-y-4 shadow-xl transition-all duration-300">
+    <div class="flex flex-col space-y-1 font-medium">
+        <a href="index.html" class="mobile-nav-link block py-2.5 px-3 rounded-md hover:bg-slate-50 dark:hover:bg-slate-800 hover:text-brand-500">Home</a>
+        <a href="home2.html" class="mobile-nav-link block py-2.5 px-3 rounded-md hover:bg-slate-50 dark:hover:bg-slate-800 hover:text-brand-500">Home 2</a>
+        <a href="abouts.html" class="mobile-nav-link block py-2.5 px-3 rounded-md hover:bg-slate-50 dark:hover:bg-slate-800 hover:text-brand-500">About Us</a>
+        <a href="service.html" class="mobile-nav-link block py-2.5 px-3 rounded-md hover:bg-slate-50 dark:hover:bg-slate-800 hover:text-brand-500">Service</a>
+        <a href="contact.html" class="mobile-nav-link block py-2.5 px-3 rounded-md hover:bg-slate-50 dark:hover:bg-slate-800 hover:text-brand-500">Contact</a>
+        
+        <!-- Mobile Dashboard Accordion Grid Track -->
+        <div class="block py-1">
+            <a href="user.html">
+                  <button id="mobile-dashboard-toggle" class="w-full flex items-center justify-between py-2 px-3 rounded-md hover:bg-slate-50 dark:hover:bg-slate-800 hover:text-brand-500 text-left rtl:text-right font-medium">
+                <span id="mobile-dash-main-label">Client Portal</span>
+            </button>
+            </a>
+          
+           
+        </div>
+    </div>
+    
+    <hr class="border-slate-200 dark:border-slate-800">
+    
+    <!-- Configurator Accent Controls -->
+    <div class="flex items-center justify-between px-3">
+        <span class="text-sm font-medium text-slate-600 dark:text-slate-400">Layout Direction</span>
+        <div class="flex items-center gap-2">
+            <button id="rtl-toggle-mobile" class="px-3 py-1.5 rounded-md bg-slate-100 dark:bg-slate-800 text-xs font-bold text-slate-700 dark:text-slate-300">
+                Template LTR
+            </button>
+            <button id="theme-toggle-mobile" class="w-9 h-9 flex items-center justify-center rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 text-sm">
+                <i id="theme-icon-mobile" class="fa-solid fa-moon"></i>
+            </button>
+        </div>
+    </div>
+
+    <!-- Conversion Trigger Links -->
+    <div class="grid grid-cols-2 gap-3 pt-2 px-3">
+        <a href="login.html" class="flex items-center justify-center py-2.5 border border-slate-300 dark:border-slate-700 rounded-lg text-sm font-medium text-slate-700 dark:text-slate-200 bg-slate-50 dark:bg-slate-800 hover:bg-slate-100 dark:hover:bg-slate-700 transition-colors">Login</a>
+        <a href="booknow.html" class="flex items-center justify-center py-2.5 bg-brand-500 hover:bg-brand-600 text-white rounded-lg text-sm font-medium text-center shadow-sm">Book Now</a>
+    </div>
+</div>
+</nav>
+<script>
+    document.addEventListener("DOMContentLoaded", () => {
+    // Determine current filename from the URL path
+    const currentPath = window.location.pathname;
+    const pageFilename = currentPath.substring(currentPath.lastIndexOf('/') + 1) || 'index.html';
+
+    // 1. Automatic Active State for Desktop Elements
+    const desktopLinks = document.querySelectorAll(".nav-link");
+    desktopLinks.forEach(link => {
+        if (link.getAttribute("href") === pageFilename) {
+            link.classList.add("text-brand-500", "dark:text-brand-500");
+            link.classList.remove("text-slate-600", "dark:text-slate-300");
+        }
+    });
+
+    // Handle Desktop Sub-items
+    const desktopDropdownLinks = document.querySelectorAll(".nav-dropdown-link");
+    desktopDropdownLinks.forEach(subLink => {
+        if (subLink.getAttribute("href") === pageFilename) {
+            subLink.classList.add("text-brand-500", "bg-brand-50/50", "dark:bg-brand-950/20");
+            // Highlight parent dashboard menu header button as well
+            const dashBtn = document.getElementById("dashboard-menu-btn");
+            if (dashBtn) dashBtn.classList.add("text-brand-500");
+        }
+    });
+
+    // 2. Automatic Active State for Mobile Elements
+    const mobileLinks = document.querySelectorAll(".mobile-nav-link");
+    mobileLinks.forEach(mLink => {
+        if (mLink.getAttribute("href") === pageFilename) {
+            mLink.classList.add("text-brand-500", "bg-brand-50/50", "dark:bg-brand-950/20", "font-semibold");
+            
+            // If the active item lives inside the mobile dashboard accordion
+            if (mLink.closest("#mobile-dashboard-links")) {
+                const mobDashLinksContainer = document.getElementById("mobile-dashboard-links");
+                const mobDashIcon = document.getElementById("mobile-dash-icon");
+                const mobDashMainLabel = document.getElementById("mobile-dash-main-label");
+                
+                mobDashLinksContainer.classList.remove("hidden");
+                if (mobDashIcon) mobDashIcon.classList.add("rotate-180");
+                if (mobDashMainLabel) mobDashMainLabel.classList.add("text-brand-500", "font-semibold");
+            }
+        }
+    });
+});
+
+// Mobile Dashboard Accordion Opening and Closing Logic
+const mobileDashToggle = document.getElementById('mobile-dashboard-toggle');
+const mobileDashLinks = document.getElementById('mobile-dashboard-links');
+const mobileDashIcon = document.getElementById('mobile-dash-icon');
+
+if (mobileDashToggle && mobileDashLinks) {
+    mobileDashToggle.addEventListener('click', () => {
+        const isClosed = mobileDashLinks.classList.contains('hidden');
+        if (isClosed) {
+            mobileDashLinks.classList.remove('hidden');
+            mobileDashIcon.classList.add('rotate-180');
+        } else {
+            mobileDashLinks.classList.add('hidden');
+            mobileDashIcon.classList.remove('rotate-180');
+        }
+    });
+}
+</script>
+<!-- HOME HERO SECTION (Premium Light-Theme High-Conversion Component) -->
+<section id="home-hero" class="relative min-h-[75vh] flex items-center justify-center overflow-hidden py-16 sm:py-24 bg-white dark:bg-slate-950 transition-colors duration-300">
+    
+    <!-- 1. Technical Mesh Grid & Background Image Overlay Canvas -->
+   <div class="absolute inset-0 z-0 pointer-events-none select-none">
+    <!-- Maximized Visibility Background Image Layer (High Opacity & Zero Latency Blur Backstops) -->
+    <img src="assets/herohome21" 
+         alt="Professional Mobile Brake Repair Service Driveway Delivery" 
+         class="w-full h-full object-cover object-center transition-all duration-500 opacity-90 dark:opacity-60" />
+    
+    <!-- Lightened & Shifted Multi-Directional Gradient Masks (Prevents image washing out) -->
+    <!-- Left-weighted focus mask gives text perfect contrast, while the middle and right sections stay completely clear -->
+    <div class="absolute inset-0 bg-gradient-to-r from-slate-50/90 via-slate-50/60 to-transparent dark:from-slate-950/90 dark:via-slate-950/50 dark:to-transparent rtl:bg-gradient-to-l"></div>
+    <div class="absolute inset-0 bg-gradient-to-b from-slate-50/20 via-transparent to-white/90 dark:from-slate-950/20 dark:via-transparent dark:to-slate-950/90"></div>
+
+    <!-- Crisp Technical Blueprint Grid Overlay Mesh Lines -->
+    <div class="absolute inset-0 bg-[linear-gradient(to_right,#8080800e_1px,transparent_1px),linear-gradient(to_bottom,#8080800e_1px,transparent_1px)] bg-[size:24px_24px] dark:bg-[linear-gradient(to_right,#ffffff05_1px,transparent_1px),linear-gradient(to_bottom,#ffffff05_1px,transparent_1px)]"></div>
 </div>
 
-        <!-- Optional Bottom Footnote Security Matrix -->
-        <div class="mt-12 text-center flex flex-col xs:flex-row items-center justify-center gap-4 text-xs text-slate-400 dark:text-slate-500">
-            <div class="flex items-center gap-1.5">
-                <svg class="w-4 h-4 text-emerald-500" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path></svg>
-                <span>30-Day Contract Cancellations Guarantee</span>
-            </div>
-            <span class="hidden xs:inline text-slate-300 dark:text-slate-700">|</span>
-            <div class="flex items-center gap-1.5">
-                <svg class="w-4 h-4 text-emerald-500" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path></svg>
-                <span>Bank-Grade Secured SSL Transaction Gateways</span>
-            </div>
-        </div>
+    <!-- 2. Ambient Focal Spotlight Radial Glow -->
+    <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-80 sm:w-[600px] h-80 sm:h-[600px] bg-brand-500/[0.05] dark:bg-brand-500/10 rounded-full blur-3xl pointer-events-none animate-pulse"></div>
 
+    <!-- 3. Primary Content Grid Layout Framework -->
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
+            
+            <!-- LEFT COLUMN: CONVERSION HEADLINES & COPYBLOCK (Fills 7 Columns) -->
+            <div class="lg:col-span-7 space-y-6 text-center lg:text-left rtl:lg:text-right">
+                
+                <!-- Specialized Premium Trust Badge -->
+                <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-medium bg-brand-500/10 text-brand-600 dark:text-brand-400 border border-brand-500/20 backdrop-blur-sm select-none mx-auto lg:mx-0 transition-transform duration-300 hover:scale-102">
+                    <span class="text-xs">🚗</span>
+                    Trusted Mobile Brake Specialists
+                </div>
+
+                <!-- Primary Conversions Headline -->
+                <h1 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-semibold tracking-tight text-slate-900 dark:text-white leading-tight">
+                    Professional Mobile Brake <br class="hidden sm:inline"><span class="text-transparent bg-clip-text bg-gradient-to-r from-brand-500 via-rose-500 to-rose-600 dark:from-brand-400 dark:to-rose-400 font-semibold">Repair at Your Doorstep</span>
+                </h1>
+
+                <!-- Core Context Content Subheadline Description -->
+                <p class="text-base sm:text-lg text-slate-600 dark:text-slate-400 max-w-2xl mx-auto lg:mx-0 font-normal leading-relaxed">
+                    Skip the repair shop. Our certified technicians provide brake pad replacement, rotor replacement, and complete brake inspections at your home or office.
+                </p>
+
+                <!-- High-Converting Interaction CTA Links -->
+                <div class="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 pt-2">
+                    <a href="booknow.html" class="group relative w-full sm:w-auto text-center px-8 py-4 bg-brand-500 hover:bg-brand-600 text-white font-medium text-sm rounded-xl shadow-lg shadow-brand-500/10 hover:shadow-brand-500/30 transition-all duration-300 overflow-hidden inline-flex items-center justify-center gap-2">
+                        <!-- Shimmer canvas light element sweep overlay animation -->
+                        <div class="absolute inset-0 w-1/2 h-full bg-white/10 skew-x-[-25deg] -translate-x-full group-hover:animate-[shine_0.75s_ease-in-out]"></div>
+                        <span>Book Now</span>
+                        <i class="fa-solid fa-calendar-check text-xs opacity-90"></i>
+                    </a>
+                    <a href="contact.html" class="w-full sm:w-auto text-center px-8 py-4 bg-slate-100 dark:bg-slate-800/80 hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-800 dark:text-slate-100 font-medium text-sm rounded-xl border border-slate-200 dark:border-slate-700 transition-all duration-300 inline-flex items-center justify-center gap-2 group">
+                        <span>Get Free Quote</span>
+                        <i class="fa-solid fa-calculator text-xs opacity-70 transition-transform group-hover:translate-x-1 rtl:group-hover:-translate-x-1"></i>
+                    </a>
+                </div>
+
+                <!-- HORIZONTAL TRUST INDICATOR CARD BAR (Active from 640px up) -->
+                <div class="hidden sm:grid grid-cols-2 lg:grid-cols-4 gap-4 pt-6 border-t border-slate-100 dark:border-slate-900">
+                    <div class="flex items-center gap-2.5 group/item">
+                        <i class="fa-solid fa-bolt text-brand-500 text-sm transition-transform duration-300 group-hover/item:scale-110"></i>
+                        <span class="text-xs font-semibold text-slate-800 dark:text-slate-200">Same-Day Service</span>
+                    </div>
+                    <div class="flex items-center gap-2.5 group/item">
+                        <i class="fa-solid fa-user-check text-brand-500 text-sm transition-transform duration-300 group-hover/item:scale-110"></i>
+                        <span class="text-xs font-semibold text-slate-800 dark:text-slate-200">Certified Technicians</span>
+                    </div>
+                    <div class="flex items-center gap-2.5 group/item">
+                        <i class="fa-solid fa-shield-halved text-brand-500 text-sm transition-transform duration-300 group-hover/item:scale-110"></i>
+                        <span class="text-xs font-semibold text-slate-800 dark:text-slate-200">Warranty Included</span>
+                    </div>
+                    <div class="flex items-center gap-2.5 group/item">
+                        <i class="fa-solid fa-hand-holding-dollar text-brand-500 text-sm transition-transform duration-300 group-hover/item:scale-110"></i>
+                        <span class="text-xs font-semibold text-slate-800 dark:text-slate-200">Transparent Pricing</span>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- RIGHT COLUMN: INTERACTIVE HUD STATUS INDICATOR PANEL (Fills 5 Columns) -->
+            <div class="lg:col-span-5 relative flex justify-center w-full pt-4 lg:pt-0">
+                <!-- Premium glassmorphism status metric display container blueprint -->
+                <div class="w-full max-w-[360px] rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 p-5 shadow-xl relative overflow-hidden group">
+                    <div class="absolute -right-16 -top-16 w-36 h-36 bg-brand-500/[0.03] rounded-full blur-xl"></div>
+                    
+                    <div class="flex items-center justify-between border-b border-slate-100 dark:border-slate-800 pb-3 mb-4">
+                        <div class="flex items-center gap-2.5">
+                            <i class="fa-solid fa-circle-nodes text-brand-500 text-sm"></i>
+                            <span class="text-xs font-semibold text-slate-800 dark:text-slate-200">Live Dispatch Monitor</span>
+                        </div>
+                        <span class="text-[10px] bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 font-medium px-2 py-0.5 rounded-full inline-flex items-center gap-1">
+                            <span class="w-1 h-1 rounded-full bg-emerald-500 animate-ping"></span> Online
+                        </span>
+                    </div>
+
+                    <!-- Layout Verification Status Elements Matrix -->
+                    <div class="space-y-3 select-none">
+                        <!-- Item Row 1 -->
+                        <div class="flex justify-between items-center p-2.5 rounded-xl bg-slate-50 dark:bg-slate-950/40 border border-slate-100 dark:border-slate-900 transition-colors hover:border-brand-500/20">
+                            <span class="text-xs text-slate-500 font-normal">Next Booking Slot</span>
+                            <span class="text-xs font-semibold text-slate-800 dark:text-slate-200">Available Today</span>
+                        </div>
+                        <!-- Item Row 2 -->
+                        <div class="flex justify-between items-center p-2.5 rounded-xl bg-slate-50 dark:bg-slate-950/40 border border-slate-100 dark:border-slate-900 transition-colors hover:border-brand-500/20">
+                            <span class="text-xs text-slate-500 font-normal">Mobile Response Rate</span>
+                            <span class="text-xs font-semibold text-brand-500 animate-pulse">&lt; 45 Mins</span>
+                        </div>
+                        <!-- Item Row 3 -->
+                        <div class="flex justify-between items-center p-2.5 rounded-xl bg-brand-500/[0.01] border border-brand-500/20">
+                            <span class="text-xs text-slate-800 dark:text-slate-200 font-medium">Brake Inspection Surcharge</span>
+                            <span class="text-xs font-semibold text-emerald-500">$0.00 (Waived)</span>
+                        </div>
+                    </div>
+
+                    <!-- Helpful safety trust disclaimer tag -->
+                    <div class="mt-4 pt-3 border-t border-slate-100 dark:border-slate-800 text-[10px] text-center text-slate-400 dark:text-slate-500 font-normal leading-relaxed">
+                        <i class="fa-solid fa-shield-halved mr-1 rtl:ml-1 text-brand-500"></i> All mobile workshop vans carry comprehensive commercial insurance.
+                    </div>
+                </div>
+            </div>
+
+            <!-- COMPACT FALLBACK TRUST RIBBON (Visible ONLY on Standalone Mobile viewports under 640px) -->
+            <div class="sm:hidden col-span-1 grid grid-cols-2 gap-3 pt-4 border-t border-slate-200/60 dark:border-slate-900 text-left rtl:text-right">
+                <div class="flex items-center gap-2"><i class="fa-solid fa-bolt text-brand-500 text-xs shrink-0"></i><span class="text-[11px] font-semibold text-slate-700 dark:text-slate-300">Same-Day Service</span></div>
+                <div class="flex items-center gap-2"><i class="fa-solid fa-user-check text-brand-500 text-xs shrink-0"></i><span class="text-[11px] font-semibold text-slate-700 dark:text-slate-300">Certified Techs</span></div>
+                <div class="flex items-center gap-2"><i class="fa-solid fa-shield-halved text-brand-500 text-xs shrink-0"></i><span class="text-[11px] font-semibold text-slate-700 dark:text-slate-300">Warranty Included</span></div>
+                <div class="flex items-center gap-2"><i class="fa-solid fa-hand-holding-dollar text-brand-500 text-xs shrink-0"></i><span class="text-[11px] font-semibold text-slate-700 dark:text-slate-300">Upfront Quotes</span></div>
+            </div>
+
+        </div>
     </div>
 </section>
-<!-- FINAL CALL-TO-ACTION SECTION (LIGHT THEME) -->
-<section class="relative py-24 px-6 overflow-hidden bg-slate-50 dark:bg-slate-950 transition-colors duration-300">
-    <!-- Grid Pattern Background for visual interest -->
-    <div class="absolute inset-0 opacity-[0.03]" style="background-image: radial-gradient(#6366f1 1px, transparent 1px); background-size: 32px 32px;"></div>
 
-    <div class="max-w-5xl mx-auto relative z-10">
-        <!-- Main Bento Container -->
-        <div class="relative bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-[3rem] p-8 md:p-16 shadow-2xl shadow-blue-500/5 overflow-hidden">
+<!-- Hardware Accelerated Custom CSS Animations Flare Keyframes -->
+<style>
+    @keyframes shine {
+        100% { transform: translateX(250%); }
+    }
+</style>
+<!-- SERVICES HIGHLIGHT SECTION (Premium Light-Theme Interactive Image Matrix) -->
+<section id="services-highlight" class="py-16 sm:py-24 bg-slate-50 dark:bg-slate-950 transition-colors duration-300 overflow-hidden">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        <!-- SECTION TITLE & HEADER -->
+        <div class="text-center max-w-3xl mx-auto space-y-4 mb-14 sm:mb-20">
+            <span class="text-xs font-semibold uppercase tracking-widest text-brand-500 bg-brand-500/10 dark:bg-brand-500/15 px-3 py-1.5 rounded-full inline-block">
+                Precision Maintenance
+            </span>
+            <h2 class="text-2xl sm:text-3xl md:text-4xl font-semibold tracking-tight text-slate-900 dark:text-white leading-tight">
+                Complete Mobile Brake Solutions
+            </h2>
+            <div class="h-1 w-12 bg-brand-500 rounded mx-auto"></div>
+        </div>
+
+        <!-- SERVICES IMAGE CARD MATRIX GRAPHIC -->
+        <!-- Breakpoints: 1 col on mobile/360px, 2 cols on tablet/768px, 4 cols from 1024px desktop up -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8 items-stretch">
             
-            <!-- Abstract Floating Element -->
-            <div class="absolute -top-24 -right-24 w-64 h-64 bg-blue-500/10 rounded-full blur-3xl"></div>
-
-            <div class="grid md:grid-cols-2 gap-12 items-center">
-                <!-- Text Area -->
-                <div class="text-center md:text-left space-y-6">
-                    <h2 class="text-4xl md:text-5xl font-semibold tracking-tight text-slate-900 dark:text-white leading-tight">
-                        Ready to <br/><span class="text-blue-600">Delegate & Grow?</span>
-                    </h2>
-                    <p class="text-slate-500 dark:text-slate-400 font-normal leading-relaxed text-lg">
-                        Stop juggling tasks. Get reliable virtual assistant services tailored to your specific goals.
-                    </p>
+            <!-- SERVICE CARD 1: Brake Pad Replacement -->
+            <div class="group relative rounded-2xl bg-white dark:bg-slate-900 border border-slate-200/80 dark:border-slate-800/80 shadow-sm hover:shadow-xl hover:border-brand-500/30 dark:hover:border-brand-500/30 transition-all duration-300 flex flex-col overflow-hidden">
+                <!-- Hardware accelerated image display port -->
+                <div class="w-full h-48 overflow-hidden relative bg-slate-100 dark:bg-slate-950">
+                    <img src="assets/Brake Pad Replacement1" 
+                         alt="Brake Pad Replacement Service" 
+                         class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" />
+                    <!-- Subdued color filter overlay -->
+                    <div class="absolute inset-0 bg-gradient-to-t from-slate-950/40 to-transparent"></div>
                 </div>
-
-                <!-- Action Area -->
-                <div class="flex flex-col gap-4">
-                    <a href="signup.html" class="group relative px-8 py-5 bg-blue-600 text-white font-semibold text-sm rounded-2xl transition-all hover:bg-blue-700 active:scale-95 text-center shadow-lg shadow-blue-600/20 overflow-hidden">
-                        <span class="relative z-10">Start Your Free Trial</span>
-                        <!-- Subtle shine effect on hover -->
-                        <div class="absolute inset-0 bg-white/20 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-1000"></div>
-                    </a>
-                    
-                    <a href="contact.html" class="px-8 py-5 bg-transparent text-slate-700 dark:text-white font-semibold text-sm rounded-2xl border border-slate-200 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-800 transition-all text-center">
-                        Schedule a Consultation
-                    </a>
+                <!-- Content text container block -->
+                <div class="p-5 sm:p-6 flex-grow flex flex-col justify-between space-y-4">
+                    <div class="space-y-2">
+                        <h3 class="text-base font-semibold text-slate-900 dark:text-white group-hover:text-brand-500 transition-colors">Brake Pad Replacement</h3>
+                        <p class="text-xs font-normal text-slate-500 dark:text-slate-400 leading-relaxed">Restore safe stopping power with premium brake pads professionally installed site.</p>
+                    </div>
+                    <div class="text-xs font-semibold text-brand-600 dark:text-brand-400 inline-flex items-center gap-1 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                        <span>Book On-Site Fitting</span>
+                        <i class="fa-solid fa-chevron-right text-3xs transition-transform group-hover:translate-x-0.5 rtl:group-hover:-translate-x-0.5"></i>
+                    </div>
                 </div>
             </div>
+
+            <!-- SERVICE CARD 2: Rotor Replacement -->
+            <div class="group relative rounded-2xl bg-white dark:bg-slate-900 border border-slate-200/80 dark:border-slate-800/80 shadow-sm hover:shadow-xl hover:border-brand-500/30 dark:hover:border-brand-500/30 transition-all duration-300 flex flex-col overflow-hidden">
+                <div class="w-full h-48 overflow-hidden relative bg-slate-100 dark:bg-slate-950">
+                    <img src="assets/Rotor Replacement1" 
+                         alt="Brake Rotor Replacement Service" 
+                         class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" />
+                    <div class="absolute inset-0 bg-gradient-to-t from-slate-950/40 to-transparent"></div>
+                </div>
+                <div class="p-5 sm:p-6 flex-grow flex flex-col justify-between space-y-4">
+                    <div class="space-y-2">
+                        <h3 class="text-base font-semibold text-slate-900 dark:text-white group-hover:text-brand-500 transition-colors">Rotor Replacement</h3>
+                        <p class="text-xs font-normal text-slate-500 dark:text-slate-400 leading-relaxed">Eliminate vibrations and improve braking performance with high-quality rotor replacement.</p>
+                    </div>
+                    <div class="text-xs font-semibold text-brand-600 dark:text-brand-400 inline-flex items-center gap-1 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                        <span>Book On-Site Fitting</span>
+                        <i class="fa-solid fa-chevron-right text-3xs transition-transform group-hover:translate-x-0.5 rtl:group-hover:-translate-x-0.5"></i>
+                    </div>
+                </div>
+            </div>
+
+            <!-- SERVICE CARD 3: Brake Inspection -->
+            <div class="group relative rounded-2xl bg-white dark:bg-slate-900 border border-slate-200/80 dark:border-slate-800/80 shadow-sm hover:shadow-xl hover:border-brand-500/30 dark:hover:border-brand-500/30 transition-all duration-300 flex flex-col overflow-hidden">
+                <div class="w-full h-48 overflow-hidden relative bg-slate-100 dark:bg-slate-950">
+                    <img src="assets/Comprehensive Brake Inspection Diagnostic1" 
+                         alt="Comprehensive Brake Inspection Diagnostic" 
+                         class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" />
+                    <div class="absolute inset-0 bg-gradient-to-t from-slate-950/40 to-transparent"></div>
+                </div>
+                <div class="p-5 sm:p-6 flex-grow flex flex-col justify-between space-y-4">
+                    <div class="space-y-2">
+                        <h3 class="text-base font-semibold text-slate-900 dark:text-white group-hover:text-brand-500 transition-colors">Brake Inspection</h3>
+                        <p class="text-xs font-normal text-slate-500 dark:text-slate-400 leading-relaxed">Comprehensive brake system checks to identify wear, noise tolerances, and safety concerns.</p>
+                    </div>
+                    <div class="text-xs font-semibold text-brand-600 dark:text-brand-400 inline-flex items-center gap-1 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                        <span>Schedule Inspection</span>
+                        <i class="fa-solid fa-chevron-right text-3xs transition-transform group-hover:translate-x-0.5 rtl:group-hover:-translate-x-0.5"></i>
+                    </div>
+                </div>
+            </div>
+
+            <!-- SERVICE CARD 4: Full Brake Service -->
+            <div class="group relative rounded-2xl bg-white dark:bg-slate-900 border border-slate-200/80 dark:border-slate-800/80 shadow-sm hover:shadow-xl hover:border-brand-500/30 dark:hover:border-brand-500/30 transition-all duration-300 flex flex-col overflow-hidden">
+                <div class="w-full h-48 overflow-hidden relative bg-slate-100 dark:bg-slate-950">
+                    <img src="assets/Complete Dual Axle Brake Service1" 
+                         alt="Complete Dual Axle Brake Service" 
+                         class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" />
+                    <div class="absolute inset-0 bg-gradient-to-t from-slate-950/40 to-transparent"></div>
+                </div>
+                <div class="p-5 sm:p-6 flex-grow flex flex-col justify-between space-y-4">
+                    <div class="space-y-2">
+                        <h3 class="text-base font-semibold text-slate-900 dark:text-white group-hover:text-brand-500 transition-colors">Full Brake Service</h3>
+                        <p class="text-xs font-normal text-slate-500 dark:text-slate-400 leading-relaxed">Complete front and rear axle brake repairs, caliper alignments, and hardware lubrication for peace.</p>
+                    </div>
+                    <div class="text-xs font-semibold text-brand-600 dark:text-brand-400 inline-flex items-center gap-1 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                        <span>Book Full Overhaul</span>
+                        <i class="fa-solid fa-chevron-right text-3xs transition-transform group-hover:translate-x-0.5 rtl:group-hover:-translate-x-0.5"></i>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+<!-- COMPACT PERFORMANCE NUMBERS TRUST BAR SECTION -->
+<section id="numbers-trust-bar" class="py-12 bg-white dark:bg-slate-900 border-y border-slate-100 dark:border-slate-800/80 transition-colors duration-300 overflow-hidden select-none">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        <!-- RESPONSIVE GRID TRACK ENGINE -->
+        <!-- Breakpoint System Configuration:
+             - Ultra-Mobile (360px): 2 columns, beautifully packed tight together (`grid-cols-2 gap-y-8 gap-x-4`)
+             - Tablet (768px / md:): Snaps into a perfectly proportioned 4-column balanced dashboard pipeline (`md:grid-cols-4 gap-6`)
+             - Desktop Viewports (1024px / lg:): Generates elegant horizontal line separators and spacious tracking spacing -->
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-y-8 gap-x-4 md:gap-6 text-center items-center divide-slate-100 dark:divide-slate-800 md:divide-x rtl:md:divide-x-reverse">
+            
+            <!-- KPI METRIC 1: Vehicles Serviced -->
+            <div class="space-y-1 group">
+                <div class="flex items-center justify-center gap-2 text-brand-600 dark:text-brand-400">
+                    <i class="fa-solid fa-car-side text-xs sm:text-sm transition-transform duration-300 group-hover:-translate-y-0.5"></i>
+                    <p class="text-2xl sm:text-3xl font-bold text-slate-950 dark:text-white tracking-tight">
+                        15,000+
+                    </p>
+                </div>
+                <p class="text-[10px] sm:text-xs font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-widest">
+                    Vehicles Repaired
+                </p>
+            </div>
+
+            <!-- KPI METRIC 2: Average Response Dispatch Time -->
+            <div class="space-y-1 group">
+                <div class="flex items-center justify-center gap-2 text-brand-600 dark:text-brand-400">
+                    <i class="fa-solid fa-bolt transition-transform duration-300 group-hover:scale-110"></i>
+                    <p class="text-2xl sm:text-3xl font-bold text-slate-950 dark:text-white tracking-tight">
+                        45 Min
+                    </p>
+                </div>
+                <p class="text-[10px] sm:text-xs font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-widest">
+                    Avg Arrival Time
+                </p>
+            </div>
+
+            <!-- KPI METRIC 3: Certified Master Technicians -->
+            <div class="space-y-1 group">
+                <div class="flex items-center justify-center gap-2 text-brand-600 dark:text-brand-400">
+                    <i class="fa-solid fa-user-gear text-xs sm:text-sm transition-transform duration-300 group-hover:rotate-12"></i>
+                    <p class="text-2xl sm:text-3xl font-bold text-slate-950 dark:text-white tracking-tight">
+                        50+
+                    </p>
+                </div>
+                <p class="text-[10px] sm:text-xs font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-widest">
+                    ASE Technicians
+                </p>
+            </div>
+
+            <!-- KPI METRIC 4: Warranty Protection Duration -->
+            <div class="space-y-1 group">
+                <div class="flex items-center justify-center gap-2 text-brand-600 dark:text-brand-400">
+                    <i class="fa-solid fa-shield-check text-xs sm:text-sm transition-transform duration-300 group-hover:scale-105"></i>
+                    <p class="text-2xl sm:text-3xl font-bold text-slate-950 dark:text-white tracking-tight">
+                        100%
+                    </p>
+                </div>
+                <p class="text-[10px] sm:text-xs font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-widest">
+                    Warranty Backed
+                </p>
+            </div>
+
         </div>
         
-        <!-- Trust Signal Footer -->
-        <p class="mt-8 text-xs text-slate-400 dark:text-slate-600 uppercase tracking-[0.2em] font-semibold">
-            No long-term contracts. Start in 24 hours.
-        </p>
     </div>
 </section>
-  <!-- FOOTER STRUCTURE -->
-    <footer class="bg-white dark:bg-slate-950 border-t border-slate-200/60 dark:border-slate-900 transition-colors duration-300">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-16 pb-8">
+<!-- HOME PAGE: WHY CHOOSE US TRUST GRID (Modern Light Theme Redesign) -->
+<section id="homepage-why-choose-us" class="py-16 sm:py-24 bg-white dark:bg-slate-900 transition-colors duration-300 overflow-hidden">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        <!-- SECTION TITLE & HEADER BLOCK -->
+        <div class="text-center max-w-3xl mx-auto space-y-4 mb-14 sm:mb-20">
+            <span class="text-xs font-semibold uppercase tracking-widest text-brand-500 bg-brand-500/10 dark:bg-brand-500/15 px-3 py-1.5 rounded-full inline-block">
+                The BrakeDoc Advantage
+            </span>
+            <h2 class="text-2xl sm:text-3xl md:text-4xl font-semibold tracking-tight text-slate-900 dark:text-white leading-tight">
+                Why Drivers Trust Our Mobile Brake Service
+            </h2>
+            <div class="h-1 w-12 bg-brand-500 rounded mx-auto"></div>
+        </div>
+
+        <!-- TRUST GRID HUB LAYOUT MAPPING -->
+        <!-- Responsive break-lines: 1 col on mobile/360px, 2 cols on tablet/768px, 3 cols from 1024px desktop up -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 items-stretch">
             
-            <!-- Top Section: Core Columns and Newsletter Integration -->
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-10 pb-12 border-b border-slate-100 dark:border-slate-900">
+            <!-- ADVANTAGE 1: Mobile Workplace Delivery -->
+            <div class="group relative rounded-2xl bg-slate-50 dark:bg-slate-800/40 p-5 sm:p-6 border border-slate-200/60 dark:border-slate-800/60 shadow-sm hover:shadow-md hover:border-brand-500/30 dark:hover:border-brand-500/30 transition-all duration-300 flex flex-col gap-4">
+                <div class="w-10 h-10 rounded-xl bg-brand-500/10 text-brand-500 flex items-center justify-center text-sm transition-colors duration-300 group-hover:bg-brand-500 group-hover:text-white shrink-0">
+                    <i class="fa-solid fa-location-dot"></i>
+                </div>
+                <div class="space-y-1">
+                    <h3 class="text-sm sm:text-base font-semibold text-slate-900 dark:text-white group-hover:text-brand-500 transition-colors">On-Site Convenience</h3>
+                    <p class="text-xs font-normal text-slate-500 dark:text-slate-400 leading-relaxed">We bring our fully equipped mobile workshop vehicle vans straight to your home driveway or office workplace.</p>
+                </div>
+            </div>
+
+            <!-- ADVANTAGE 2: Experienced and Certified Mechanics -->
+            <div class="group relative rounded-2xl bg-slate-50 dark:bg-slate-800/40 p-5 sm:p-6 border border-slate-200/60 dark:border-slate-800/60 shadow-sm hover:shadow-md hover:border-brand-500/30 dark:hover:border-brand-500/30 transition-all duration-300 flex flex-col gap-4">
+                <div class="w-10 h-10 rounded-xl bg-brand-500/10 text-brand-500 flex items-center justify-center text-sm transition-colors duration-300 group-hover:bg-brand-500 group-hover:text-white shrink-0">
+                    <i class="fa-solid fa-user-gear"></i>
+                </div>
+                <div class="space-y-1">
+                    <h3 class="text-sm sm:text-base font-semibold text-slate-900 dark:text-white group-hover:text-brand-500 transition-colors">Certified Mechanics</h3>
+                    <p class="text-xs font-normal text-slate-500 dark:text-slate-400 leading-relaxed">Every driveway repair and rotor calibration is executed by vetted, expert technicians holding extensive safety clearances.</p>
+                </div>
+            </div>
+
+            <!-- ADVANTAGE 3: Upfront, Honest Pricing -->
+            <div class="group relative rounded-2xl bg-slate-50 dark:bg-slate-800/40 p-5 sm:p-6 border border-slate-200/60 dark:border-slate-800/60 shadow-sm hover:shadow-md hover:border-brand-500/30 dark:hover:border-brand-500/30 transition-all duration-300 flex flex-col gap-4">
+                <div class="w-10 h-10 rounded-xl bg-brand-500/10 text-brand-500 flex items-center justify-center text-sm transition-colors duration-300 group-hover:bg-brand-500 group-hover:text-white shrink-0">
+                    <i class="fa-solid fa-receipt"></i>
+                </div>
+                <div class="space-y-1">
+                    <h3 class="text-sm sm:text-base font-semibold text-slate-900 dark:text-white group-hover:text-brand-500 transition-colors">Upfront, Honest Pricing</h3>
+                    <p class="text-xs font-normal text-slate-500 dark:text-slate-400 leading-relaxed">Transparent flat-rate pricing generated instantly before booking with an absolute zero hidden diagnostic surcharge policy.</p>
+                </div>
+            </div>
+
+            <!-- ADVANTAGE 4: Premium Quality Parts -->
+            <div class="group relative rounded-2xl bg-slate-50 dark:bg-slate-800/40 p-5 sm:p-6 border border-slate-200/60 dark:border-slate-800/60 shadow-sm hover:shadow-md hover:border-brand-500/30 dark:hover:border-brand-500/30 transition-all duration-300 flex flex-col gap-4">
+                <div class="w-10 h-10 rounded-xl bg-brand-500/10 text-brand-500 flex items-center justify-center text-sm transition-colors duration-300 group-hover:bg-brand-500 group-hover:text-white shrink-0">
+                    <i class="fa-solid fa-box-open"></i>
+                </div>
+                <div class="space-y-1">
+                    <h3 class="text-sm sm:text-base font-semibold text-slate-900 dark:text-white group-hover:text-brand-500 transition-colors">Premium Quality Parts</h3>
+                    <p class="text-xs font-normal text-slate-500 dark:text-slate-400 leading-relaxed">We exclusively install high-durability ceramic pads and corrosion-resistant OEM matching components.</p>
+                </div>
+            </div>
+
+            <!-- ADVANTAGE 5: Fast and Reliable Service -->
+            <div class="group relative rounded-2xl bg-slate-50 dark:bg-slate-800/40 p-5 sm:p-6 border border-slate-200/60 dark:border-slate-800/60 shadow-sm hover:shadow-md hover:border-brand-500/30 dark:hover:border-brand-500/30 transition-all duration-300 flex flex-col gap-4">
+                <div class="w-10 h-10 rounded-xl bg-brand-500/10 text-brand-500 flex items-center justify-center text-sm transition-colors duration-300 group-hover:bg-brand-500 group-hover:text-white shrink-0">
+                    <i class="fa-solid fa-gauge-high"></i>
+                </div>
+                <div class="space-y-1">
+                    <h3 class="text-sm sm:text-base font-semibold text-slate-900 dark:text-white group-hover:text-brand-500 transition-colors">Fast & Reliable Service</h3>
+                    <p class="text-xs font-normal text-slate-500 dark:text-slate-400 leading-relaxed">Rapid mobile response dispatch routes let you secure seamless turnaround times from our dedicated operators.</p>
+                </div>
+            </div>
+
+            <!-- ADVANTAGE 6: Warranty on Parts and Labor -->
+            <div class="group relative rounded-2xl bg-slate-50 dark:bg-slate-800/40 p-5 sm:p-6 border border-slate-200/60 dark:border-slate-800/80 shadow-sm hover:shadow-md hover:border-brand-500/30 dark:hover:border-brand-500/30 transition-all duration-300 flex flex-col gap-4">
+                <div class="w-10 h-10 rounded-xl bg-brand-500/10 text-brand-500 flex items-center justify-center text-sm transition-colors duration-300 group-hover:bg-brand-500 group-hover:text-white shrink-0">
+                    <i class="fa-solid fa-shield-halved"></i>
+                </div>
+                <div class="space-y-1">
+                    <h3 class="text-sm sm:text-base font-semibold text-slate-900 dark:text-white group-hover:text-brand-500 transition-colors">Parts & Labor Warranty</h3>
+                    <p class="text-xs font-normal text-slate-500 dark:text-slate-400 leading-relaxed">Every driveway brake overhaul package includes full warranty protection backings for absolute peace of mind.</p>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<!-- HOW IT WORKS SECTION (Modern Light Layout with Technical Grid & Floating Steps) -->
+<section id="how-it-works" class="py-16 sm:py-24 bg-slate-50 dark:bg-slate-950 transition-colors duration-300 overflow-hidden">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        <!-- SECTION TITLE & HEADER -->
+        <div class="text-center max-w-3xl mx-auto space-y-4 mb-16 sm:mb-24">
+            <span class="text-xs font-semibold uppercase tracking-widest text-brand-500 bg-brand-500/10 dark:bg-brand-500/15 px-3 py-1.5 rounded-full inline-block">
+                The Process Framework
+            </span>
+            <h2 class="text-2xl sm:text-3xl md:text-4xl font-semibold tracking-tight text-slate-900 dark:text-white leading-tight">
+                How Our Mobile Service Works
+            </h2>
+            <div class="h-1 w-12 bg-brand-500 rounded mx-auto"></div>
+        </div>
+
+        <!-- FOUR-STEP FLOATING GRID MATRIX (Strictly No Connecting Lines) -->
+        <!-- Breakpoints: 1 col on mobile/360px, 2 cols on tablet, 4 cols from 1024px desktop up -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8 items-stretch">
+            
+            <!-- STEP 1: Request a Quote -->
+            <div class="group relative rounded-2xl bg-white dark:bg-slate-900 border border-slate-200/80 dark:border-slate-800/80 p-6 shadow-sm hover:shadow-xl hover:border-brand-500/30 dark:hover:border-brand-500/30 hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between">
                 
-                <!-- Branding and Corporate Ethos Column -->
-                <div class="lg:col-span-4 space-y-5">
-                    <a href="index.html" class="flex items-center space-x-2 font-semibold text-xl tracking-tight text-brand-500">
-                        <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
-                        <span>TaskVibe</span>
-                    </a>
-                    <p class="text-sm text-slate-500 dark:text-slate-400 font-normal leading-relaxed max-w-sm">
-                        Optimizing business efficiency with engineered virtual management systems. We streamline execution tasks for corporate leaders.
-                    </p>
-                    
-                    <!-- Social Icons Platform Strip -->
-                    <div class="flex items-center space-x-4 text-slate-400 dark:text-slate-500">
-                        <a href="#" class="hover:text-brand-500 transition-colors" title="Twitter / X">
-                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
-                        </a>
-                        <a href="#" class="hover:text-brand-500 transition-colors" title="LinkedIn">
-                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
-                        </a>
-                        <a href="#" class="hover:text-brand-500 transition-colors" title="Instagram">
-                            <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
-                        </a>
-                    </div>
+                <!-- Fine blueprint grid background layer -->
+                <div class="absolute inset-0 z-0 opacity-[0.02] dark:opacity-[0.04] pointer-events-none">
+                    <div class="absolute inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:16px_16px]"></div>
                 </div>
 
-                <!-- Quick Links Section Matrix -->
-                <div class="lg:col-span-4 grid grid-cols-2 gap-4">
-                    <div class="space-y-3">
-                        <h4 class="text-xs font-semibold uppercase tracking-wider text-slate-400 dark:text-slate-500">Navigation</h4>
-                        <ul class="space-y-2 text-sm font-medium text-slate-600 dark:text-slate-400">
-                            <li><a href="index.html" class="hover:text-brand-500 transition-colors">Home</a></li>
-                            <li><a href="home2.html" class="hover:text-brand-500 transition-colors">Home 2</a></li>
-                            <li><a href="aboutus.html" class="hover:text-brand-500 transition-colors">About Us</a></li>
-                            <li><a href="services.html" class="hover:text-brand-500 transition-colors">Services</a></li>
-                            <li><a href="contact.html" class="hover:text-brand-500 transition-colors">Contact</a></li>
-                        </ul>
-                    </div>
-                    <div class="space-y-3">
-                        <h4 class="text-xs font-semibold uppercase tracking-wider text-slate-400 dark:text-slate-500">Resources</h4>
-                        <ul class="space-y-2 text-sm font-medium text-slate-600 dark:text-slate-400">
-                            <li><a href="pricing.html" class="hover:text-brand-500 transition-colors">Pricing</a></li>
-                            <li><a href="gallery.html" class="hover:text-brand-500 transition-colors">Gallery</a></li>
-                            <li><a href="booknow.html" class="hover:text-brand-500 transition-colors">Book Now</a></li>
-                            <li><a href="404.html" class="hover:text-brand-500 transition-colors">404 Error</a></li>
-                            <li><a href="comingsoon.html" class="hover:text-brand-500 transition-colors">Coming Soon</a></li>
-                        </ul>
-                    </div>
-                </div>
-
-                <!-- Live Newsletter Subscription Box Component -->
-                <div class="lg:col-span-4 space-y-4">
-                    <h4 class="text-xs font-semibold uppercase tracking-wider text-slate-400 dark:text-slate-500">Newsletter Subscription</h4>
-                    <p class="text-xs text-slate-500 dark:text-slate-400 leading-relaxed">
-                        Receive monthly executive summaries, time optimization analysis, and agency platform additions directly.
-                    </p>
-                    <form class="space-y-2" @submit.prevent="alert('Subscribed successfully!')">
-                        <div class="flex flex-col xs:flex-row gap-2">
-                            <input type="email" placeholder="Enter corporate email" required class="w-full px-4 py-2.5 text-sm bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl focus:outline-none focus:border-brand-500 transition-colors text-slate-800 dark:text-slate-100">
-                            <button type="submit" class="w-full xs:w-auto px-5 py-2.5 bg-brand-500 hover:bg-brand-600 text-white text-sm font-medium rounded-xl shadow-sm transition-colors whitespace-nowrap">
-                                Subscribe
-                            </button>
+                <div class="space-y-4 relative z-10">
+                    <!-- Numeric Indicator & Icon Stack -->
+                    <div class="flex items-center justify-between">
+                        <div class="w-10 h-10 rounded-xl bg-brand-500/10 text-brand-500 flex items-center justify-center text-sm font-semibold transition-colors duration-300 group-hover:bg-brand-500 group-hover:text-white">
+                            <i class="fa-solid fa-calculator"></i>
                         </div>
+                        <span class="text-3xl font-semibold tracking-tighter text-slate-200 dark:text-slate-800 select-none group-hover:text-brand-500/20 transition-colors duration-300">01</span>
+                    </div>
+                    
+                    <div class="space-y-1.5">
+                        <h3 class="text-base font-semibold text-slate-900 dark:text-white group-hover:text-brand-500 transition-colors">Request a Quote and Consultation</h3>
+                        <p class="text-xs font-normal text-slate-500 dark:text-slate-400 leading-relaxed">Tell us your vehicle details and the specialized brake service your system needs and build fast.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- STEP 2: Schedule an Appointment -->
+            <div class="group relative rounded-2xl bg-white dark:bg-slate-900 border border-slate-200/80 dark:border-slate-800/80 p-6 shadow-sm hover:shadow-xl hover:border-brand-500/30 dark:hover:border-brand-500/30 hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between">
+                <div class="absolute inset-0 z-0 opacity-[0.02] dark:opacity-[0.04] pointer-events-none">
+                    <div class="absolute inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:16px_16px]"></div>
+                </div>
+                <div class="space-y-4 relative z-10">
+                    <div class="flex items-center justify-between">
+                        <div class="w-10 h-10 rounded-xl bg-brand-500/10 text-brand-500 flex items-center justify-center text-sm font-semibold transition-colors duration-300 group-hover:bg-brand-500 group-hover:text-white">
+                            <i class="fa-solid fa-calendar-days"></i>
+                        </div>
+                        <span class="text-3xl font-semibold tracking-tighter text-slate-200 dark:text-slate-800 select-none group-hover:text-brand-500/20 transition-colors duration-300">02</span>
+                    </div>
+                    <div class="space-y-1.5">
+                        <h3 class="text-base font-semibold text-slate-900 dark:text-white group-hover:text-brand-500 transition-colors">Schedule Appointment</h3>
+                        <p class="text-xs font-normal text-slate-500 dark:text-slate-400 leading-relaxed">Choose an optimized arrival window, date, and workplace or home address that fits your timeline.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- STEP 3: We Come to You -->
+            <div class="group relative rounded-2xl bg-white dark:bg-slate-900 border border-slate-200/80 dark:border-slate-800/80 p-6 shadow-sm hover:shadow-xl hover:border-brand-500/30 dark:hover:border-brand-500/30 hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between">
+                <div class="absolute inset-0 z-0 opacity-[0.02] dark:opacity-[0.04] pointer-events-none">
+                    <div class="absolute inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:16px_16px]"></div>
+                </div>
+                <div class="space-y-4 relative z-10">
+                    <div class="flex items-center justify-between">
+                        <div class="w-10 h-10 rounded-xl bg-brand-500/10 text-brand-500 flex items-center justify-center text-sm font-semibold transition-colors duration-300 group-hover:bg-brand-500 group-hover:text-white">
+                            <i class="fa-solid fa-truck"></i>
+                        </div>
+                        <span class="text-3xl font-semibold tracking-tighter text-slate-200 dark:text-slate-800 select-none group-hover:text-brand-500/20 transition-colors duration-300">03</span>
+                    </div>
+                    <div class="space-y-1.5">
+                        <h3 class="text-base font-semibold text-slate-900 dark:text-white group-hover:text-brand-500 transition-colors">We Come to You</h3>
+                        <p class="text-xs font-normal text-slate-500 dark:text-slate-400 leading-relaxed">Our certified technician arrives with a fully customized mobile workshop to perform clean, safe assembly.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- STEP 4: Drive Safely -->
+            <div class="group relative rounded-2xl bg-white dark:bg-slate-900 border border-slate-200/80 dark:border-slate-800/80 p-6 shadow-sm hover:shadow-xl hover:border-brand-500/30 dark:hover:border-brand-500/30 hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between">
+                <div class="absolute inset-0 z-0 opacity-[0.02] dark:opacity-[0.04] pointer-events-none">
+                    <div class="absolute inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:16px_16px]"></div>
+                </div>
+                <div class="space-y-4 relative z-10">
+                    <div class="flex items-center justify-between">
+                        <div class="w-10 h-10 rounded-xl bg-brand-500/10 text-brand-500 flex items-center justify-center text-sm font-semibold transition-colors duration-300 group-hover:bg-brand-500 group-hover:text-white">
+                            <i class="fa-solid fa-shield"></i>
+                        </div>
+                        <span class="text-3xl font-semibold tracking-tighter text-slate-200 dark:text-slate-800 select-none group-hover:text-brand-500/20 transition-colors duration-300">04</span>
+                    </div>
+                    <div class="space-y-1.5">
+                        <h3 class="text-base font-semibold text-slate-900 dark:text-white group-hover:text-brand-500 transition-colors">Drive Safely</h3>
+                        <p class="text-xs font-normal text-slate-500 dark:text-slate-400 leading-relaxed">Enjoy smooth, quiet, and dependable braking performance backed by our comprehensive warranty protect track.</p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+<!-- WHY CHOOSE US SECTION (Fully Responsive Dynamic Feature Grid) -->
+<section id="why-choose-us" class="py-16 sm:py-24 bg-slate-50 dark:bg-slate-950 transition-colors duration-300 overflow-hidden">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        <!-- SECTION TITLE HEADER -->
+        <div class="text-center max-w-3xl mx-auto space-y-4 mb-12 sm:mb-20">
+            <span class="text-xs font-semibold uppercase tracking-widest text-brand-600 bg-brand-500/10 dark:text-brand-400 dark:bg-brand-500/15 px-3 py-1.5 rounded-full inline-block select-none">
+                Elite Service Matrix
+            </span>
+            <h2 class="text-2xl sm:text-3xl md:text-4xl font-semibold tracking-tight text-slate-950 dark:text-white leading-tight">
+                Why Driveway Operators Choose Our Fleet
+            </h2>
+            <div class="h-1 w-12 bg-brand-500 rounded mx-auto"></div>
+        </div>
+
+        <!-- RESPONSIVE CARD MATRIX ENGINE -->
+        <!-- Breakpoint Specifications:
+             - Ultra-Mobile (360px): 1 Column layout with balanced vertical grid spacing (`grid-cols-1 gap-5`)
+             - Tablet / Medium Screen (768px / md:): Snaps into a perfectly symmetric 2-column track matrix (`md:grid-cols-2 gap-6`)
+             - Desktop Entry (1024px / lg:): Expands into a spacious full-width 3-column layout structure (`lg:grid-cols-3 gap-8`) -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 md:gap-6 lg:gap-8 items-stretch">
+            
+            <!-- CARD 1: 24/7 Emergency Support -->
+            <div class="group relative rounded-2xl bg-white dark:bg-slate-900 p-5 sm:p-6 border border-slate-200/80 dark:border-slate-800/80 shadow-sm hover:shadow-xl hover:border-brand-500/30 dark:hover:border-brand-500/30 transition-all duration-300 flex flex-col justify-between overflow-hidden cursor-default">
+                <!-- Fine engineering dot mesh layer -->
+                <div class="absolute inset-0 z-0 opacity-[0.02] dark:opacity-[0.04] pointer-events-none rounded-2xl overflow-hidden">
+                    <div class="absolute inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:14px_14px]"></div>
+                </div>
+                
+                <div class="space-y-4 relative z-10">
+                    <!-- Icon Chassis Badge -->
+                    <div class="w-11 h-11 rounded-xl bg-brand-500/10 text-brand-600 dark:bg-brand-500/15 dark:text-brand-400 flex items-center justify-center text-base transition-colors duration-300 group-hover:bg-brand-500 group-hover:text-white shrink-0 shadow-sm">
+                        <i class="fa-solid fa-headset"></i>
+                    </div>
+                    <div class="space-y-1.5">
+                        <h3 class="text-sm sm:text-base font-semibold text-slate-950 dark:text-white group-hover:text-brand-500 transition-colors duration-200">
+                            24/7 Emergency Support
+                        </h3>
+                        <p class="text-xs sm:text-sm font-normal text-slate-600 dark:text-slate-400 leading-relaxed">
+                            Critical structural response operations active throughout midnight tracks. Our digital line monitors stay open every single day of the year.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- CARD 2: Fast Response Time -->
+            <div class="group relative rounded-2xl bg-white dark:bg-slate-900 p-5 sm:p-6 border border-slate-200/80 dark:border-slate-800/80 shadow-sm hover:shadow-xl hover:border-brand-500/30 dark:hover:border-brand-500/30 transition-all duration-300 flex flex-col justify-between overflow-hidden cursor-default">
+                <div class="absolute inset-0 z-0 opacity-[0.02] dark:opacity-[0.04] pointer-events-none rounded-2xl overflow-hidden">
+                    <div class="absolute inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:14px_14px]"></div>
+                </div>
+                
+                <div class="space-y-4 relative z-10">
+                    <div class="w-11 h-11 rounded-xl bg-brand-500/10 text-brand-600 dark:bg-brand-500/15 dark:text-brand-400 flex items-center justify-center text-base transition-colors duration-300 group-hover:bg-brand-500 group-hover:text-white shrink-0 shadow-sm">
+                        <i class="fa-solid fa-bolt-lightning"></i>
+                    </div>
+                    <div class="space-y-1.5">
+                        <h3 class="text-sm sm:text-base font-semibold text-slate-950 dark:text-white group-hover:text-brand-500 transition-colors duration-200">
+                            Fast Response Time
+                        </h3>
+                        <p class="text-xs sm:text-sm font-normal text-slate-600 dark:text-slate-400 leading-relaxed">
+                            Eliminate standard service shop queues instantly. Rapid alert processing channels dispatch mobile units to your location within minutes.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- CARD 3: Certified Technicians -->
+            <div class="group relative rounded-2xl bg-white dark:bg-slate-900 p-5 sm:p-6 border border-slate-200/80 dark:border-slate-800/80 shadow-sm hover:shadow-xl hover:border-brand-500/30 dark:hover:border-brand-500/30 transition-all duration-300 flex flex-col justify-between overflow-hidden cursor-default">
+                <div class="absolute inset-0 z-0 opacity-[0.02] dark:opacity-[0.04] pointer-events-none rounded-2xl overflow-hidden">
+                    <div class="absolute inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:14px_14px]"></div>
+                </div>
+                
+                <div class="space-y-4 relative z-10">
+                    <div class="w-11 h-11 rounded-xl bg-brand-500/10 text-brand-600 dark:bg-brand-500/15 dark:text-brand-400 flex items-center justify-center text-base transition-colors duration-300 group-hover:bg-brand-500 group-hover:text-white shrink-0 shadow-sm">
+                        <i class="fa-solid fa-user-check"></i>
+                    </div>
+                    <div class="space-y-1.5">
+                        <h3 class="text-sm sm:text-base font-semibold text-slate-950 dark:text-white group-hover:text-brand-500 transition-colors duration-200">
+                            Certified Technicians
+                        </h3>
+                        <p class="text-xs sm:text-sm font-normal text-slate-600 dark:text-slate-400 leading-relaxed">
+                            Every mechanical operator carries full ASE certifications and background verification clearances for premium precision on-site.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- CARD 4: Affordable Pricing -->
+            <div class="group relative rounded-2xl bg-white dark:bg-slate-900 p-5 sm:p-6 border border-slate-200/80 dark:border-slate-800/80 shadow-sm hover:shadow-xl hover:border-brand-500/30 dark:hover:border-brand-500/30 transition-all duration-300 flex flex-col justify-between overflow-hidden cursor-default">
+                <div class="absolute inset-0 z-0 opacity-[0.02] dark:opacity-[0.04] pointer-events-none rounded-2xl overflow-hidden">
+                    <div class="absolute inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:14px_14px]"></div>
+                </div>
+                
+                <div class="space-y-4 relative z-10">
+                    <div class="w-11 h-11 rounded-xl bg-brand-500/10 text-brand-600 dark:bg-brand-500/15 dark:text-brand-400 flex items-center justify-center text-base transition-colors duration-300 group-hover:bg-brand-500 group-hover:text-white shrink-0 shadow-sm">
+                        <i class="fa-solid fa-hand-holding-dollar"></i>
+                    </div>
+                    <div class="space-y-1.5">
+                        <h3 class="text-sm sm:text-base font-semibold text-slate-950 dark:text-white group-hover:text-brand-500 transition-colors duration-200">
+                            Affordable Pricing
+                        </h3>
+                        <p class="text-xs sm:text-sm font-normal text-slate-600 dark:text-slate-400 leading-relaxed">
+                            Clear, upfront estimates with zero hidden garage fees. We eliminate storefront brick-and-mortar overhead to pass savings directly to you.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- CARD 5: GPS-Based Dispatch -->
+            <div class="group relative rounded-2xl bg-white dark:bg-slate-900 p-5 sm:p-6 border border-slate-200/80 dark:border-slate-800/80 shadow-sm hover:shadow-xl hover:border-brand-500/30 dark:hover:border-brand-500/30 transition-all duration-300 flex flex-col justify-between overflow-hidden cursor-default">
+                <div class="absolute inset-0 z-0 opacity-[0.02] dark:opacity-[0.04] pointer-events-none rounded-2xl overflow-hidden">
+                    <div class="absolute inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:14px_14px]"></div>
+                </div>
+                
+                <div class="space-y-4 relative z-10">
+                    <div class="w-11 h-11 rounded-xl bg-brand-500/10 text-brand-600 dark:bg-brand-500/15 dark:text-brand-400 flex items-center justify-center text-base transition-colors duration-300 group-hover:bg-brand-500 group-hover:text-white shrink-0 shadow-sm">
+                        <i class="fa-solid fa-map-location-dot"></i>
+                    </div>
+                    <div class="space-y-1.5">
+                        <h3 class="text-sm sm:text-base font-semibold text-slate-950 dark:text-white group-hover:text-brand-500 transition-colors duration-200">
+                            GPS-Based Dispatch
+                        </h3>
+                        <p class="text-xs sm:text-sm font-normal text-slate-600 dark:text-slate-400 leading-relaxed">
+                            Live telemetry routing pushes the nearest available mobile workshop van to your driveway coordinates with real-time ETA tracking maps.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- CARD 6: Trusted by Thousands -->
+            <div class="group relative rounded-2xl bg-white dark:bg-slate-900 p-5 sm:p-6 border border-slate-200/80 dark:border-slate-800/80 shadow-sm hover:shadow-xl hover:border-brand-500/30 dark:hover:border-brand-500/30 transition-all duration-300 flex flex-col justify-between overflow-hidden cursor-default">
+                <div class="absolute inset-0 z-0 opacity-[0.02] dark:opacity-[0.04] pointer-events-none rounded-2xl overflow-hidden">
+                    <div class="absolute inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:14px_14px]"></div>
+                </div>
+                
+                <div class="space-y-4 relative z-10">
+                    <div class="w-11 h-11 rounded-xl bg-brand-500/10 text-brand-600 dark:bg-brand-500/15 dark:text-brand-400 flex items-center justify-center text-base transition-colors duration-300 group-hover:bg-brand-500 group-hover:text-white shrink-0 shadow-sm">
+                        <i class="fa-solid fa-star-shoots"></i>
+                    </div>
+                    <div class="space-y-1.5">
+                        <h3 class="text-sm sm:text-base font-semibold text-slate-950 dark:text-white group-hover:text-brand-500 transition-colors duration-200">
+                            Trusted by Thousands
+                        </h3>
+                        <p class="text-xs sm:text-sm font-normal text-slate-600 dark:text-slate-400 leading-relaxed">
+                            Backed by a verifiable 4.9 out of 5-star rating matrix from real commuters. Delivering peace of mind and stopping power right to your door.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+<!-- EMERGENCY SERVICE BANNER (High-Contrast Contained Urgent Action Block) -->
+<section id="emergency-alert-banner" class="py-12 bg-slate-50 dark:bg-slate-950 transition-colors duration-300">
+    
+    <!-- Outer container enforcing standard desktop page limits -->
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        <!-- Contained banner chassis with a striking border accent -->
+        <div class="relative rounded-2xl bg-white dark:bg-slate-900 border-l-4 border-brand-500 border-y border-r border-slate-200 dark:border-slate-800 shadow-lg overflow-hidden p-6 sm:p-8 transition-all duration-300 hover:shadow-xl">
+            
+            <!-- Structural technical blueprint lines hidden in background -->
+            <div class="absolute inset-0 z-0 opacity-[0.02] dark:opacity-[0.05] pointer-events-none">
+                <div class="absolute inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:16px_16px]"></div>
+            </div>
+
+            <!-- Core Content Flex Layout Framework -->
+            <!-- Breakpoints: Stacked columns on mobile, clean single row on 768px tablet up -->
+            <div class="relative z-10 flex flex-col md:flex-row md:items-center md:justify-between gap-6">
+                
+                <!-- LEFT SIDE: ALERTS & CONTENT HEADING -->
+                <div class="flex items-start gap-4 text-left rtl:text-right">
+                    <!-- Specialized Pulse Warning Icon Indicator Box -->
+                    <div class="w-10 h-10 rounded-xl bg-brand-500/10 text-brand-500 flex items-center justify-center text-sm shrink-0 mt-0.5 relative">
+                        <span class="absolute inset-0 rounded-xl bg-brand-500/20 animate-ping opacity-75"></span>
+                        <i class="fa-solid fa-triangle-exclamation animate-pulse"></i>
+                    </div>
+                    
+                    <div class="space-y-1">
+                        <!-- Primary Warning Heading Line -->
+                        <h2 class="text-base sm:text-lg font-semibold text-slate-900 dark:text-white tracking-tight">
+                            Hearing Squeaking or Grinding?
+                        </h2>
+                        <!-- Core Description Context -->
+                        <p class="text-xs sm:text-sm font-normal text-slate-600 dark:text-slate-400 leading-relaxed max-w-xl">
+                            Don’t ignore brake warning signs. Book a same-day mobile brake inspection and repair service to restore safe deceleration control.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- RIGHT SIDE: INTERACTIVE CONVERSION BUTTON -->
+                <div class="shrink-0 flex items-center">
+                    <a href="booknow.html" class="group relative w-full md:w-auto text-center px-6 py-3 bg-brand-500 hover:bg-brand-600 text-white font-medium text-xs uppercase tracking-wider rounded-xl shadow-md hover:shadow-brand-500/20 transition-all duration-200 overflow-hidden inline-flex items-center justify-center gap-2">
+                        <!-- Shimmer tracking light sweep reflection line on hover -->
+                        <div class="absolute inset-0 w-1/2 h-full bg-white/20 skew-x-[-25deg] -translate-x-full group-hover:animate-[shine_0.75s_ease-in-out]"></div>
+                        <span>Schedule Today</span>
+                        <i class="fa-solid fa-arrow-right text-[10px] transition-transform group-hover:translate-x-1 rtl:group-hover:-translate-x-1"></i>
+                    </a>
+                </div>
+
+            </div>
+            
+        </div>
+        
+    </div>
+</section>
+
+<!-- Hardware Accelerated Shine Overlay Animation Track -->
+<style>
+    @keyframes shine {
+        100% { transform: translateX(260%); }
+    }
+</style>
+<!-- SAAS-STYLE PRICING SECTION (Modern Interactive Plan Matrix) -->
+<section id="pricing-section" class="py-16 sm:py-24 bg-white dark:bg-slate-900 transition-colors duration-300 overflow-hidden">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        <!-- SECTION TITLE & HEADER -->
+        <div class="text-center max-w-3xl mx-auto space-y-4 mb-10">
+            <span class="text-xs font-semibold uppercase tracking-widest text-brand-500 bg-brand-500/10 dark:bg-brand-500/15 px-3 py-1.5 rounded-full inline-block">
+                Transparent Fleet Plans
+            </span>
+            <h2 class="text-2xl sm:text-3xl md:text-4xl font-semibold tracking-tight text-slate-900 dark:text-white leading-tight">
+                Flexible Pricing for Every Vehicle Fleet
+            </h2>
+            <div class="h-1 w-12 bg-brand-500 rounded mx-auto"></div>
+        </div>
+
+        <!-- USER INTERACTIVE: MONTHLY / YEARLY TOGGLE SWITCH -->
+        <div class="flex items-center justify-center gap-3 mb-12 sm:mb-16 select-none">
+            <span id="label-monthly" class="text-sm font-semibold text-slate-900 dark:text-white transition-colors duration-200">Monthly</span>
+            <!-- Toggle track container -->
+            <button onclick="toggleBillingCycle()" id="billing-toggle-bg" class="w-12 h-6 rounded-full bg-slate-200 dark:bg-slate-800 p-0.5 relative transition-colors duration-300 focus:outline-none" aria-label="Toggle Billing Cycle">
+                <!-- Toggle slider knob -->
+                <div id="billing-toggle-knob" class="w-5 h-5 rounded-full bg-brand-500 shadow-sm transition-transform duration-300 transform translate-x-0"></div>
+            </button>
+            <span id="label-yearly" class="text-sm font-normal text-slate-400 dark:text-slate-500 transition-colors duration-200 inline-flex items-center gap-1.5">
+                Yearly <span class="text-[10px] font-semibold bg-emerald-500/10 text-emerald-500 dark:text-emerald-400 px-2 py-0.5 rounded-md uppercase tracking-wider">Save 20%</span>
+            </span>
+        </div>
+
+        <!-- PRICING TIER CARDS MATRIX -->
+        <!-- Breakpoints: 1 col on 360px/mobile, 2 cols on tablet/mid-screens, 3 cols from 1024px desktop up -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 items-stretch">
+            
+            <!-- TIER 1: Individual Car Care -->
+            <div class="group relative rounded-3xl bg-slate-50 dark:bg-slate-800/40 p-6 sm:p-8 border border-slate-200 dark:border-slate-800 flex flex-col justify-between hover:border-brand-500/30 dark:hover:border-brand-500/30 hover:shadow-xl transition-all duration-300">
+                <div class="space-y-6">
+                    <div class="space-y-2">
+                        <h3 class="text-base sm:text-lg font-semibold text-slate-900 dark:text-white">Single Vehicle Plan</h3>
+                        <p class="text-xs sm:text-sm font-normal text-slate-500 dark:text-slate-400 leading-relaxed">Perfect for individual drivers seeking priority on-call driveway mechanics.</p>
+                    </div>
+                    <!-- Pricing element track -->
+                    <div class="flex items-baseline text-slate-900 dark:text-white">
+                        <span class="text-2xl font-semibold">$</span>
+                        <span id="price-single" class="text-4xl sm:text-5xl font-semibold tracking-tight transition-all duration-300">19</span>
+                        <span class="text-sm font-normal text-slate-400 dark:text-slate-500 ml-1">/month</span>
+                    </div>
+                    <hr class="border-slate-200 dark:border-slate-800">
+                    <!-- Feature set list -->
+                    <ul class="space-y-3.5 text-sm font-medium text-slate-600 dark:text-slate-300">
+                        <li class="flex items-center gap-2.5"><i class="fa-solid fa-circle-check text-brand-500 text-sm"></i> 1 Registered Personal Vehicle</li>
+                        <li class="flex items-center gap-2.5"><i class="fa-solid fa-circle-check text-brand-500 text-sm"></i> Free Annual Multi-Point Inspection</li>
+                        <li class="flex items-center gap-2.5"><i class="fa-solid fa-circle-check text-brand-500 text-sm"></i> 10% Off Replacement Parts</li>
+                        <li class="flex items-center gap-2.5 text-slate-400 dark:text-slate-600 line-through"><i class="fa-solid fa-circle-minus opacity-40 text-sm"></i> Priority Same-Day Dispatch</li>
+                    </ul>
+                </div>
+                <div class="pt-8">
+                    <a href="booknow.html" class="block w-full text-center bg-slate-900 hover:bg-slate-800 dark:bg-slate-800 dark:hover:bg-slate-700 text-white text-xs font-semibold uppercase tracking-wider py-3.5 rounded-xl transition-colors duration-200">
+                        Get Started
+                    </a>
+                </div>
+            </div>
+
+            <!-- TIER 2: Family Fleet (Most Popular Premium Polish Layout) -->
+            <div class="group relative rounded-3xl bg-slate-950 p-6 sm:p-8 border-2 border-brand-500 flex flex-col justify-between shadow-xl ring-1 ring-brand-500/10">
+                <!-- Most Popular absolute ribbon badge -->
+                <span class="absolute top-0 right-1/2 transform translate-x-1/2 -translate-y-1/2 bg-brand-500 text-white text-[10px] font-semibold uppercase tracking-widest px-3 py-1 rounded-full shadow-md">
+                    Most Popular
+                </span>
+                <div class="space-y-6">
+                    <div class="space-y-2">
+                        <h3 class="text-base sm:text-lg font-semibold text-white">Family Fleet Coverage</h3>
+                        <p class="text-xs sm:text-sm font-normal text-slate-400 leading-relaxed">Comprehensive maintenance management for multi-car suburban households.</p>
+                    </div>
+                    <div class="flex items-baseline text-white">
+                        <span class="text-2xl font-semibold">$</span>
+                        <span id="price-family" class="text-4xl sm:text-5xl font-semibold tracking-tight transition-all duration-300">39</span>
+                        <span class="text-sm font-normal text-slate-500 ml-1">/month</span>
+                    </div>
+                    <hr class="border-slate-800">
+                    <ul class="space-y-3.5 text-sm font-medium text-slate-300">
+                        <li class="flex items-center gap-2.5"><i class="fa-solid fa-circle-check text-brand-500 text-sm"></i> Up to 4 Family Vehicles</li>
+                        <li class="flex items-center gap-2.5"><i class="fa-solid fa-circle-check text-brand-500 text-sm"></i> Free Semi-Annual Brake Inspection</li>
+                        <li class="flex items-center gap-2.5"><i class="fa-solid fa-circle-check text-brand-500 text-sm"></i> 15% Off Parts & Fluid Flushes</li>
+                        <li class="flex items-center gap-2.5"><i class="fa-solid fa-circle-check text-brand-500 text-sm"></i> Guaranteed Same-Day Dispatch</li>
+                    </ul>
+                </div>
+                <div class="pt-8">
+                    <a href="booknow.html" class="block w-full text-center bg-brand-500 hover:bg-brand-600 text-white text-xs font-semibold uppercase tracking-wider py-3.5 rounded-xl shadow-lg shadow-brand-500/20 transition-colors duration-200">
+                        Subscribe Now
+                    </a>
+                </div>
+            </div>
+
+            <!-- TIER 3: Commercial Fleet Support -->
+            <div class="group relative rounded-3xl bg-slate-50 dark:bg-slate-800/40 p-6 sm:p-8 border border-slate-200 dark:border-slate-800 flex flex-col justify-between hover:border-brand-500/30 dark:hover:border-brand-500/30 hover:shadow-xl transition-all duration-300 md:col-span-2 lg:col-span-1">
+                <div class="space-y-6">
+                    <div class="space-y-2">
+                        <h3 class="text-base sm:text-lg font-semibold text-slate-900 dark:text-white">Commercial Fleet</h3>
+                        <p class="text-xs sm:text-sm font-normal text-slate-500 dark:text-slate-400 leading-relaxed">Enterprise management built for local delivery vans, corporate cars, and logistics links.</p>
+                    </div>
+                    <div class="flex items-baseline text-slate-900 dark:text-white">
+                        <span class="text-2xl font-semibold">$</span>
+                        <span id="price-fleet" class="text-4xl sm:text-5xl font-semibold tracking-tight transition-all duration-300">89</span>
+                        <span class="text-sm font-normal text-slate-400 dark:text-slate-500 ml-1">/month</span>
+                    </div>
+                    <hr class="border-slate-200 dark:border-slate-800">
+                    <ul class="space-y-3.5 text-sm font-medium text-slate-600 dark:text-slate-300">
+                        <li class="flex items-center gap-2.5"><i class="fa-solid fa-circle-check text-brand-500 text-sm"></i> Unlimited Commercial Fleet Vans</li>
+                        <li class="flex items-center gap-2.5"><i class="fa-solid fa-circle-check text-brand-500 text-sm"></i> Quarterly Routine Brake Audits</li>
+                        <li class="flex items-center gap-2.5"><i class="fa-solid fa-circle-check text-brand-500 text-sm"></i> 25% Off Bulk Rotor Replacements</li>
+                        <li class="flex items-center gap-2.5"><i class="fa-solid fa-circle-check text-brand-500 text-sm"></i> 24/7 Dedicated On-Call Mechanic Dispatch</li>
+                    </ul>
+                </div>
+                <div class="pt-8">
+                    <a href="booknow.html" class="block w-full text-center bg-slate-900 hover:bg-slate-800 dark:bg-slate-800 dark:hover:bg-slate-700 text-white text-xs font-semibold uppercase tracking-wider py-3.5 rounded-xl transition-colors duration-200">
+                        Contact Enterprise
+                    </a>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<!-- SaaS Pricing Switch Toggle Interactive Logic Script -->
+<script>
+    let isYearlyBilling = false;
+
+    // Pricing dataset structure
+    const pricingPlans = {
+        monthly: { single: 19, family: 39, fleet: 89 },
+        yearly: { single: 15, family: 31, fleet: 71 }
+    };
+
+    function toggleBillingCycle() {
+        isYearlyBilling = !isYearlyBilling;
+
+        // UI Target nodes selectors
+        const toggleBg = document.getElementById('billing-toggle-bg');
+        const toggleKnob = document.getElementById('billing-toggle-knob');
+        const labelMonthly = document.getElementById('label-monthly');
+        const labelYearly = document.getElementById('label-yearly');
+
+        const singleDisplay = document.getElementById('price-single');
+        const familyDisplay = document.getElementById('price-family');
+        const fleetDisplay = document.getElementById('price-fleet');
+
+        if (isYearlyBilling) {
+            // Apply Right transformation to slider knob
+            toggleKnob.classList.remove('translate-x-0');
+            toggleKnob.classList.add('translate-x-6', 'rtl:-translate-x-6');
+            toggleBg.classList.add('bg-brand-500/20');
+            
+            // Adjust label text weights dynamically
+            labelMonthly.classList.remove('font-semibold', 'text-slate-900', 'dark:text-white');
+            labelMonthly.classList.add('font-normal', 'text-slate-400', 'dark:text-slate-500');
+            labelYearly.classList.remove('font-normal', 'text-slate-400', 'dark:text-slate-500');
+            labelYearly.classList.add('font-semibold', 'text-slate-900', 'dark:text-white');
+
+            // Set Price content values to reflect annual discounts
+            singleDisplay.textContent = pricingPlans.yearly.single;
+            familyDisplay.textContent = pricingPlans.yearly.family;
+            fleetDisplay.textContent = pricingPlans.yearly.fleet;
+        } else {
+            // Reset position settings
+            toggleKnob.classList.remove('translate-x-6', 'rtl:-translate-x-6');
+            toggleKnob.classList.add('translate-x-0');
+            toggleBg.classList.remove('bg-brand-500/20');
+
+            labelYearly.classList.remove('font-semibold', 'text-slate-900', 'dark:text-white');
+            labelYearly.classList.add('font-normal', 'text-slate-400', 'dark:text-slate-500');
+            labelMonthly.classList.remove('font-normal', 'text-slate-400', 'dark:text-slate-500');
+            labelMonthly.classList.add('font-semibold', 'text-slate-900', 'dark:text-white');
+
+            singleDisplay.textContent = pricingPlans.monthly.single;
+            familyDisplay.textContent = pricingPlans.monthly.family;
+            fleetDisplay.textContent = pricingPlans.monthly.fleet;
+        }
+    }
+</script>
+<!-- TESTIMONIALS SECTION (Modern Clean Masonry Grid with Interactive Glow Cards) -->
+<section id="testimonials-section" class="py-16 sm:py-24 bg-slate-50 dark:bg-slate-950 transition-colors duration-300 overflow-hidden">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        <!-- SECTION TITLE & HEADER -->
+        <div class="text-center max-w-3xl mx-auto space-y-4 mb-12 sm:mb-20">
+            <span class="text-xs font-semibold uppercase tracking-widest text-brand-500 bg-brand-500/10 dark:bg-brand-500/15 px-3 py-1.5 rounded-full inline-block">
+                Client Reviews
+            </span>
+            <h2 class="text-2xl sm:text-3xl md:text-4xl font-semibold tracking-tight text-slate-900 dark:text-white leading-tight">
+                Trusted by Thousands of Drivers
+            </h2>
+            <div class="h-1 w-12 bg-brand-500 rounded mx-auto"></div>
+        </div>
+
+        <!-- TESTIMONIAL CARDS MATRIX GRID -->
+        <!-- Responsive mapping: 1 col on 360px/mobile, 2 cols on tablet, 3 cols from 1024px desktop up -->
+      <!-- RE-ENGINEERED TESTIMONIAL GRID FRAMEWORK -->
+<!-- Breakpoints: 
+     - Mobile (360px): 1 single vertical column 
+     - Tablet (768px / md:): 2 columns (Cards 1 & 2 share the first row, Card 3 sits full width on row 2)
+     - Desktop (1024px / lg:): Resets cleanly to 3 columns on a single row line -->
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 items-stretch">
+            
+    <!-- TESTIMONIAL CARD 1: At-Home Convenience -->
+    <div class="group relative p-6 sm:p-8 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200/60 dark:border-slate-800/80 shadow-sm hover:shadow-xl hover:border-brand-500/30 dark:hover:border-brand-500/30 transition-all duration-300 cursor-pointer flex flex-col justify-between lg:col-span-1">
+        <div class="space-y-4">
+            <!-- Rating Stars (Single focus brand accent color) -->
+            <div class="flex items-center space-x-1 ltr:space-x-1 rtl:space-x-reverse text-brand-500">
+                <i class="fa-solid fa-star text-xs"></i>
+                <i class="fa-solid fa-star text-xs"></i>
+                <i class="fa-solid fa-star text-xs"></i>
+                <i class="fa-solid fa-star text-xs"></i>
+                <i class="fa-solid fa-star text-xs"></i>
+            </div>
+            <!-- Review text content -->
+            <p class="text-sm font-normal text-slate-600 dark:text-slate-400 leading-relaxed italic">
+                "Unbelievable convenience! The technician changed my front brake pads and rotors right in my driveway while I was working inside. No towing costs, no waiting rooms, and clean upfront pricing."
+            </p>
+        </div>
+        <!-- User Profile Block -->
+        <div class="flex items-center gap-3 pt-6 mt-6 border-t border-slate-100 dark:border-slate-800">
+            <div class="w-10 h-10 rounded-full overflow-hidden bg-slate-100 dark:bg-slate-800 shrink-0 border border-slate-200 dark:border-slate-700 transition-transform duration-300 group-hover:scale-105">
+                <img src="assets/gt3" alt="Sarah Jenkins" class="w-full h-full object-cover" />
+            </div>
+            <div>
+                <h3 class="text-sm font-semibold text-slate-900 dark:text-white transition-colors group-hover:text-brand-500">Sarah Jenkins</h3>
+                <p class="text-[11px] font-normal text-slate-400 dark:text-slate-500">Verified SUV Owner</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- TESTIMONIAL CARD 2: Emergency Response Office Fix -->
+    <div class="group relative p-6 sm:p-8 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200/60 dark:border-slate-800/80 shadow-sm hover:shadow-xl hover:border-brand-500/30 dark:hover:border-brand-500/30 transition-all duration-300 cursor-pointer flex flex-col justify-between lg:col-span-1">
+        <div class="space-y-4">
+            <div class="flex items-center space-x-1 ltr:space-x-1 rtl:space-x-reverse text-brand-500">
+                <i class="fa-solid fa-star text-xs"></i>
+                <i class="fa-solid fa-star text-xs"></i>
+                <i class="fa-solid fa-star text-xs"></i>
+                <i class="fa-solid fa-star text-xs"></i>
+                <i class="fa-solid fa-star text-xs"></i>
+            </div>
+            <p class="text-sm font-normal text-slate-600 dark:text-slate-400 leading-relaxed italic">
+                "Noticed an awful grinding sound on my drive to the office. Booked an emergency inspection online, and a certified specialist arrived by noon. Fixed the problem completely in the company."
+            </p>
+        </div>
+        <div class="flex items-center gap-3 pt-6 mt-6 border-t border-slate-100 dark:border-slate-800">
+            <div class="w-10 h-10 rounded-full overflow-hidden bg-slate-100 dark:bg-slate-800 shrink-0 border border-slate-200 dark:border-slate-700 transition-transform duration-300 group-hover:scale-105">
+                <img src="assets/bt2" alt="Marcus Vance" class="w-full h-full object-cover" />
+            </div>
+            <div>
+                <h3 class="text-sm font-semibold text-slate-900 dark:text-white transition-colors group-hover:text-brand-500">Marcus Vance</h3>
+                <p class="text-[11px] font-normal text-slate-400 dark:text-slate-500">Sedan Commuter</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- TESTIMONIAL CARD 3: Fleet Management Review -->
+    <!-- TARGETED LAYOUT TWEEK: md:col-span-2 forces it to occupy the full row width at 768px, while lg:col-span-1 resets it on desktop -->
+    <div class="group relative p-6 sm:p-8 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200/60 dark:border-slate-800/80 shadow-sm hover:shadow-xl hover:border-brand-500/30 dark:hover:border-brand-500/30 transition-all duration-300 cursor-pointer flex flex-col justify-between md:col-span-2 lg:col-span-1">
+        <div class="space-y-4">
+            <div class="flex items-center space-x-1 ltr:space-x-1 rtl:space-x-reverse text-brand-500">
+                <i class="fa-solid fa-star text-xs"></i>
+                <i class="fa-solid fa-star text-xs"></i>
+                <i class="fa-solid fa-star text-xs"></i>
+                <i class="fa-solid fa-star text-xs"></i>
+                <i class="fa-solid fa-star text-xs"></i>
+            </div>
+            <p class="text-sm font-normal text-slate-600 dark:text-slate-400 leading-relaxed italic">
+                "We use their Commercial Fleet plan to manage routine brake safety checks for all our local delivery vans. The diagnostics are transparent, parts are premium OEM quality, and the response."
+            </p>
+        </div>
+        <div class="flex items-center gap-3 pt-6 mt-6 border-t border-slate-100 dark:border-slate-800">
+            <div class="w-10 h-10 rounded-full overflow-hidden bg-slate-100 dark:bg-slate-800 shrink-0 border border-slate-200 dark:border-slate-700 transition-transform duration-300 group-hover:scale-105">
+                <img src="assets/b" alt="David Thorne" class="w-full h-full object-cover" />
+            </div>
+            <div>
+                <h3 class="text-sm font-semibold text-slate-900 dark:text-white transition-colors group-hover:text-brand-500">David Thorne</h3>
+                <p class="text-[11px] font-normal text-slate-400 dark:text-slate-500">Logistics Director</p>
+            </div>
+        </div>
+    </div>
+
+</div>
+    </div>
+</section>
+<!-- FINAL BOOKING CALL TO ACTION (Contained Light-Theme Asymmetric Conversion Block) -->
+<section id="final-booking-cta" class="py-16 sm:py-24 bg-slate-50 dark:bg-slate-950 transition-colors duration-300">
+    
+    <!-- Outer structural container restricting full-bleed scaling on wider monitors -->
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        <!-- Main contained card layout frame chassis -->
+        <div class="relative rounded-3xl bg-white dark:bg-slate-900 border border-slate-200/80 dark:border-slate-800/80 shadow-xl overflow-hidden py-12 px-6 sm:py-16 sm:px-12 text-center">
+            
+            <!-- Technical Blueprint Line Mapping Grid Pattern -->
+            <div class="absolute inset-0 z-0 opacity-[0.03] dark:opacity-10 pointer-events-none">
+                <div class="absolute inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:20px_20px]"></div>
+            </div>
+
+            <!-- Soft background ambient illumination flare assets -->
+            <div class="absolute inset-0 z-0 opacity-40 dark:opacity-20 pointer-events-none">
+                <div class="absolute -top-32 -left-32 w-72 h-72 bg-brand-500/10 rounded-full blur-3xl"></div>
+                <div class="absolute -bottom-32 -right-32 w-72 h-72 bg-brand-500/10 rounded-full blur-3xl"></div>
+            </div>
+
+            <!-- Core Content Column Typography Stack -->
+            <div class="relative z-10 space-y-6 sm:space-y-8 max-w-2xl mx-auto">
+                
+                <!-- Micro-Badge Dispatch Indicator Tag -->
+                <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-medium bg-brand-500/10 text-brand-600 dark:text-brand-400 border border-brand-500/20 backdrop-blur-md select-none mx-auto">
+                    <span class="flex h-1.5 w-1.5 relative">
+                        <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-brand-500 opacity-75"></span>
+                        <span class="relative inline-flex rounded-full h-1.5 w-1.5 bg-brand-500"></span>
+                    </span>
+                    Dispatch Operators Standing By
+                </div>
+
+                <!-- Primary Booking Action Headline -->
+                <h2 class="text-2xl sm:text-3xl md:text-4xl font-semibold tracking-tight text-slate-900 dark:text-white leading-tight">
+                    Ready to Book Your Mobile Brake Service?
+                </h2>
+
+                <!-- Core Description Context -->
+                <p class="text-sm sm:text-base text-slate-600 dark:text-slate-400 font-normal leading-relaxed max-w-xl mx-auto">
+                    Get expert brake repair at your convenience. Our technicians come directly to you with specialized tools and premium replacement parts.
+                </p>
+
+                <!-- High-Converting Multi-CTA Dual Interaction Button Grid -->
+                <div class="flex flex-col sm:flex-row items-center justify-center gap-4 pt-2 max-w-md mx-auto">
+                    <!-- Button 1: Booking Hub Route -->
+                    <a href="booknow.html" class="group relative w-full sm:w-auto text-center px-6 py-4 bg-brand-500 hover:bg-brand-600 text-white font-medium text-sm rounded-xl shadow-lg shadow-brand-500/10 hover:shadow-brand-500/30 transition-all duration-300 overflow-hidden inline-flex items-center justify-center gap-2">
+                        <!-- Shimmer light element sweep animation reflection line on hover -->
+                        <div class="absolute inset-0 w-1/2 h-full bg-white/20 skew-x-[-25deg] -translate-x-full group-hover:animate-[shine_0.75s_ease-in-out]"></div>
+                        <span>Book Your Appointment</span>
+                        <i class="fa-solid fa-calendar-check text-xs transition-transform group-hover:scale-105"></i>
+                    </a>
+                    
+                    <!-- Button 2: Emergency Hotline Phone Route -->
+                    <a href="contact.html" class="w-full sm:w-auto text-center px-6 py-4 bg-slate-100 dark:bg-slate-800/80 hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-800 dark:text-slate-100 font-medium text-sm rounded-xl border border-slate-200 dark:border-slate-700 transition-all duration-300 inline-flex items-center justify-center gap-2 group">
+                        <i class="fa-solid fa-phone text-xs text-slate-400 group-hover:text-brand-500 transition-colors"></i>
+                        <span>Call Now</span>
+                    </a>
+                </div>
+
+                <!-- Trust parameters micro-ribbon footer metrics -->
+                <div class="pt-4 flex flex-wrap items-center justify-center gap-x-4 gap-y-2 text-xs font-normal text-slate-400 dark:text-slate-500">
+                    <span class="inline-flex items-center gap-1"><i class="fa-solid fa-circle-check text-brand-500 text-[10px]"></i> Zero Prepayment Obligations</span>
+                    <span class="hidden sm:inline text-slate-200 dark:text-slate-800">|</span>
+                    <span class="inline-flex items-center gap-1"><i class="fa-solid fa-circle-check text-brand-500 text-[10px]"></i> Vetted Certified Vets</span>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+</section>
+
+<!-- Hardware Accelerated Custom CSS Shimmer Keyframe Layer Animations -->
+<style>
+    @keyframes shine {
+        100% { transform: translateX(260%); }
+    }
+</style>
+   <!-- FOOTER -->
+   <footer class="bg-white dark:bg-slate-950 text-slate-600 dark:text-slate-400 border-t border-slate-200 dark:border-slate-900 transition-colors duration-300">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 lg:py-16">
+        <!-- Main Footer Grid Grid System -->
+        <!-- Responsive mapping: 1 col on mobile, 2 cols on tablet, 12-column layout from 1024px desktop up -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-12 gap-10 lg:gap-12">
+            
+            <!-- BRANDING & SOCIAL COLUMN -->
+            <div class="flex flex-col space-y-4 lg:col-span-4 sm:col-span-2 lg:pr-4 rtl:lg:pr-0 rtl:lg:pl-4">
+                <a href="index.html" class="inline-block focus:outline-none">
+                    <div class="flex items-center gap-2">
+                        <i class="fa-solid fa-car-burst text-brand-500 text-2xl"></i>
+                        <span class="text-lg font-bold tracking-tight text-slate-900 dark:text-white">Brake<span class="text-brand-500">Doc</span></span>
+                    </div>
+                </a>
+                <p class="text-sm font-normal max-w-sm leading-relaxed">
+                    Premium mobile brake repair and rotor replacement services delivered directly to your driveway. High quality parts, certified experts, ultimate convenience.
+                </p>
+                <!-- Social Media Platforms Link Ribbon -->
+                <div class="flex space-x-3 rtl:space-x-reverse pt-2">
+                    <a href="#" class="p-2.5 rounded-xl bg-slate-50 dark:bg-slate-900 hover:bg-brand-500 dark:hover:bg-brand-500 hover:text-white dark:hover:text-white text-slate-500 dark:text-slate-400 transition-all text-xs" aria-label="Facebook">
+                        <i class="fa-brands fa-facebook-f w-4 text-center"></i>
+                    </a>
+                    <a href="#" class="p-2.5 rounded-xl bg-slate-50 dark:bg-slate-900 hover:bg-brand-500 dark:hover:bg-brand-500 hover:text-white dark:hover:text-white text-slate-500 dark:text-slate-400 transition-all text-xs" aria-label="Twitter">
+                        <i class="fa-brands fa-x w-4 text-center"></i>
+                    </a>
+                    <a href="#" class="p-2.5 rounded-xl bg-slate-50 dark:bg-slate-900 hover:bg-brand-500 dark:hover:bg-brand-500 hover:text-white dark:hover:text-white text-slate-500 dark:text-slate-400 transition-all text-xs" aria-label="Instagram">
+                        <i class="fa-brands fa-instagram w-4 text-center"></i>
+                    </a>
+                    <a href="#" class="p-2.5 rounded-xl bg-slate-50 dark:bg-slate-900 hover:bg-brand-500 dark:hover:bg-brand-500 hover:text-white dark:hover:text-white text-slate-500 dark:text-slate-400 transition-all text-xs" aria-label="LinkedIn">
+                        <i class="fa-brands fa-linkedin-in w-4 text-center"></i>
+                    </a>
+                </div>
+            </div>
+
+            <!-- DYNAMIC LINKS & NEWSLETTER CONTAINER (Fills 8 Columns on Desktop) -->
+            <!-- Breakdowns: 1 col on mobile (360px), 2 cols on small tablet, 3 cols on desktops (1024px+) -->
+            <div class="lg:col-span-8 sm:col-span-2 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8 lg:gap-6">
+                
+                <!-- COLUMN 1: CORE NAVIGATION PAGES -->
+                <div class="flex flex-col space-y-4">
+                    <div class="space-y-1">
+                        <h4 class="text-xs font-bold uppercase tracking-widest text-slate-900 dark:text-white">
+                            Explore Services
+                        </h4>
+                        <div class="h-0.5 w-8 bg-brand-500 rounded"></div>
+                    </div>
+                    <ul class="space-y-3 text-sm font-medium text-slate-600 dark:text-slate-400">
+                        <li>
+                            <a href="index.html" class="hover:text-brand-500 hover:translate-x-1 rtl:hover:-translate-x-1 transition-all duration-200 inline-flex items-center gap-2">
+                                <i class="fa-solid fa-chevron-right text-[10px] opacity-50"></i> Home Option 1
+                            </a>
+                        </li>
+                        <li>
+                            <a href="home2.html" class="hover:text-brand-500 hover:translate-x-1 rtl:hover:-translate-x-1 transition-all duration-200 inline-flex items-center gap-2">
+                                <i class="fa-solid fa-chevron-right text-[10px] opacity-50"></i> Home Option 2
+                            </a>
+                        </li>
+                        <li>
+                            <a href="abouts.html" class="hover:text-brand-500 hover:translate-x-1 rtl:hover:-translate-x-1 transition-all duration-200 inline-flex items-center gap-2">
+                                <i class="fa-solid fa-chevron-right text-[10px] opacity-50"></i> About Our Techs
+                            </a>
+                        </li>
+                        <li>
+                            <a href="service.html" class="hover:text-brand-500 hover:translate-x-1 rtl:hover:-translate-x-1 transition-all duration-200 inline-flex items-center gap-2">
+                                <i class="fa-solid fa-chevron-right text-[10px] opacity-50"></i> Brake & Rotors
+                            </a>
+                        </li>
+                        <li>
+                            <a href="pricing.html" class="hover:text-brand-500 hover:translate-x-1 rtl:hover:-translate-x-1 transition-all duration-200 inline-flex items-center gap-2">
+                                <i class="fa-solid fa-chevron-right text-[10px] opacity-50"></i> Price Estimates
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- COLUMN 2: RESOURCES & SUPPORT -->
+                <div class="flex flex-col space-y-4">
+                    <div class="space-y-1">
+                        <h4 class="text-xs font-bold uppercase tracking-widest text-slate-900 dark:text-white">
+                            Resources & Support
+                        </h4>
+                        <div class="h-0.5 w-8 bg-brand-500 rounded"></div>
+                    </div>
+                    <ul class="space-y-3 text-sm font-medium text-slate-600 dark:text-slate-400">
+                        <li>
+                            <a href="gallery.html" class="hover:text-brand-500 hover:translate-x-1 rtl:hover:-translate-x-1 transition-all duration-200 inline-flex items-center gap-2">
+                                <i class="fa-solid fa-chevron-right text-[10px] opacity-50"></i> Work Gallery
+                            </a>
+                        </li>
+                        <li>
+                            <a href="contact.html" class="hover:text-brand-500 hover:translate-x-1 rtl:hover:-translate-x-1 transition-all duration-200 inline-flex items-center gap-2">
+                                <i class="fa-solid fa-chevron-right text-[10px] opacity-50"></i> Get In Touch
+                            </a>
+                        </li>
+                        <li>
+                            <a href="404.html" class="hover:text-brand-500 hover:translate-x-1 rtl:hover:-translate-x-1 transition-all duration-200 inline-flex items-center gap-2">
+                                <i class="fa-solid fa-chevron-right text-[10px] opacity-50"></i> 404 Error Page
+                            </a>
+                        </li>
+                        <li>
+                            <a href="comingsoon.html" class="hover:text-brand-500 hover:translate-x-1 rtl:hover:-translate-x-1 transition-all duration-200 inline-flex items-center gap-2">
+                                <i class="fa-solid fa-chevron-right text-[10px] opacity-50"></i> Coming Soon
+                            </a>
+                        </li>
+                        <!-- Book Now CTA Link Button inside column list structure -->
+                        <li class="pt-1">
+                            <a href="booknow.html" class="group inline-flex items-center justify-center gap-2 bg-brand-500 hover:bg-brand-600 text-white font-semibold px-4 py-2.5 rounded-xl shadow-md hover:shadow-brand-500/20 transition-all duration-200 text-xs uppercase tracking-wider w-full sm:w-auto">
+                                <span>Book Service</span>
+                                <i class="fa-solid fa-arrow-right text-[10px] transition-transform group-hover:translate-x-1 rtl:group-hover:-translate-x-1"></i>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- NEW COLUMN 3: NEWSLETTER SUBSCRIPTION -->
+                <!-- Spans full width on phone grids, adapts seamlessly inside 1024px rows -->
+                <div class="flex flex-col space-y-4 col-span-1 sm:col-span-2 md:col-span-1 pt-4 md:pt-0 border-t border-slate-100 dark:border-slate-900 md:border-t-0">
+                    <div class="space-y-1">
+                        <h4 class="text-xs font-bold uppercase tracking-widest text-slate-900 dark:text-white">
+                            Stay Updated
+                        </h4>
+                        <div class="h-0.5 w-8 bg-brand-500 rounded"></div>
+                    </div>
+                    <p class="text-sm text-slate-500 dark:text-slate-400 font-normal leading-relaxed">
+                        Subscribe to receive seasonal brake inspection reminders, local technician updates, and exclusive service discounts.
+                    </p>
+                    <form action="#" class="space-y-2 pt-1 w-full" onsubmit="event.preventDefault();">
+                        <div class="relative flex items-center">
+                            <input type="email" placeholder="Your email address" required
+                                class="w-full px-4 py-3 text-sm rounded-xl bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 focus:outline-none focus:border-brand-500 focus:ring-1 focus:ring-brand-500 transition-all placeholder:text-slate-400 dark:placeholder:text-slate-600 text-slate-900 dark:text-slate-100" />
+                        </div>
+                        <button type="submit" 
+                            class="w-full text-center bg-slate-900 hover:bg-slate-800 dark:bg-slate-800 dark:hover:bg-slate-700 text-white font-medium text-xs uppercase tracking-wider py-3 rounded-xl transition-colors duration-200 focus:ring-2 focus:ring-offset-2 focus:ring-brand-500">
+                            Subscribe
+                        </button>
                     </form>
                 </div>
 
             </div>
+        </div>
 
-            <!-- Bottom Metainfo Frame -->
-            <div class="mt-8 flex flex-col sm:flex-row items-center justify-between text-xs text-slate-400 dark:text-slate-500 space-y-4 sm:space-y-0">
-                <span>&copy; 2026 TaskVibe Platform Systems. All rights reserved.</span>
-                <div class="flex space-x-6">
-                    <a href="#" class="hover:text-brand-500">Privacy Infrastructure</a>
-                    <a href="#" class="hover:text-brand-500">Terms of Deployment</a>
-                </div>
+        <!-- BOTTOM COPYRIGHT BAR -->
+        <div class="mt-12 pt-6 border-t border-slate-200 dark:border-slate-900 text-xs text-center sm:flex sm:justify-between sm:items-center text-slate-500 space-y-2 sm:space-y-0">
+            <p>&copy; 2026 BrakeDoc Inc. All rights reserved.</p>
+            <div class="flex items-center justify-center space-x-4 rtl:space-x-reverse text-slate-400 dark:text-slate-600">
+                <a href="#" class="hover:text-brand-500 transition-colors">Privacy Policy</a>
+                <span>&bull;</span>
+                <a href="#" class="hover:text-brand-500 transition-colors">Terms of Service</a>
             </div>
         </div>
-    </footer>
+    </div>
+</footer>
 
+    <!-- INTERACTIVE JAVASCRIPT LAYER -->
+    <script>
+        // DOM Elements
+        const htmlElement = document.documentElement;
+        
+        const themeToggleBtn = document.getElementById('theme-toggle');
+        const themeToggleMobileBtn = document.getElementById('theme-toggle-mobile');
+        const themeIcon = document.getElementById('theme-icon');
+        const themeIconMobile = document.getElementById('theme-icon-mobile');
+
+        const rtlToggleBtn = document.getElementById('rtl-toggle');
+        const rtlToggleMobileBtn = document.getElementById('rtl-toggle-mobile');
+
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const menuIcon = document.getElementById('menu-icon');
+
+        // 1. Dark/Light Mode Management Logic
+        function updateThemeUI(isDark) {
+            if (isDark) {
+                htmlElement.classList.add('dark');
+                themeIcon.className = "fa-solid fa-sun";
+                themeIconMobile.className = "fa-solid fa-sun";
+                localStorage.setItem('theme', 'dark');
+            } else {
+                htmlElement.classList.remove('dark');
+                themeIcon.className = "fa-solid fa-moon";
+                themeIconMobile.className = "fa-solid fa-moon";
+                localStorage.setItem('theme', 'light');
+            }
+        }
+
+        // Initialize Theme from localStorage or preferences
+        const savedTheme = localStorage.getItem('theme');
+        const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        const initDark = savedTheme === 'dark' || (!savedTheme && systemPrefersDark);
+        updateThemeUI(initDark);
+
+        // Event Listeners for Theme Toggles
+        themeToggleBtn.addEventListener('click', () => updateThemeUI(!htmlElement.classList.contains('dark')));
+        themeToggleMobileBtn.addEventListener('click', () => updateThemeUI(!htmlElement.classList.contains('dark')));
+
+
+        // 2. LTR/RTL Layout Direction Management Logic
+        function updateDirectionUI(direction) {
+            if (direction === 'rtl') {
+                htmlElement.setAttribute('dir', 'rtl');
+                rtlToggleBtn.textContent = 'RTL';
+                rtlToggleMobileBtn.textContent = 'RTL Mode';
+                localStorage.setItem('direction', 'rtl');
+            } else {
+                htmlElement.setAttribute('dir', 'ltr');
+                rtlToggleBtn.textContent = 'LTR';
+                rtlToggleMobileBtn.textContent = 'LTR Mode';
+                localStorage.setItem('direction', 'ltr');
+            }
+        }
+
+        // Initialize Direction from localStorage
+        const savedDirection = localStorage.getItem('direction') || 'ltr';
+        updateDirectionUI(savedDirection);
+
+        // Event Listeners for LTR/RTL Toggles
+        rtlToggleBtn.addEventListener('click', () => {
+            const currentDir = htmlElement.getAttribute('dir');
+            updateDirectionUI(currentDir === 'rtl' ? 'ltr' : 'rtl');
+        });
+        rtlToggleMobileBtn.addEventListener('click', () => {
+            const currentDir = htmlElement.getAttribute('dir');
+            updateDirectionUI(currentDir === 'rtl' ? 'ltr' : 'rtl');
+        });
+
+
+        // 3. Mobile & Tablet Menu Interactive Logic
+        mobileMenuBtn.addEventListener('click', () => {
+            const isMenuExpanded = mobileMenu.classList.contains('hidden');
+            
+            if (isMenuExpanded) {
+                mobileMenu.classList.remove('hidden');
+                menuIcon.className = "fa-solid fa-xmark text-xl text-brand-500";
+                mobileMenuBtn.setAttribute('aria-expanded', 'true');
+            } else {
+                mobileMenu.classList.add('hidden');
+                menuIcon.className = "fa-solid fa-bars text-xl";
+                mobileMenuBtn.setAttribute('aria-expanded', 'false');
+            }
+        });
+    </script>
 </body>
 </html>
