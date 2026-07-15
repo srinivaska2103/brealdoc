@@ -20,6 +20,9 @@
                         brand: {
                             50: '#fff1f2',
                             100: '#ffe4e6',
+                            200: '#fecdd3',
+                            300: '#fda4af',
+                            400: '#fb7185',
                             500: '#f43f5e', /* Primary Accent - Sleek Automotive Red */
                             600: '#e11d48',
                             700: '#be123c',
@@ -228,10 +231,10 @@ if (mobileDashToggle && mobileDashLinks) {
              class="w-full h-full object-cover object-center transition-all duration-500 opacity-100" />
         
         <!-- RECALIBRATED GRADIENT MASK BLOCK: 
-             Creates a solid, high-contrast color plate behind the text on the left, 
-             then smoothly transitions to transparent on the right to show off the clear image -->
-        <div class="absolute inset-0 bg-gradient-to-r from-white via-white/95 to-white/20 dark:from-slate-950 dark:via-slate-950/95 dark:to-slate-950/30 ltr:bg-gradient-to-r rtl:bg-gradient-to-l"></div>
-        <div class="absolute inset-0 bg-gradient-to-b from-transparent via-white/10 to-white dark:from-transparent dark:via-slate-950/10 dark:to-slate-950"></div>
+             Semi-transparent overlay so the hero background image is clearly visible
+             in both light and dark themes, with enough contrast for text readability -->
+        <div class="absolute inset-0 bg-gradient-to-r from-white/80 via-white/50 to-white/10 dark:from-slate-950/80 dark:via-slate-950/50 dark:to-slate-950/15 ltr:bg-gradient-to-r rtl:bg-gradient-to-l"></div>
+        <div class="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-white/30 dark:from-transparent dark:via-transparent dark:to-slate-950/40"></div>
 
         <!-- Subtle linear background mesh pattern line mapping -->
         <div class="absolute inset-0 bg-[linear-gradient(to_right,#8080800e_1px,transparent_1px),linear-gradient(to_bottom,#8080800e_1px,transparent_1px)] bg-[size:24px_24px] dark:bg-[linear-gradient(to_right,#ffffff05_1px,transparent_1px),linear-gradient(to_bottom,#ffffff05_1px,transparent_1px)]"></div>
@@ -493,8 +496,13 @@ if (mobileDashToggle && mobileDashLinks) {
     </div>
 </section>
 <!-- EXPERT SERVICE SECTION — Split Layout: Left Brand Panel + Right Feature Grid -->
-<section id="services-why-choose-us" class="py-16 sm:py-24 bg-slate-50 dark:bg-slate-950 transition-colors duration-300">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<section id="services-why-choose-us" class="relative py-16 sm:py-24 bg-slate-50 dark:bg-slate-950 transition-colors duration-300 overflow-hidden">
+    <!-- Background Image Layer -->
+    <div class="absolute inset-0 z-0">
+        <img src="assets/bg_service_whychoose.png" alt="" class="w-full h-full object-cover object-center opacity-30 dark:opacity-40 pointer-events-none select-none" />
+        <div class="absolute inset-0 bg-gradient-to-b from-slate-50/75 via-slate-50/50 to-slate-50/75 dark:from-slate-950/80 dark:via-slate-950/60 dark:to-slate-950/80"></div>
+    </div>
+    <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
         <!-- Two-panel split -->
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-14 items-center">
@@ -624,12 +632,12 @@ if (mobileDashToggle && mobileDashLinks) {
     <!-- Background Image Layer -->
     <div class="absolute inset-0 z-0">
         <img src="assets/bg_warning_signs.png" alt="" class="w-full h-full object-cover object-center" />
-        <!-- Mode-adaptive overlay: light in light mode, dark in dark mode -->
-        <div class="absolute inset-0 bg-white/82 dark:bg-slate-950/85"></div>
+        <!-- Mode-adaptive overlay: light in light mode, dark in dark mode — reduced opacity to show bg image -->
+        <div class="absolute inset-0 bg-white/65 dark:bg-slate-950/70"></div>
         <!-- Top accent glow (brand red tint) -->
         <div class="absolute inset-x-0 top-0 h-32 bg-gradient-to-b from-brand-500/8 dark:from-brand-500/12 to-transparent"></div>
         <!-- Bottom vignette -->
-        <div class="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-white/50 dark:from-slate-950/60 to-transparent"></div>
+        <div class="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-white/30 dark:from-slate-950/40 to-transparent"></div>
     </div>
     <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
